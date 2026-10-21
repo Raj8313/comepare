@@ -25,14 +25,14 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
               Running Cost & Fuel Showdown
             </h3>
           </div>
-          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1.5">
             Real running cost calculated per kilometer based on real-world test telemetry
           </p>
         </div>
 
         {/* Monthly Km Slider Control */}
-        <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark px-4 py-2.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark min-w-[220px]">
-          <div className="flex justify-between text-xs mb-1">
+        <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark px-4 py-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark min-w-[220px]">
+          <div className="flex justify-between text-sm mb-1.5">
             <label htmlFor="cost-monthly-km" className="text-neutral-700 dark:text-neutral-300 font-semibold">Monthly Driving:</label>
             <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
               {monthlyKm.toLocaleString()} km
@@ -74,33 +74,33 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
               }`}
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-bold text-neutral-900 dark:text-white truncate">{v.name}</span>
+                <span className="text-sm font-bold text-neutral-900 dark:text-white truncate">{v.name}</span>
                 {isEv ? (
-                  <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-speed-green/20 text-emerald-800 dark:text-speed-green border border-speed-green/30">
-                    <Zap className="h-2.5 w-2.5 fill-current" /> ₹{costPerKm.toFixed(2)}/km
+                  <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-speed-green/20 text-emerald-800 dark:text-speed-green border border-speed-green/30">
+                    <Zap className="h-3 w-3 fill-current" /> ₹{costPerKm.toFixed(2)}/km
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700">
-                    <Fuel className="h-2.5 w-2.5" /> ₹{costPerKm.toFixed(2)}/km
+                  <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700">
+                    <Fuel className="h-3 w-3" /> ₹{costPerKm.toFixed(2)}/km
                   </span>
                 )}
               </div>
 
               {/* Monthly Cost Big Callout */}
               <div className="mb-4">
-                <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block font-semibold">
+                <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block font-semibold">
                   Estimated Monthly Fuel
                 </span>
-                <span className={`text-2xl sm:text-3xl font-extrabold font-mono ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
+                <span className={`text-3xl font-extrabold font-mono tracking-tight ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
                   ₹{monthlyExpense.toLocaleString()}
                 </span>
-                <span className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-0.5 block">
+                <span className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 block">
                   Based on {v.efficiency.realWorldEfficiency}
                 </span>
               </div>
 
               {/* Long term timeline */}
-              <div className="pt-3 border-t border-borderLine-light dark:border-borderLine-dark space-y-1.5 text-xs">
+              <div className="pt-3 border-t border-borderLine-light dark:border-borderLine-dark space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span className="text-neutral-600 dark:text-neutral-400 font-medium">1 Year Fuel:</span>
                   <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100">
@@ -121,15 +121,15 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
 
       {/* Difference Highlights if ICE vs EV */}
       {vehicles.some(v => v.powertrain === 'ev') && vehicles.some(v => v.powertrain !== 'ev') && (
-        <div className="p-4 rounded-2xl bg-speed-green/10 border border-speed-green/20 flex items-center gap-3.5">
-          <div className="p-2 rounded-xl bg-speed-green/20 text-speed-green shrink-0">
+        <div className="p-5 rounded-2xl bg-speed-green/10 border border-speed-green/20 flex items-center gap-4">
+          <div className="p-2.5 rounded-xl bg-speed-green/20 text-speed-green shrink-0">
             <TrendingDown className="h-5 w-5" />
           </div>
           <div>
             <span className="text-xs font-bold text-neutral-900 dark:text-white block uppercase tracking-wider">
               Electric Fuel Savings Notice
             </span>
-            <p className="text-xs text-neutral-800 dark:text-neutral-200 mt-0.5 leading-relaxed">
+            <p className="text-sm text-neutral-800 dark:text-neutral-200 mt-1 leading-relaxed">
               At {monthlyKm.toLocaleString()} km/month, switching from ICE to EV saves approximately{' '}
               <strong className="font-mono font-bold text-emerald-800 dark:text-speed-green">
                 ₹{Math.round(monthlyKm * (7.80 - 1.15) * 12).toLocaleString()} per year

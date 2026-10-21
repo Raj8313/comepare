@@ -25,12 +25,12 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
               Visual Dimension & Stance Stacker
             </h3>
           </div>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-1.5">
             Scaled 1:1 visual footprint overlay (inspired by Carsized)
           </p>
         </div>
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 bg-surface-subtle-light dark:bg-surface-subtle-dark px-3 py-1.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark">
-          <Maximize2 className="h-3.5 w-3.5 text-speed-green" />
+        <div className="flex items-center gap-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300 bg-surface-subtle-light dark:bg-surface-subtle-dark px-3.5 py-2 rounded-xl border border-borderLine-light dark:border-borderLine-dark">
+          <Maximize2 className="h-4 w-4 text-speed-green" />
           <span>True Proportions</span>
         </div>
       </div>
@@ -41,7 +41,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
           Exterior Length (Front Bumper to Rear Bumper)
         </span>
 
-        <div className="space-y-3 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-5 rounded-2xl border border-borderLine-light dark:border-borderLine-dark">
+        <div className="space-y-4 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-6 rounded-2xl border border-borderLine-light dark:border-borderLine-dark">
           {vehicles.map((v, index) => {
             const lengthPercentage = (v.dimensions.lengthMm / maxLength) * 100;
             const barStyles = [
@@ -53,8 +53,8 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
             const barStyle = barStyles[index % barStyles.length];
 
             return (
-              <div key={v.id} className="space-y-1.5">
-                <div className="flex justify-between items-center text-xs">
+              <div key={v.id} className="space-y-2">
+                <div className="flex justify-between items-center text-sm">
                   <span className="font-bold text-neutral-800 dark:text-neutral-200">{v.name}</span>
                   <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
                     {v.dimensions.lengthMm.toLocaleString()} mm
@@ -67,7 +67,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
                     className={`absolute left-0 top-0 bottom-0 ${barStyle} rounded-xl transition-all duration-700 flex items-center justify-end pr-3 shadow-sm`}
                     style={{ width: `${lengthPercentage}%` }}
                   >
-                    <span className="text-[11px] truncate">
+                    <span className="text-xs font-black truncate">
                       {v.dimensions.lengthMm} mm
                     </span>
                   </div>
@@ -87,14 +87,14 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {vehicles.map((v) => (
             <div key={v.id} className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border border-borderLine-light dark:border-borderLine-dark p-4 rounded-2xl text-center">
-              <span className="text-xs text-neutral-700 dark:text-neutral-300 truncate block font-semibold">{v.name}</span>
-              <div className="my-2 py-2 border-y border-borderLine-light dark:border-borderLine-dark">
+              <span className="text-sm text-neutral-700 dark:text-neutral-300 truncate block font-bold">{v.name}</span>
+              <div className="my-2.5 py-2.5 border-y border-borderLine-light dark:border-borderLine-dark">
                 <span className="text-2xl font-black font-mono text-neutral-900 dark:text-speed-green block">
                   {v.dimensions.groundClearanceMm} mm
                 </span>
-                <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider font-semibold">Ground Clearance</span>
+                <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wider font-semibold">Ground Clearance</span>
               </div>
-              <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono font-medium">
                 Wheelbase: {v.dimensions.wheelbaseMm} mm
               </span>
             </div>

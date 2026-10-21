@@ -23,7 +23,7 @@ export const Header: React.FC<HeaderProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 bg-canvas-light/90 dark:bg-canvas-dark/90 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 lg:px-8 py-3.5 transition-colors duration-300">
+    <header className="sticky top-0 z-30 bg-canvas-light/90 dark:bg-canvas-dark/90 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 lg:px-8 py-4 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         
         {/* Brand / Logo with Automotive Gauge Icon */}
@@ -46,26 +46,26 @@ export const Header: React.FC<HeaderProps> = ({
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
+                <span className="text-xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-6">
                   Come<span className="transition-colors duration-300" style={{ color: 'var(--pt-accent-text)' }}>Pare</span>
                 </span>
                 
                 {/* Reactive Theme Pill Badge */}
                 <span
-                  className="px-2 py-0.5 text-[10px] font-black uppercase tracking-wider rounded-md border transition-all duration-300 flex items-center gap-1 shadow-sm"
+                  className="px-2.5 py-1 text-xs font-black uppercase tracking-wider rounded-lg border transition-all duration-300 flex items-center gap-1 shadow-sm leading-none"
                   style={{
                     backgroundColor: 'var(--pt-accent-subtle)',
                     borderColor: 'var(--pt-accent-border)',
                     color: 'var(--pt-accent-text)',
                   }}
                 >
-                  {selectedPowertrain === 'ev' && <><Zap className="h-2.5 w-2.5 fill-current" /> EV Mode</>}
-                  {selectedPowertrain === 'petrol' && <><Fuel className="h-2.5 w-2.5" /> Petrol Mode</>}
-                  {selectedPowertrain === 'diesel' && <><Disc className="h-2.5 w-2.5" /> Diesel Mode</>}
+                  {selectedPowertrain === 'ev' && <><Zap className="h-3.5 w-3.5 fill-current" /> EV Mode</>}
+                  {selectedPowertrain === 'petrol' && <><Fuel className="h-3.5 w-3.5" /> Petrol Mode</>}
+                  {selectedPowertrain === 'diesel' && <><Disc className="h-3.5 w-3.5" /> Diesel Mode</>}
                   {selectedPowertrain === 'all' && <>All Powertrains</>}
                 </span>
               </div>
-              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 font-medium hidden sm:block">
+              <p className="text-xs text-neutral-600 dark:text-neutral-400 font-medium hidden sm:block mt-0.5">
                 The automobile spec showdown • Zero dealer calls
               </p>
             </div>
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 transition active:scale-95"
+              className="h-10 w-10 flex items-center justify-center rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 transition active:scale-95"
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-neutral-800" />}
@@ -85,31 +85,31 @@ export const Header: React.FC<HeaderProps> = ({
               onClick={onOpenComparison}
               disabled={selectedCount === 0}
               aria-label={selectedCount === 0 ? 'No vehicles paired for showdown' : `View showdown comparison for ${selectedCount} vehicles`}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition shadow-sm"
               style={{
                 backgroundColor: selectedCount > 0 ? 'var(--pt-accent)' : undefined,
                 color: selectedCount > 0 ? '#000000' : undefined,
               }}
             >
-              <Gauge className="h-3.5 w-3.5" />
+              <Gauge className="h-4 w-4" />
               <span>Pair ({selectedCount})</span>
             </button>
           </div>
         </div>
 
         {/* Desktop Controls */}
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-3">
           
           {/* Category Segmented Control */}
           <div
             role="group"
             aria-label="Filter vehicle category"
-            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold"
+            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-sm font-semibold"
           >
             <button
               onClick={() => setActiveCategory('all')}
               aria-pressed={activeCategory === 'all'}
-              className={`px-3 py-1.5 rounded-lg transition-all ${
+              className={`px-3.5 py-2 rounded-lg transition-all ${
                 activeCategory === 'all'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
                   : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
@@ -120,25 +120,25 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => setActiveCategory('car')}
               aria-pressed={activeCategory === 'car'}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition-all ${
                 activeCategory === 'car'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
                   : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
-              <Car className="h-3.5 w-3.5" />
+              <Car className="h-4 w-4" />
               <span>Cars</span>
             </button>
             <button
               onClick={() => setActiveCategory('bike')}
               aria-pressed={activeCategory === 'bike'}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition-all ${
                 activeCategory === 'bike'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
                   : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
-              <Bike className="h-3.5 w-3.5" />
+              <Bike className="h-4 w-4" />
               <span>Bikes & 2W</span>
             </button>
           </div>
@@ -147,12 +147,12 @@ export const Header: React.FC<HeaderProps> = ({
           <div
             role="group"
             aria-label="Filter powertrain driving mode"
-            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold"
+            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-sm font-semibold"
           >
             <button
               onClick={() => setSelectedPowertrain('all')}
               aria-pressed={selectedPowertrain === 'all'}
-              className={`px-2.5 py-1.5 rounded-lg transition-all ${
+              className={`px-3 py-2 rounded-lg transition-all ${
                 selectedPowertrain === 'all'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold'
                   : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
@@ -164,39 +164,39 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => setSelectedPowertrain('ev')}
               aria-pressed={selectedPowertrain === 'ev'}
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'ev'
                   ? 'bg-emerald-500 text-neutral-950 shadow-sm'
                   : 'text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/10'
               }`}
             >
-              <Zap className="h-3 w-3 fill-current" />
+              <Zap className="h-3.5 w-3.5 fill-current" />
               <span>EV</span>
             </button>
 
             <button
               onClick={() => setSelectedPowertrain('petrol')}
               aria-pressed={selectedPowertrain === 'petrol'}
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'petrol'
                   ? 'bg-amber-500 text-neutral-950 shadow-sm'
                   : 'text-amber-800 dark:text-amber-300 hover:bg-amber-500/10'
               }`}
             >
-              <Fuel className="h-3 w-3" />
+              <Fuel className="h-3.5 w-3.5" />
               <span>Petrol</span>
             </button>
 
             <button
               onClick={() => setSelectedPowertrain('diesel')}
               aria-pressed={selectedPowertrain === 'diesel'}
-              className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
+              className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'diesel'
                   ? 'bg-slate-700 text-white shadow-sm'
                   : 'text-slate-700 dark:text-slate-300 hover:bg-slate-500/10'
               }`}
             >
-              <Disc className="h-3 w-3" />
+              <Disc className="h-3.5 w-3.5" />
               <span>Diesel</span>
             </button>
           </div>
@@ -204,13 +204,13 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Light / Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="hidden md:flex items-center justify-center h-9 w-9 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-surface-subtle-light dark:hover:bg-surface-subtle-dark transition active:scale-95 shadow-sm"
+            className="hidden md:flex items-center justify-center h-10 w-10 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-surface-subtle-light dark:hover:bg-surface-subtle-dark transition active:scale-95 shadow-sm"
             aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? (
-              <Sun className="h-4 w-4 text-amber-400" />
+              <Sun className="h-5 w-5 text-amber-400" />
             ) : (
-              <Moon className="h-4 w-4 text-neutral-800" />
+              <Moon className="h-5 w-5 text-neutral-800" />
             )}
           </button>
 
@@ -225,7 +225,7 @@ export const Header: React.FC<HeaderProps> = ({
                 ? 'Select 1 more vehicle to pair for showdown'
                 : `Launch showdown comparison for ${selectedCount} vehicles`
             }
-            className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 ${
+            className={`hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 active:scale-95 ${
               selectedCount >= 2
                 ? 'shadow-md font-extrabold text-neutral-950 hover:brightness-105'
                 : selectedCount === 1
@@ -237,7 +237,7 @@ export const Header: React.FC<HeaderProps> = ({
               borderColor: selectedCount === 1 ? 'var(--pt-accent)' : undefined,
             }}
           >
-            <Sparkles className="h-3.5 w-3.5" style={{ color: selectedCount >= 2 ? '#000000' : 'var(--pt-accent)' }} />
+            <Sparkles className="h-4 w-4" style={{ color: selectedCount >= 2 ? '#000000' : 'var(--pt-accent)' }} />
             <span>
               {selectedCount === 0
                 ? 'Select 2 to Compare'

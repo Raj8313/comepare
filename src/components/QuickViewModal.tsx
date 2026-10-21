@@ -56,11 +56,11 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             <div>
               <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider">{vehicle.brand}</span>
               <h2 id="quickview-title" className="text-2xl font-extrabold text-white">{vehicle.name}</h2>
-              <p className="text-xs text-neutral-200 mt-0.5">{vehicle.tagline}</p>
+              <p className="text-sm text-neutral-200 mt-1">{vehicle.tagline}</p>
             </div>
             <div className="text-right">
-              <span className="text-xs text-neutral-300 block uppercase font-medium">Price Band</span>
-              <span className="text-lg font-black text-white font-mono">
+              <span className="text-xs font-bold text-neutral-300 block uppercase tracking-wider">Price Band</span>
+              <span className="text-xl font-black text-white font-mono">
                 ₹{vehicle.priceRange.min}L - ₹{vehicle.priceRange.max}L
               </span>
             </div>
@@ -72,39 +72,39 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
           
           {/* Key Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
-                <Gauge className="h-3 w-3" /> Power
+            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
+                <Gauge className="h-3.5 w-3.5" /> Power
               </span>
-              <span className="text-sm font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1 block">
+              <span className="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1.5 block">
                 {vehicle.performance.powerBhp} bhp
               </span>
             </div>
 
-            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
-                {isEv ? <Zap className="h-3 w-3 fill-current text-emerald-800 dark:text-speed-green" /> : <Fuel className="h-3 w-3 text-amber-600" />}
+            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
+                {isEv ? <Zap className="h-3.5 w-3.5 fill-current text-emerald-800 dark:text-speed-green" /> : <Fuel className="h-3.5 w-3.5 text-amber-600" />}
                 {isEv ? 'Real Range' : 'Real Mileage'}
               </span>
-              <span className="text-sm font-bold font-mono text-emerald-800 dark:text-speed-green mt-1 block">
+              <span className="text-base font-bold font-mono text-emerald-800 dark:text-speed-green mt-1.5 block">
                 {vehicle.efficiency.realWorldEfficiency.split(' ')[0]} {isEv ? 'km' : 'km/l'}
               </span>
             </div>
 
-            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
-                <Ruler className="h-3 w-3" /> {isBike ? 'Seat Height' : 'Ground Clr'}
+            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
+                <Ruler className="h-3.5 w-3.5" /> {isBike ? 'Seat Height' : 'Ground Clr'}
               </span>
-              <span className="text-sm font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1 block">
+              <span className="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1.5 block">
                 {isBike ? `${vehicle.dimensions.seatHeightMm} mm` : `${vehicle.dimensions.groundClearanceMm} mm`}
               </span>
             </div>
 
-            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
-                <ShieldCheck className="h-3 w-3 text-amber-500" /> NCAP Crash
+            <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
+                <ShieldCheck className="h-3.5 w-3.5 text-amber-500" /> NCAP Crash
               </span>
-              <span className="text-sm font-bold font-mono text-amber-800 dark:text-amber-400 mt-1 block">
+              <span className="text-base font-bold font-mono text-amber-800 dark:text-amber-400 mt-1.5 block">
                 {vehicle.safety.ncapRatingStars ? `${vehicle.safety.ncapRatingStars} Stars` : 'N/A'}
               </span>
             </div>
@@ -112,21 +112,21 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
           {/* EV Specific Battery Info */}
           {isEv && vehicle.efficiency.batteryKwh && (
-            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+            <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-emerald-500/20 text-emerald-800 dark:text-speed-green">
+                <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-800 dark:text-speed-green">
                   <BatteryCharging className="h-5 w-5" />
                 </div>
                 <div>
-                  <span className="text-xs font-bold text-neutral-900 dark:text-white block">
+                  <span className="text-sm font-bold text-neutral-900 dark:text-white block">
                     {vehicle.efficiency.batteryKwh} kWh {vehicle.efficiency.batteryChemistry} Battery
                   </span>
-                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">
+                  <span className="text-xs text-neutral-600 dark:text-neutral-400 mt-0.5 block">
                     DC Fast Charge 10-80% in {vehicle.efficiency.dcChargingTime10To80Min} mins ({vehicle.efficiency.dcFastChargingKw} kW)
                   </span>
                 </div>
               </div>
-              <span className="text-xs font-mono font-bold text-emerald-800 dark:text-speed-green">
+              <span className="text-sm font-mono font-bold text-emerald-800 dark:text-speed-green">
                 ₹{vehicle.efficiency.energyCostPerKmInr}/km running
               </span>
             </div>
@@ -134,34 +134,34 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
           {/* Trims & Variants Breakdown */}
           <div>
-            <h3 className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider mb-3">
               Available Trims & What They Add
             </h3>
             <div className="space-y-2">
               {vehicle.variants.map((variant) => (
                 <div
                   key={variant.id}
-                  className="p-3 rounded-xl bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-2"
+                  className="p-4 rounded-xl bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-2"
                 >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-neutral-900 dark:text-white">{variant.name}</span>
+                      <span className="text-sm font-bold text-neutral-900 dark:text-white">{variant.name}</span>
                       {variant.transmission && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-md bg-surface-light dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-borderLine-light dark:border-neutral-700 font-semibold">
+                        <span className="text-xs px-2.5 py-0.5 rounded-lg bg-surface-light dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-borderLine-light dark:border-neutral-700 font-semibold">
                           {variant.transmission}
                         </span>
                       )}
                     </div>
-                    <div className="flex flex-wrap gap-1.5 mt-1.5">
+                    <div className="flex flex-wrap gap-1.5 mt-2">
                       {variant.keyDifferentiators.map((diff, i) => (
-                        <span key={i} className="text-[10px] text-neutral-800 dark:text-neutral-200 bg-surface-light dark:bg-surface-dark px-2 py-0.5 rounded-md border border-borderLine-light dark:border-borderLine-dark font-medium">
+                        <span key={i} className="text-xs text-neutral-800 dark:text-neutral-200 bg-surface-light dark:bg-surface-dark px-2.5 py-1 rounded-lg border border-borderLine-light dark:border-borderLine-dark font-medium">
                           + {diff}
                         </span>
                       ))}
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="text-xs font-bold font-mono text-neutral-900 dark:text-speed-green">
+                    <span className="text-sm font-bold font-mono text-neutral-900 dark:text-speed-green">
                       ₹{(variant.priceExShowroom / 100000).toFixed(2)} Lakh
                     </span>
                   </div>
@@ -173,8 +173,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
         </div>
 
         {/* Footer */}
-        <div className="p-4 bg-surface-subtle-light dark:bg-surface-subtle-dark border-t border-borderLine-light dark:border-borderLine-dark flex items-center justify-between">
-          <span className="text-xs text-neutral-600 dark:text-neutral-400">
+        <div className="p-4 sm:p-5 bg-surface-subtle-light dark:bg-surface-subtle-dark border-t border-borderLine-light dark:border-borderLine-dark flex items-center justify-between">
+          <span className="text-xs text-neutral-600 dark:text-neutral-400 font-medium">
             Zero-Spam Promise: No phone number required to view specs.
           </span>
           <button
@@ -184,7 +184,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             }}
             aria-pressed={isSelected}
             aria-label={isSelected ? `Remove ${vehicle.name} from showdown` : `Add ${vehicle.name} to showdown`}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition active:scale-95 ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition active:scale-95 ${
               isSelected
                 ? 'bg-surface-light dark:bg-neutral-800 text-neutral-900 dark:text-white border border-borderLine-light dark:border-neutral-700'
                 : 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm'
