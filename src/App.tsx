@@ -7,7 +7,8 @@ import { VehicleCard } from './components/VehicleCard';
 import { ComparisonDrawer } from './components/ComparisonDrawer';
 import { ComparisonModal } from './components/ComparisonModal';
 import { QuickViewModal } from './components/QuickViewModal';
-import { Sparkles, Shield, Zap, Search, ArrowRight } from 'lucide-react';
+import { ThemeProvider } from './context/ThemeContext';
+import { Sparkles, Shield, Zap, Search, ArrowRight, Gauge, Activity } from 'lucide-react';
 
 const INITIAL_FILTERS: FilterState = {
   searchQuery: '',
@@ -22,13 +23,12 @@ const INITIAL_FILTERS: FilterState = {
   sunroofOnly: false,
 };
 
-export const App: React.FC = () => {
+const MainApp: React.FC = () => {
   const [filters, setFilters] = useState<FilterState>(INITIAL_FILTERS);
   const [selectedVehicleIds, setSelectedVehicleIds] = useState<string[]>([]);
   const [isComparisonOpen, setIsComparisonOpen] = useState<boolean>(false);
   const [quickViewVehicle, setQuickViewVehicle] = useState<Vehicle | null>(null);
 
-  // Quick preset pairs to let users instantly test comparisons
   const loadPresetPair = (id1: string, id2: string) => {
     setSelectedVehicleIds([id1, id2]);
     setIsComparisonOpen(true);
@@ -55,10 +55,8 @@ export const App: React.FC = () => {
     setSelectedVehicleIds([]);
   };
 
-  // Filter logic
   const filteredVehicles = useMemo(() => {
     return VEHICLES.filter((vehicle) => {
-      // Search query
       if (filters.searchQuery.trim()) {
         const query = filters.searchQuery.toLowerCase();
         const matchesName = vehicle.name.toLowerCase().includes(query);
@@ -67,27 +65,22 @@ export const App: React.FC = () => {
         if (!matchesName && !matchesBrand && !matchesTag) return false;
       }
 
-      // Category
       if (filters.category !== 'all' && vehicle.category !== filters.category) {
         return false;
       }
 
-      // Powertrain
       if (filters.powertrain !== 'all' && vehicle.powertrain !== filters.powertrain) {
         return false;
       }
 
-      // Max price
       if (filters.maxPriceLakh < 25 && vehicle.priceRange.min > filters.maxPriceLakh) {
         return false;
       }
 
-      // Min ground clearance
       if (filters.minGroundClearanceMm > 0 && vehicle.dimensions.groundClearanceMm < filters.minGroundClearanceMm) {
         return false;
       }
 
-      // Max seat height (bikes only)
       if (
         vehicle.category === 'bike' &&
         filters.maxSeatHeightMm < 850 &&
@@ -97,24 +90,20 @@ export const App: React.FC = () => {
         return false;
       }
 
-      // NCAP rating
       if (filters.minNcapStars > 0) {
         if (!vehicle.safety.ncapRatingStars || vehicle.safety.ncapRatingStars < filters.minNcapStars) {
           return false;
         }
       }
 
-      // ADAS
       if (filters.adasOnly && (!vehicle.safety.adasLevel || vehicle.safety.adasLevel === 'None')) {
         return false;
       }
 
-      // Ventilated seats
       if (filters.ventilatedSeatsOnly && !vehicle.features.hasVentilatedSeats) {
         return false;
       }
 
-      // Sunroof
       if (filters.sunroofOnly && !vehicle.features.hasSunroof) {
         return false;
       }
@@ -128,9 +117,9 @@ export const App: React.FC = () => {
   }, [selectedVehicleIds]);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between transition-colors duration-200">
       
-      {/* Top Sticky Header */}
+      {/* Header */}
       <Header
         activeCategory={filters.category}
         setActiveCategory={(cat) => setFilters((prev) => ({ ...prev, category: cat }))}
@@ -140,61 +129,73 @@ export const App: React.FC = () => {
         onOpenComparison={() => setIsComparisonOpen(true)}
       />
 
-      {/* Main Content Area */}
+      {/* Main Content */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-8">
         
         {/* Hero Section */}
-        <div className="relative rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-950 border border-slate-800/80 overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="relative z-10 max-w-3xl space-y-4">
+        <div className="relative rounded-3xl p-6 sm:p-10 bg-gradient-to-br from-indigo-100/70 via-white to-slate-50 dark:from-indigo-950/40 dark:via-slate-900 dark:to-slate-950 border border-slate-200/90 dark:border-slate-800/80 overflow-hidden shadow-lg dark:shadow-2xl transition-colors">
+          <div className="absolute top-0 right-0 -mt-12 -mr-12 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10 max-w-3xl space-y-5">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-xs font-semibold">
-              <Sparkles className="h-3.5 w-3.5 text-indigo-400" />
-              <span>Zero-Spam Automobile & EV Comparison Engine</span>
+            {/* Pill Ticker */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-200 dark:border-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs font-bold">
+                <Sparkles className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+                <span>Zero-Spam Automobile & EV Comparison Engine</span>
+              </span>
+
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-bold">
+                <Zap className="h-3.5 w-3.5 text-emerald-500" />
+                <span>Real-World Tested Range</span>
+              </span>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight">
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.15]">
               Come, pair any two wheels. <br />
-              <span className="bg-gradient-to-r from-indigo-400 via-sky-300 to-emerald-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-indigo-600 via-sky-500 to-emerald-500 dark:from-indigo-400 dark:via-sky-300 dark:to-emerald-400 bg-clip-text text-transparent">
                 See the true difference.
               </span>
             </h1>
 
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-2xl">
-              Tired of entering your mobile number just to get spammed by 20 dealerships? 
-              ComePare is the clean, GSMArena-style parametric tool for Indian cars, bikes, and EVs with 
-              1-click trim diffing and real-world fuel cost calculations.
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl font-normal">
+              No dealership spam calls. No phone number gates. Just pure parametric filters, 
+              1-click variant trim diffs, and transparent running cost math.
             </p>
 
             {/* Quick Preset Showdowns */}
             <div className="pt-2">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider block mb-2">
+              <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-2">
                 Popular Head-to-Head Showdowns:
               </span>
               <div className="flex flex-wrap gap-2 text-xs">
                 <button
                   onClick={() => loadPresetPair('tata-nexon-ev-45', 'tata-nexon-petrol-facelift')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-emerald-500 hover:text-emerald-300 transition"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-300 transition shadow-sm font-semibold"
                 >
-                  <Zap className="h-3 w-3 text-emerald-400" />
+                  <Zap className="h-3.5 w-3.5 text-emerald-500" />
                   <span>Nexon EV vs Nexon Petrol (Running Cost)</span>
-                  <ArrowRight className="h-3 w-3 text-slate-500" />
+                  <ArrowRight className="h-3 w-3 text-slate-400" />
                 </button>
 
                 <button
                   onClick={() => loadPresetPair('tata-nexon-ev-45', 'mg-windsor-ev')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-indigo-500 hover:text-indigo-300 transition"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-300 transition shadow-sm font-semibold"
                 >
+                  <Gauge className="h-3.5 w-3.5 text-indigo-500" />
                   <span>Nexon EV vs MG Windsor EV</span>
-                  <ArrowRight className="h-3 w-3 text-slate-500" />
+                  <ArrowRight className="h-3 w-3 text-slate-400" />
                 </button>
 
                 <button
                   onClick={() => loadPresetPair('ather-450x-gen3', 'royal-enfield-hunter-350')}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-slate-200 hover:border-amber-500 hover:text-amber-300 transition"
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-amber-500 hover:text-amber-600 dark:hover:text-amber-300 transition shadow-sm font-semibold"
                 >
+                  <Activity className="h-3.5 w-3.5 text-amber-500" />
                   <span>Ather 450X vs RE Hunter 350 (2W Showdown)</span>
-                  <ArrowRight className="h-3 w-3 text-slate-500" />
+                  <ArrowRight className="h-3 w-3 text-slate-400" />
                 </button>
               </div>
             </div>
@@ -202,10 +203,10 @@ export const App: React.FC = () => {
           </div>
         </div>
 
-        {/* 2-Column Responsive Layout: Sidebar Filters + Vehicle Catalog */}
+        {/* 2-Column Responsive Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
           
-          {/* Left Column: Parametric Filter */}
+          {/* Left Column: Filter Sidebar */}
           <div className="lg:col-span-1">
             <FilterSidebar
               filters={filters}
@@ -219,22 +220,22 @@ export const App: React.FC = () => {
           <div className="lg:col-span-3 space-y-4">
             
             {/* Results Header */}
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
+              <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                 Showing {filteredVehicles.length} of {VEHICLES.length} Models
               </span>
-              <div className="flex items-center gap-2 text-xs text-slate-500">
-                <span>Select any 2 to 4 to compare</span>
+              <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
+                <span>Select 2 to 4 to compare</span>
               </div>
             </div>
 
             {/* Empty State */}
             {filteredVehicles.length === 0 ? (
-              <div className="bg-slate-900/40 border border-slate-800/80 rounded-2xl p-12 text-center space-y-4">
-                <Search className="h-10 w-10 text-slate-600 mx-auto" />
-                <h3 className="text-base font-bold text-slate-300">No vehicles match these filters</h3>
+              <div className="bg-white dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800/80 rounded-2xl p-12 text-center space-y-4 shadow-sm">
+                <Search className="h-10 w-10 text-slate-400 dark:text-slate-600 mx-auto" />
+                <h3 className="text-base font-bold text-slate-800 dark:text-slate-300">No vehicles match these filters</h3>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                  Try widening your price range, lowering minimum ground clearance, or clearing search keywords.
+                  Try widening your budget, lowering minimum ground clearance, or clearing search keywords.
                 </p>
                 <button
                   onClick={() => setFilters(INITIAL_FILTERS)}
@@ -271,7 +272,7 @@ export const App: React.FC = () => {
         onOpenComparison={() => setIsComparisonOpen(true)}
       />
 
-      {/* Full-Screen Side-by-Side Comparison Modal */}
+      {/* Side-by-Side Comparison Modal */}
       {isComparisonOpen && selectedVehicles.length >= 2 && (
         <ComparisonModal
           vehicles={selectedVehicles}
@@ -291,21 +292,21 @@ export const App: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-slate-800/80 bg-slate-950 mt-16 py-8 px-4 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-950 mt-16 py-8 px-4 text-center text-xs text-slate-500 transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-300">ComePare</span>
-            <span>• Built for enthusiasts & buyers • No dealer sales calls</span>
+            <span className="font-bold text-slate-900 dark:text-slate-300">ComePare</span>
+            <span>• Built for car, bike & EV enthusiasts • Zero dealership sales calls</span>
           </div>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span className="flex items-center gap-1 text-emerald-400">
+          <div className="flex items-center gap-4 text-slate-500 dark:text-slate-400">
+            <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold">
               <Shield className="h-3 w-3" /> 100% Privacy-First
             </span>
             <a
               href="https://github.com/Raj8313/comepare"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-white transition underline"
+              className="hover:text-indigo-600 dark:hover:text-white transition underline"
             >
               GitHub Project
             </a>
@@ -314,5 +315,13 @@ export const App: React.FC = () => {
       </footer>
 
     </div>
+  );
+};
+
+export const App: React.FC = () => {
+  return (
+    <ThemeProvider>
+      <MainApp />
+    </ThemeProvider>
   );
 };
