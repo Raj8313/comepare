@@ -5,10 +5,57 @@
 @layer base {
   :root {
     color-scheme: light dark;
+
+    /* Default (All / Hybrid) Accent: Electric Emerald */
+    --pt-accent: #10B981;
+    --pt-accent-hover: #059669;
+    --pt-accent-subtle: rgba(16, 185, 129, 0.12);
+    --pt-accent-border: rgba(16, 185, 129, 0.35);
+    --pt-accent-text: #065f46;
+  }
+
+  .dark {
+    --pt-accent-text: #34d399;
+  }
+
+  /* EV Mode: Clean Electric Emerald Green */
+  [data-powertrain="ev"] {
+    --pt-accent: #10B981;
+    --pt-accent-hover: #059669;
+    --pt-accent-subtle: rgba(16, 185, 129, 0.12);
+    --pt-accent-border: rgba(16, 185, 129, 0.4);
+    --pt-accent-text: #065f46;
+  }
+  .dark [data-powertrain="ev"] {
+    --pt-accent-text: #34d399;
+  }
+
+  /* Petrol Mode: High-Octane Warm Amber / Yellow */
+  [data-powertrain="petrol"] {
+    --pt-accent: #F59E0B;
+    --pt-accent-hover: #D97706;
+    --pt-accent-subtle: rgba(245, 158, 11, 0.14);
+    --pt-accent-border: rgba(245, 158, 11, 0.45);
+    --pt-accent-text: #92400e;
+  }
+  .dark [data-powertrain="petrol"] {
+    --pt-accent-text: #FBBF24;
+  }
+
+  /* Diesel Mode: Industrial Smoke / Titanium Slate Gray */
+  [data-powertrain="diesel"] {
+    --pt-accent: #64748B;
+    --pt-accent-hover: #475569;
+    --pt-accent-subtle: rgba(100, 116, 139, 0.15);
+    --pt-accent-border: rgba(100, 116, 139, 0.45);
+    --pt-accent-text: #334155;
+  }
+  .dark [data-powertrain="diesel"] {
+    --pt-accent-text: #CBD5E1;
   }
 
   body {
-    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200 selection:bg-speed-green selection:text-neutral-950;
+    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200;
   }
 }
 

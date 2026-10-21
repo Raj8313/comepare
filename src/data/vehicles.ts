@@ -130,7 +130,7 @@ export const VEHICLES: Vehicle[] = [
     efficiency: {
       claimedEfficiency: '17.44 km/l (ARAI)',
       realWorldEfficiency: '11.5-13.8 km/l (City/Highway avg)',
-      energyCostPerKmInr: 7.90, // assuming Petrol @ ₹102/L
+      energyCostPerKmInr: 7.90, // Petrol @ ₹102/L
     },
     safety: {
       ncapRatingStars: 5,
@@ -188,6 +188,96 @@ export const VEHICLES: Vehicle[] = [
     ]
   },
   {
+    id: 'mahindra-xuv700-diesel',
+    name: 'Mahindra XUV700 Diesel (2.2L mHawk)',
+    brand: 'Mahindra',
+    category: 'car',
+    powertrain: 'diesel',
+    bodyType: 'midsize-suv',
+    launchYear: 2024,
+    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=80',
+    tagline: 'High-torque highway cruiser with 450Nm pulling power and Level-2 ADAS suite',
+    priceRange: { min: 14.50, max: 25.50 },
+    dimensions: {
+      lengthMm: 4695,
+      widthMm: 1890,
+      heightMm: 1755,
+      wheelbaseMm: 2750,
+      groundClearanceMm: 200,
+      kerbWeightKg: 1780,
+      bootSpaceLitres: 450,
+      fuelTankLitres: 60,
+    },
+    performance: {
+      powerBhp: 182,
+      torqueNm: 450,
+      zeroToHundredKphSec: 9.8,
+      topSpeedKph: 195,
+      transmissionTypes: ['6-Speed Manual', '6-Speed Torque Converter AT'],
+      cylindersCount: 4,
+      displacementCc: 2198,
+    },
+    efficiency: {
+      claimedEfficiency: '16.6 km/l (ARAI)',
+      realWorldEfficiency: '12.5-15.0 km/l (Real-World Highway)',
+      energyCostPerKmInr: 6.20, // Diesel @ ₹90/L
+    },
+    safety: {
+      ncapRatingStars: 5,
+      ncapAuthority: 'Global NCAP',
+      airbagsStandard: 7,
+      hasAbs: true,
+      hasEsc: true,
+      adasLevel: 'Level 2',
+      brakingHardware: 'All 4 Disc Brakes',
+    },
+    features: {
+      screenSizeInches: 10.25,
+      soundSystem: 'Sony 12-Speaker 3D Surround Sound with Subwoofer',
+      hasVentilatedSeats: true,
+      hasSunroof: true, // Skyroof
+      has360Camera: true,
+      hasWirelessCharging: true,
+      connectedCarTech: true,
+      otaUpdates: true,
+    },
+    variants: [
+      {
+        id: 'xuv700-ax5-diesel',
+        name: 'AX5 Diesel MT',
+        priceExShowroom: 1729000,
+        transmission: 'Manual',
+        keyDifferentiators: ['Panoramic Skyroof', 'Dual 10.25-inch Screens', 'Curtain Airbags for all rows'],
+        sunroof: true,
+        ventilatedSeats: false,
+        adas: false,
+        airbagsCount: 6,
+      },
+      {
+        id: 'xuv700-ax7-diesel-at',
+        name: 'AX7 Diesel AT',
+        priceExShowroom: 2199000,
+        transmission: 'Automatic',
+        keyDifferentiators: ['Advanced Driver Assistance Systems (ADAS L2)', 'Smart Clean Zone Air Purifier', 'Leatherette Seats'],
+        sunroof: true,
+        ventilatedSeats: false,
+        adas: true,
+        airbagsCount: 6,
+      },
+      {
+        id: 'xuv700-ax7l-diesel-at-awd',
+        name: 'AX7 Luxury AWD AT',
+        priceExShowroom: 2549000,
+        transmission: 'Automatic',
+        keyDifferentiators: ['All-Wheel Drive (AWD)', 'Sony 3D 12-Speaker Sound', 'Ventilated Front Seats', 'Blind View Monitor', 'Electronic Park Brake'],
+        sunroof: true,
+        ventilatedSeats: true,
+        adas: true,
+        airbagsCount: 7,
+      }
+    ]
+  },
+  {
     id: 'hyundai-creta-facelift',
     name: 'Hyundai Creta (1.5L)',
     brand: 'Hyundai',
@@ -223,7 +313,7 @@ export const VEHICLES: Vehicle[] = [
       energyCostPerKmInr: 7.60,
     },
     safety: {
-      ncapRatingStars: 3, // based on previous tests / awaiting new BNCAP
+      ncapRatingStars: 3,
       ncapAuthority: 'Global NCAP',
       airbagsStandard: 6,
       hasAbs: true,
@@ -319,7 +409,7 @@ export const VEHICLES: Vehicle[] = [
     },
     safety: {
       ncapRatingStars: 5,
-      ncapAuthority: 'Euro NCAP', // platform score
+      ncapAuthority: 'Euro NCAP',
       airbagsStandard: 6,
       hasAbs: true,
       hasEsc: true,
@@ -330,7 +420,7 @@ export const VEHICLES: Vehicle[] = [
       screenSizeInches: 15.6,
       soundSystem: 'Infinity 9-Speaker Audio',
       hasVentilatedSeats: true,
-      hasSunroof: true, // Infinity Glass Roof
+      hasSunroof: true,
       has360Camera: true,
       hasWirelessCharging: true,
       connectedCarTech: true,
@@ -393,12 +483,12 @@ export const VEHICLES: Vehicle[] = [
       groundClearanceMm: 170,
       kerbWeightKg: 111,
       bootSpaceLitres: 22,
-      seatHeightMm: 780, // bike ergonomics
+      seatHeightMm: 780,
     },
     performance: {
-      powerBhp: 8.58, // 6.4 kW peak
+      powerBhp: 8.58,
       torqueNm: 26,
-      zeroToHundredKphSec: 14.5, // 0-40 in 3.3s
+      zeroToHundredKphSec: 14.5,
       topSpeedKph: 90,
       transmissionTypes: ['Belt Drive Single-Speed'],
       motorType: 'PMSM Motor',
@@ -406,18 +496,18 @@ export const VEHICLES: Vehicle[] = [
     efficiency: {
       claimedEfficiency: '150 km (IDC / TrueRange 110 km)',
       realWorldEfficiency: '105-115 km (SmartEco/Ride mode)',
-      energyCostPerKmInr: 0.35, // ₹0.35/km running cost!
+      energyCostPerKmInr: 0.35,
       batteryKwh: 3.7,
       usableBatteryKwh: 3.3,
       batteryChemistry: 'NMC',
-      dcFastChargingKw: 1.5, // Ather Grid 1.5km/min
+      dcFastChargingKw: 1.5,
       dcChargingTime10To80Min: 50,
       acChargingKw: 0.7,
     },
     safety: {
       airbagsStandard: 0,
-      hasAbs: false, // Combined Braking System with AutoHold & FallSafe
-      hasEsc: true, // Traction control
+      hasAbs: false,
+      hasEsc: true,
       brakingHardware: 'Front & Rear Hydraulic Disc Brakes',
     },
     features: {
@@ -465,7 +555,7 @@ export const VEHICLES: Vehicle[] = [
       wheelbaseMm: 1370,
       groundClearanceMm: 150,
       kerbWeightKg: 181,
-      seatHeightMm: 790, // Accessible seat height for riders!
+      seatHeightMm: 790,
       fuelTankLitres: 13,
     },
     performance: {
@@ -489,7 +579,7 @@ export const VEHICLES: Vehicle[] = [
       brakingHardware: 'Dual Channel ABS (Front 300mm, Rear 270mm Disc)',
     },
     features: {
-      screenSizeInches: 3.5, // Semi-digital instrument pod
+      screenSizeInches: 3.5,
       soundSystem: 'Signature RE Exhaust Thump',
       hasVentilatedSeats: false,
       hasSunroof: false,
@@ -540,7 +630,7 @@ export const VEHICLES: Vehicle[] = [
       wheelbaseMm: 1357,
       groundClearanceMm: 176,
       kerbWeightKg: 163,
-      seatHeightMm: 800, // adjustable to 820mm
+      seatHeightMm: 800,
       fuelTankLitres: 15,
     },
     performance: {
@@ -564,7 +654,7 @@ export const VEHICLES: Vehicle[] = [
       brakingHardware: '320mm Front Radial Caliper + Switchable Supermoto ABS',
     },
     features: {
-      screenSizeInches: 5.0, // 5-inch LCD cluster
+      screenSizeInches: 5.0,
       soundSystem: 'Underbelly Sports Exhaust',
       hasVentilatedSeats: false,
       hasSunroof: false,

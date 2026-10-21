@@ -21,7 +21,7 @@ export default {
           }
         },
         borderLine: {
-          light: '#E2DFD7', // Soft, natural, elegant border
+          light: '#E2DFD7',
           dark: '#262D35',
           strong: {
             light: '#C9C4B7',
@@ -29,9 +29,16 @@ export default {
           }
         },
         speed: {
-          green: '#10B981', // Clean electric emerald
-          greenDark: '#059669',
+          green: 'var(--pt-accent)',
+          greenDark: 'var(--pt-accent-hover)',
           amber: '#F59E0B',
+        },
+        pt: {
+          accent: 'var(--pt-accent)',
+          hover: 'var(--pt-accent-hover)',
+          subtle: 'var(--pt-accent-subtle)',
+          border: 'var(--pt-accent-border)',
+          text: 'var(--pt-accent-text)',
         }
       },
       borderRadius: {

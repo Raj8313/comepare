@@ -8,7 +8,7 @@ import { ComparisonDrawer } from './components/ComparisonDrawer';
 import { ComparisonModal } from './components/ComparisonModal';
 import { QuickViewModal } from './components/QuickViewModal';
 import { ThemeProvider } from './context/ThemeContext';
-import { Shield, Zap, Search, ArrowRight, Gauge, IndianRupee, Sparkles } from 'lucide-react';
+import { Shield, Zap, Search, ArrowRight, Gauge, IndianRupee, Sparkles, Fuel, Disc } from 'lucide-react';
 
 const INITIAL_FILTERS: FilterState = {
   searchQuery: '',
@@ -30,23 +30,23 @@ const MainApp: React.FC = () => {
   const [quickViewVehicle, setQuickViewVehicle] = useState<Vehicle | null>(null);
 
   // Active showcase duel in the hero
-  const [activeDuelPreset, setActiveDuelPreset] = useState<'nexon' | 'windsor' | 'twoWheeler'>('nexon');
+  const [activeDuelPreset, setActiveDuelPreset] = useState<'nexon' | 'diesel' | 'twoWheeler'>('nexon');
 
   const duelContenders = useMemo(() => {
     if (activeDuelPreset === 'nexon') {
       return {
         v1: VEHICLES.find(v => v.id === 'tata-nexon-ev-45')!,
         v2: VEHICLES.find(v => v.id === 'tata-nexon-petrol-facelift')!,
-        title: 'EV vs ICE Sibling Duel',
+        title: 'EV vs Petrol Sibling Duel',
         badge: 'Top Energy Showdown'
       };
     }
-    if (activeDuelPreset === 'windsor') {
+    if (activeDuelPreset === 'diesel') {
       return {
-        v1: VEHICLES.find(v => v.id === 'tata-nexon-ev-45')!,
-        v2: VEHICLES.find(v => v.id === 'mg-windsor-ev')!,
-        title: 'Crossover EV Showdown',
-        badge: 'Direct EV Rivalry'
+        v1: VEHICLES.find(v => v.id === 'mahindra-xuv700-diesel')!,
+        v2: VEHICLES.find(v => v.id === 'hyundai-creta-facelift')!,
+        title: 'Diesel Torque Monster vs Petrol King',
+        badge: 'Highway Cruiser Clash'
       };
     }
     return {
@@ -145,7 +145,10 @@ const MainApp: React.FC = () => {
   }, [selectedVehicleIds]);
 
   return (
-    <div className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 flex flex-col justify-between transition-colors duration-200">
+    <div
+      data-powertrain={filters.powertrain}
+      className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 flex flex-col justify-between transition-colors duration-300"
+    >
       
       {/* Top Navigation */}
       <Header
@@ -160,16 +163,27 @@ const MainApp: React.FC = () => {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-10">
         
-        {/* Bespoke Automotive Hero: Headline + Interactive Duel Arena */}
+        {/* Dynamic Mode Announcement Banner */}
         <section className="space-y-6">
           
-          {/* Header Typography */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-speed-green/10 text-emerald-800 dark:text-speed-green border border-speed-green/20 text-xs font-bold">
-                <Sparkles className="h-3.5 w-3.5" />
-                <span>Zero-Spam Automobile & EV Comparison Engine</span>
+              
+              {/* Dynamic Theme Banner Pill */}
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold border transition-all duration-300"
+                style={{
+                  backgroundColor: 'var(--pt-accent-subtle)',
+                  borderColor: 'var(--pt-accent-border)',
+                  color: 'var(--pt-accent)',
+                }}
+              >
+                {filters.powertrain === 'ev' && <><Zap className="h-3.5 w-3.5 fill-current" /> Active Theme: Electric Green (EV Focus)</>}
+                {filters.powertrain === 'petrol' && <><Fuel className="h-3.5 w-3.5" /> Active Theme: Petrol Yellow (High-Octane Rev)</>}
+                {filters.powertrain === 'diesel' && <><Disc className="h-3.5 w-3.5" /> Active Theme: Diesel Smoke Slate (Heavy Torque)</>}
+                {filters.powertrain === 'all' && <><Sparkles className="h-3.5 w-3.5" /> Active Theme: All Powertrains Showdown</>}
               </div>
+
               <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.12]">
                 Compare on pure engineering, <br className="hidden sm:inline" />
                 <span className="text-neutral-500 dark:text-neutral-400 font-semibold">not dealership marketing.</span>
@@ -179,11 +193,11 @@ const MainApp: React.FC = () => {
             {/* Micro Value Proposition Bar */}
             <div className="flex items-center gap-4 text-xs font-semibold text-neutral-500 dark:text-neutral-400 shrink-0 pb-1">
               <span className="flex items-center gap-1.5">
-                <Shield className="h-3.5 w-3.5 text-speed-green" /> 100% Privacy
+                <Shield className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent)' }} /> 100% Privacy
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5">
-                <Zap className="h-3.5 w-3.5 text-speed-green" /> Real Tested Range
+                <Zap className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent)' }} /> Real Tested Range
               </span>
               <span>•</span>
               <span>1-Click Trim Diffs</span>
@@ -191,7 +205,10 @@ const MainApp: React.FC = () => {
           </div>
 
           {/* Interactive Duel Arena Card */}
-          <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-6 sm:p-8 shadow-soft-lift dark:shadow-soft-lift-dark transition-colors">
+          <div
+            className="bg-surface-light dark:bg-surface-dark border rounded-3xl p-6 sm:p-8 shadow-soft-lift dark:shadow-soft-lift-dark transition-all duration-300"
+            style={{ borderColor: 'var(--pt-accent-border)' }}
+          >
             
             {/* Arena Header: Presets Switcher */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-borderLine-light dark:border-borderLine-dark">
@@ -203,7 +220,10 @@ const MainApp: React.FC = () => {
               {/* Preset Selector Tabs */}
               <div className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-bold">
                 <button
-                  onClick={() => setActiveDuelPreset('nexon')}
+                  onClick={() => {
+                    setActiveDuelPreset('nexon');
+                    setFilters(prev => ({ ...prev, powertrain: 'all' }));
+                  }}
                   className={`px-3 py-1.5 rounded-lg transition ${
                     activeDuelPreset === 'nexon'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
@@ -213,17 +233,23 @@ const MainApp: React.FC = () => {
                   Nexon EV vs Petrol
                 </button>
                 <button
-                  onClick={() => setActiveDuelPreset('windsor')}
+                  onClick={() => {
+                    setActiveDuelPreset('diesel');
+                    setFilters(prev => ({ ...prev, powertrain: 'diesel' }));
+                  }}
                   className={`px-3 py-1.5 rounded-lg transition ${
-                    activeDuelPreset === 'windsor'
+                    activeDuelPreset === 'diesel'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  Nexon EV vs Windsor
+                  XUV700 Diesel vs Creta
                 </button>
                 <button
-                  onClick={() => setActiveDuelPreset('twoWheeler')}
+                  onClick={() => {
+                    setActiveDuelPreset('twoWheeler');
+                    setFilters(prev => ({ ...prev, powertrain: 'all' }));
+                  }}
                   className={`px-3 py-1.5 rounded-lg transition ${
                     activeDuelPreset === 'twoWheeler'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
@@ -249,16 +275,19 @@ const MainApp: React.FC = () => {
                   <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">{duelContenders.v1.brand}</span>
                   <h4 className="text-base font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v1.name}</h4>
                   <div className="flex items-center gap-2 pt-1 font-mono text-xs">
-                    <span className="font-bold text-speed-green">₹{duelContenders.v1.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
+                    <span className="font-bold" style={{ color: 'var(--pt-accent)' }}>₹{duelContenders.v1.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
                     <span className="text-neutral-400">•</span>
                     <span className="text-neutral-600 dark:text-neutral-300 font-semibold">{duelContenders.v1.performance.powerBhp} bhp</span>
                   </div>
                 </div>
               </div>
 
-              {/* Central VS Ring */}
+              {/* Central VS Ring with Dynamic Ring Accent */}
               <div className="md:col-span-1 flex justify-center">
-                <div className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-borderLine-strong-light dark:border-borderLine-strong-dark flex items-center justify-center font-black text-xs sm:text-sm text-neutral-900 dark:text-white shadow-sm">
+                <div
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-xs sm:text-sm text-neutral-900 dark:text-white shadow-sm transition-colors duration-300"
+                  style={{ borderColor: 'var(--pt-accent)' }}
+                >
                   VS
                 </div>
               </div>
@@ -287,7 +316,7 @@ const MainApp: React.FC = () => {
             <div className="pt-4 border-t border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
               <div className="flex items-center gap-3 text-xs text-neutral-600 dark:text-neutral-300 font-medium">
-                <span className="flex items-center gap-1 font-bold text-emerald-700 dark:text-speed-green">
+                <span className="flex items-center gap-1 font-bold" style={{ color: 'var(--pt-accent)' }}>
                   <IndianRupee className="h-3.5 w-3.5" />
                   Cost Difference: ₹{(Math.abs(duelContenders.v1.efficiency.energyCostPerKmInr - duelContenders.v2.efficiency.energyCostPerKmInr)).toFixed(2)}/km
                 </span>
@@ -300,7 +329,8 @@ const MainApp: React.FC = () => {
 
               <button
                 onClick={() => loadPresetPair(duelContenders.v1.id, duelContenders.v2.id)}
-                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold text-xs hover:bg-neutral-800 dark:hover:bg-neutral-100 transition shadow-sm active:scale-95"
+                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-extrabold text-xs text-neutral-950 transition shadow-sm active:scale-95 hover:brightness-105"
+                style={{ backgroundColor: 'var(--pt-accent)' }}
               >
                 <span>Launch Full Showdown</span>
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -348,7 +378,8 @@ const MainApp: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setFilters(INITIAL_FILTERS)}
-                  className="px-4 py-2 rounded-xl text-xs font-bold bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 hover:opacity-90 transition"
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-neutral-950 hover:opacity-90 transition"
+                  style={{ backgroundColor: 'var(--pt-accent)' }}
                 >
                   Reset All Filters
                 </button>
@@ -408,8 +439,8 @@ const MainApp: React.FC = () => {
             <span>• Pure Automobile & EV Comparison Utility • Zero dealership sales calls</span>
           </div>
           <div className="flex items-center gap-4 text-neutral-500 dark:text-neutral-400">
-            <span className="flex items-center gap-1 font-semibold text-neutral-900 dark:text-speed-green">
-              <Shield className="h-3.5 w-3.5" /> 100% Privacy-First
+            <span className="flex items-center gap-1 font-semibold text-neutral-900 dark:text-white">
+              <Shield className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent)' }} /> 100% Privacy-First
             </span>
             <a
               href="https://github.com/Raj8313/comepare"
