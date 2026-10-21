@@ -375,11 +375,11 @@ const MainApp: React.FC = () => {
           <div className="lg:col-span-3 space-y-6">
             
             {/* Results Filter Bar */}
-            <div className="flex items-center justify-between pb-4 border-b border-borderLine-light dark:border-borderLine-dark">
-              <span className="text-sm font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">
+            <div className="flex items-center justify-between pb-3.5 border-b border-borderLine-light dark:border-borderLine-dark">
+              <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                 Showing {filteredVehicles.length} of {VEHICLES.length} Available Models
               </span>
-              <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400 font-semibold">
+              <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 font-medium">
                 <span>Select 2 to 4 to compare</span>
               </div>
             </div>

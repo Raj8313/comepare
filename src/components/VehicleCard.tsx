@@ -77,7 +77,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           }}
           aria-pressed={isSelected}
           aria-label={isSelected ? `Remove ${vehicle.name} from comparison` : `Add ${vehicle.name} to showdown comparison`}
-          className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-sm font-bold transition shadow-sm active:scale-95 ${
+          className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-sm active:scale-95 ${
             isSelected
               ? 'text-neutral-950 font-black'
               : 'bg-white/95 dark:bg-neutral-900/90 text-neutral-900 dark:text-white border border-neutral-300 dark:border-neutral-700 hover:brightness-105'
@@ -88,29 +88,28 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         >
           {isSelected ? (
             <>
-              <Check className="h-4 w-4 stroke-[3]" />
+              <Check className="h-3.5 w-3.5 stroke-[3]" />
               <span>Paired</span>
             </>
           ) : (
             <>
-              <Plus className="h-4 w-4" />
+              <Plus className="h-3.5 w-3.5" />
               <span>+ Pair</span>
             </>
           )}
         </button>
 
         {/* Vehicle Brand & Name overlay */}
-        <div className="absolute bottom-3 left-4 right-4 flex items-baseline justify-between z-10 text-white">
-          <div>
-            <span className="text-xs font-bold text-neutral-200 block uppercase tracking-wider">{vehicle.brand}</span>
-            <h3 className="text-lg font-extrabold text-white leading-tight drop-shadow-md">{vehicle.name}</h3>
-          </div>
-          <div className="text-right">
-            <span className="text-xs text-neutral-200 uppercase tracking-wider block font-semibold">Ex-Showroom</span>
-            <span className="text-base font-black text-white font-mono drop-shadow-md">
-              ₹{vehicle.priceRange.min}L - {vehicle.priceRange.max}L
+        <div className="absolute bottom-3 left-3.5 right-3.5 z-10 text-white">
+          <div className="flex items-center justify-between text-xs font-semibold text-neutral-300 mb-1">
+            <span className="uppercase tracking-wider text-xs font-bold text-neutral-300">{vehicle.brand}</span>
+            <span className="font-mono font-bold text-xs text-white bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-sm border border-white/15">
+              ₹{vehicle.priceRange.min}L – {vehicle.priceRange.max}L
             </span>
           </div>
+          <h3 className="text-base font-extrabold text-white leading-tight drop-shadow-sm truncate">
+            {vehicle.name}
+          </h3>
         </div>
       </div>
 
@@ -122,22 +121,22 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </p>
 
         {/* Mini Spec Telemetry Box */}
-        <div className="grid grid-cols-3 gap-2 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
+        <div className="grid grid-cols-3 gap-1.5 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-2.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
           <div>
-            <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
               <Gauge className="h-3 w-3" /> Power
             </span>
-            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-1 block text-sm">
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block text-xs">
               {vehicle.performance.powerBhp} bhp
             </span>
           </div>
 
           <div>
-            <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
-              {isEv ? 'Real Range' : 'Real Mileage'}
+            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+              {isEv ? 'Real Range' : 'Mileage'}
             </span>
             <span
-              className="font-mono font-bold mt-1 block truncate text-sm"
+              className="font-mono font-bold mt-0.5 block text-xs"
               style={{
                 color: isEv ? 'var(--pt-accent-text)' : isDiesel ? '#334155' : '#92400e'
               }}
@@ -149,10 +148,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </div>
 
           <div>
-            <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
               <Ruler className="h-3 w-3" /> {isBike ? 'Seat Ht' : 'Ground Clr'}
             </span>
-            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-1 block text-sm">
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block text-xs">
               {isBike
                 ? `${vehicle.dimensions.seatHeightMm} mm`
                 : `${vehicle.dimensions.groundClearanceMm} mm`}
