@@ -34,6 +34,12 @@ export default {
           subtle: 'var(--pt-accent-subtle)',
           border: 'var(--pt-accent-border)',
           text: 'var(--pt-accent-text)',
+        },
+        content: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+          onAccent: 'var(--pt-on-accent)',
         }
       },
       borderRadius: {

@@ -147,12 +147,12 @@ const MainApp: React.FC = () => {
   return (
     <div
       data-powertrain={filters.powertrain}
-      className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 flex flex-col justify-between transition-colors duration-300"
+      className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-content-primary flex flex-col justify-between transition-colors duration-300"
     >
       {/* Skip to Main Content Link for Keyboard & Screen Reader Users (WCAG 2.4.1) */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-neutral-900 focus:text-white dark:focus:bg-white dark:focus:text-neutral-950 focus:rounded-xl focus:shadow-xl focus:font-bold focus:text-sm focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 dark:focus:ring-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-surface-light dark:focus:bg-surface-dark focus:text-content-primary focus:rounded-xl focus:shadow-xl focus:font-bold focus:text-sm focus:ring-2 focus:ring-offset-2 focus:ring-borderLine-strong-light dark:focus:ring-borderLine-strong-dark border border-borderLine-light dark:border-borderLine-dark"
       >
         Skip to main content
       </a>
@@ -191,14 +191,14 @@ const MainApp: React.FC = () => {
                 {filters.powertrain === 'all' && <><Sparkles className="h-4 w-4" /> Active Theme: Electric Blue (All Powertrains)</>}
               </div>
 
-              <h1 id="hero-title" className="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.15]">
+              <h1 id="hero-title" className="text-4xl sm:text-5xl font-extrabold tracking-tight text-content-primary leading-[1.15]">
                 Compare on pure engineering, <br className="hidden sm:inline" />
-                <span className="text-neutral-600 dark:text-neutral-400 font-semibold">not dealership marketing.</span>
+                <span className="text-content-secondary font-semibold">not dealership marketing.</span>
               </h1>
             </div>
 
             {/* Micro Value Proposition Bar */}
-            <div className="flex items-center gap-4 text-sm font-semibold text-neutral-600 dark:text-neutral-400 shrink-0 pb-1">
+            <div className="flex items-center gap-4 text-sm font-semibold text-content-secondary shrink-0 pb-1">
               <span className="flex items-center gap-1.5">
                 <Shield className="h-4 w-4" style={{ color: 'var(--pt-accent-text)' }} /> 100% Privacy
               </span>
@@ -220,8 +220,8 @@ const MainApp: React.FC = () => {
             {/* Arena Header: Presets Switcher */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-borderLine-light dark:border-borderLine-dark">
               <div>
-                <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block">Featured Head-to-Head</span>
-                <h2 className="text-lg font-extrabold text-neutral-900 dark:text-white">{duelContenders.title}</h2>
+                <span className="text-xs font-bold text-content-secondary uppercase tracking-wider block">Featured Head-to-Head</span>
+                <h2 className="text-lg font-extrabold text-content-primary">{duelContenders.title}</h2>
               </div>
 
               {/* Preset Selector Tabs */}
@@ -232,8 +232,8 @@ const MainApp: React.FC = () => {
                   onClick={() => setActiveDuelPreset('nexon')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'nexon'
-                      ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                      ? 'bg-surface-light dark:bg-surface-dark text-content-primary shadow-sm'
+                      : 'text-content-secondary hover:text-content-primary'
                   }`}
                 >
                   <Zap className="h-3.5 w-3.5 fill-current" style={{ color: activeDuelPreset === 'nexon' ? 'var(--pt-accent-text)' : undefined }} />
@@ -245,8 +245,8 @@ const MainApp: React.FC = () => {
                   onClick={() => setActiveDuelPreset('diesel')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'diesel'
-                      ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                      ? 'bg-surface-light dark:bg-surface-dark text-content-primary shadow-sm'
+                      : 'text-content-secondary hover:text-content-primary'
                   }`}
                 >
                   <Disc className="h-3.5 w-3.5" style={{ color: activeDuelPreset === 'diesel' ? 'var(--pt-accent-text)' : undefined }} />
@@ -258,8 +258,8 @@ const MainApp: React.FC = () => {
                   onClick={() => setActiveDuelPreset('twoWheeler')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'twoWheeler'
-                      ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                      ? 'bg-surface-light dark:bg-surface-dark text-content-primary shadow-sm'
+                      : 'text-content-secondary hover:text-content-primary'
                   }`}
                 >
                   <Bike className="h-3.5 w-3.5" style={{ color: activeDuelPreset === 'twoWheeler' ? 'var(--pt-accent-text)' : undefined }} />
@@ -279,12 +279,12 @@ const MainApp: React.FC = () => {
                   className="h-20 w-28 sm:h-24 sm:w-36 object-cover rounded-xl border border-borderLine-light dark:border-borderLine-dark shrink-0"
                 />
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">{duelContenders.v1.brand}</span>
-                  <h3 className="text-lg font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v1.name}</h3>
+                  <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">{duelContenders.v1.brand}</span>
+                  <h3 className="text-lg font-extrabold text-content-primary leading-tight">{duelContenders.v1.name}</h3>
                   <div className="flex items-center gap-2 pt-1 font-mono text-sm">
                     <span className="font-bold" style={{ color: 'var(--pt-accent-text)' }}>₹{duelContenders.v1.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
-                    <span className="text-neutral-400">•</span>
-                    <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{duelContenders.v1.performance.powerBhp} bhp</span>
+                    <span className="text-content-tertiary">•</span>
+                    <span className="text-content-secondary font-semibold">{duelContenders.v1.performance.powerBhp} bhp</span>
                   </div>
                 </div>
               </div>
@@ -293,7 +293,7 @@ const MainApp: React.FC = () => {
               <div className="md:col-span-1 flex justify-center">
                 <div
                   aria-hidden="true"
-                  className="h-12 w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-sm text-neutral-900 dark:text-white shadow-sm transition-all duration-300 relative"
+                  className="h-12 w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-sm text-content-primary shadow-sm transition-all duration-300 relative"
                   style={{ borderColor: 'var(--pt-accent)' }}
                 >
                   <span className="relative z-10">VS</span>
@@ -312,12 +312,12 @@ const MainApp: React.FC = () => {
                   className="h-20 w-28 sm:h-24 sm:w-36 object-cover rounded-xl border border-borderLine-light dark:border-borderLine-dark shrink-0"
                 />
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">{duelContenders.v2.brand}</span>
-                  <h3 className="text-lg font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v2.name}</h3>
+                  <span className="text-xs font-bold text-content-secondary uppercase tracking-wider">{duelContenders.v2.brand}</span>
+                  <h3 className="text-lg font-extrabold text-content-primary leading-tight">{duelContenders.v2.name}</h3>
                   <div className="flex items-center gap-2 pt-1 font-mono text-sm">
-                    <span className="font-bold text-neutral-900 dark:text-neutral-100">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
-                    <span className="text-neutral-400">•</span>
-                    <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{duelContenders.v2.performance.powerBhp} bhp</span>
+                    <span className="font-bold text-content-primary">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
+                    <span className="text-content-tertiary">•</span>
+                    <span className="text-content-secondary font-semibold">{duelContenders.v2.performance.powerBhp} bhp</span>
                   </div>
                 </div>
               </div>
@@ -327,13 +327,13 @@ const MainApp: React.FC = () => {
             {/* Arena Footer: Direct Launch Button & Key Telemetry Delta */}
             <div className="pt-4 border-t border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
-              <div className="flex items-center gap-3 text-sm text-neutral-700 dark:text-neutral-300 font-medium">
+              <div className="flex items-center gap-3 text-sm text-content-secondary font-medium">
                 <span className="font-bold" style={{ color: 'var(--pt-accent-text)' }}>
                   Cost Difference: ₹{(Math.abs(duelContenders.v1.efficiency.energyCostPerKmInr - duelContenders.v2.efficiency.energyCostPerKmInr)).toFixed(2)}/km
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Gauge className="h-4 w-4 text-neutral-500" />
+                  <Gauge className="h-4 w-4 text-content-tertiary" />
                   Power Delta: {Math.abs(duelContenders.v1.performance.powerBhp - duelContenders.v2.performance.powerBhp)} bhp
                 </span>
               </div>
@@ -341,8 +341,8 @@ const MainApp: React.FC = () => {
               <button
                 onClick={() => loadPresetPair(duelContenders.v1.id, duelContenders.v2.id)}
                 aria-label={`Launch showdown comparison between ${duelContenders.v1.name} and ${duelContenders.v2.name}`}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-extrabold text-sm text-neutral-950 transition shadow-sm active:scale-95 hover:brightness-105"
-                style={{ backgroundColor: 'var(--pt-accent)' }}
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-extrabold text-sm transition shadow-sm active:scale-95 hover:brightness-105"
+                style={{ backgroundColor: 'var(--pt-accent)', color: 'var(--pt-on-accent)' }}
               >
                 <span>Launch Full Showdown</span>
                 <ArrowRight className="h-4 w-4" />
@@ -373,10 +373,10 @@ const MainApp: React.FC = () => {
             
             {/* Results Filter Bar */}
             <div className="flex items-center justify-between pb-4 border-b border-borderLine-light dark:border-borderLine-dark">
-              <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-content-tertiary uppercase tracking-wider">
                 Showing {filteredVehicles.length} of {VEHICLES.length} Available Models
               </span>
-              <div className="flex items-center gap-2 text-xs text-neutral-500 dark:text-neutral-400 font-medium">
+              <div className="flex items-center gap-2 text-xs text-content-tertiary font-medium">
                 <span>Select 2 to 4 to compare</span>
               </div>
             </div>
@@ -384,24 +384,24 @@ const MainApp: React.FC = () => {
             {/* Empty State */}
             {filteredVehicles.length === 0 ? (
               <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-10 sm:p-14 text-center space-y-5 shadow-sm">
-                <Search className="h-10 w-10 text-neutral-400 dark:text-neutral-600 mx-auto" />
-                <h3 className="text-lg font-bold text-neutral-900 dark:text-white">No vehicles match these filters</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
+                <Search className="h-10 w-10 text-content-tertiary mx-auto" />
+                <h3 className="text-lg font-bold text-content-primary">No vehicles match these filters</h3>
+                <p className="text-sm text-content-secondary max-w-sm mx-auto leading-relaxed">
                   Try widening your budget, lowering minimum ground clearance, or clearing search keywords.
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
                   <button
                     onClick={() => setFilters(INITIAL_FILTERS)}
                     aria-label="Reset all search filters"
-                    className="px-5 py-2.5 rounded-xl text-sm font-bold text-neutral-950 hover:opacity-90 transition shadow-sm active:scale-95"
-                    style={{ backgroundColor: 'var(--pt-accent)' }}
+                    className="px-5 py-2.5 rounded-xl text-sm font-bold hover:opacity-90 transition shadow-sm active:scale-95"
+                    style={{ backgroundColor: 'var(--pt-accent)', color: 'var(--pt-on-accent)' }}
                   >
                     Reset All Filters
                   </button>
                   {filters.powertrain !== 'all' && (
                     <button
                       onClick={() => setFilters(prev => ({ ...prev, powertrain: 'all' }))}
-                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-content-secondary hover:text-content-primary transition"
                     >
                       Clear Fuel Filter
                     </button>
@@ -409,7 +409,7 @@ const MainApp: React.FC = () => {
                   {filters.searchQuery && (
                     <button
                       onClick={() => setFilters(prev => ({ ...prev, searchQuery: '' }))}
-                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-content-secondary hover:text-content-primary transition"
                     >
                       Clear Search Query
                     </button>
@@ -464,21 +464,21 @@ const MainApp: React.FC = () => {
       )}
 
       {/* Footer */}
-      <footer className="border-t border-borderLine-light dark:border-borderLine-dark bg-surface-light dark:bg-surface-dark mt-16 py-8 px-4 text-center text-sm text-neutral-600 dark:text-neutral-400 transition-colors">
+      <footer className="border-t border-borderLine-light dark:border-borderLine-dark bg-surface-light dark:bg-surface-dark mt-16 py-8 px-4 text-center text-sm text-content-secondary transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-neutral-900 dark:text-white">ComePare</span>
+            <span className="font-bold text-content-primary">ComePare</span>
             <span>• Pure Automobile & EV Comparison Utility • Zero dealership sales calls</span>
           </div>
-          <div className="flex items-center gap-4 text-neutral-600 dark:text-neutral-400">
-            <span className="flex items-center gap-1.5 font-semibold text-neutral-900 dark:text-white">
+          <div className="flex items-center gap-4 text-content-secondary">
+            <span className="flex items-center gap-1.5 font-semibold text-content-primary">
               <Shield className="h-4 w-4" style={{ color: 'var(--pt-accent-text)' }} /> 100% Privacy-First
             </span>
             <a
               href="https://github.com/Raj8313/comepare"
               target="_blank"
               rel="noreferrer"
-              className="hover:text-neutral-900 dark:hover:text-white transition font-semibold underline underline-offset-4"
+              className="hover:text-content-primary transition font-semibold underline underline-offset-4"
             >
               GitHub Project
             </a>

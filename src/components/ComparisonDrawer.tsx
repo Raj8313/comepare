@@ -46,7 +46,7 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
             {selectedVehicles.map((v) => (
               <div
                 key={v.id}
-                className="flex items-center gap-2 bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark rounded-xl pl-1.5 pr-2 py-1.5 text-xs text-neutral-800 dark:text-neutral-200 shrink-0 shadow-sm hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
+                className="flex items-center gap-2 bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark rounded-xl pl-1.5 pr-2 py-1.5 text-xs text-content-primary shrink-0 shadow-sm hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
               >
                 <img
                   src={v.image}
@@ -60,7 +60,7 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
                 <button
                   onClick={() => onRemoveVehicle(v.id)}
                   aria-label={`Remove ${v.name} from comparison`}
-                  className="text-neutral-400 hover:text-rose-600 dark:hover:text-rose-400 transition p-1 rounded-md hover:bg-rose-500/10 focus:outline-none shrink-0"
+                  className="text-content-tertiary hover:text-rose-600 dark:hover:text-rose-400 transition p-1 rounded-md hover:bg-rose-500/10 focus:outline-none shrink-0"
                   title={`Remove ${v.name}`}
                 >
                   <X className="h-3.5 w-3.5 shrink-0" />
@@ -76,7 +76,7 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
             onClick={onClearAll}
             aria-label="Clear all vehicles from showdown comparison"
             title="Clear all selected vehicles"
-            className="flex items-center gap-1.5 px-2.5 py-2 text-xs font-semibold text-neutral-600 hover:text-rose-600 dark:text-neutral-400 dark:hover:text-rose-400 hover:bg-surface-subtle-light dark:hover:bg-surface-subtle-dark transition rounded-xl shrink-0"
+            className="flex items-center gap-1.5 px-2.5 py-2 text-xs font-semibold text-content-secondary hover:text-rose-600 dark:hover:text-rose-400 hover:bg-surface-subtle-light dark:hover:bg-surface-subtle-dark transition rounded-xl shrink-0"
           >
             <Trash2 className="h-4 w-4 shrink-0" />
             <span className="hidden md:inline whitespace-nowrap">Clear all</span>
@@ -92,14 +92,15 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
             }
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-bold transition shadow-sm active:scale-95 shrink-0 whitespace-nowrap ${
               selectedVehicles.length >= 2
-                ? 'text-neutral-950 font-black hover:brightness-105'
-                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-500 dark:text-neutral-500 cursor-not-allowed border border-borderLine-light dark:border-borderLine-dark'
+                ? 'font-black hover:brightness-105'
+                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-content-tertiary cursor-not-allowed border border-borderLine-light dark:border-borderLine-dark'
             }`}
             style={{
               backgroundColor: selectedVehicles.length >= 2 ? 'var(--pt-accent)' : undefined,
+              color: selectedVehicles.length >= 2 ? 'var(--pt-on-accent)' : undefined,
             }}
           >
-            <Sparkles className="h-4 w-4 shrink-0 text-neutral-950" />
+            <Sparkles className="h-4 w-4 shrink-0" style={{ color: selectedVehicles.length >= 2 ? 'var(--pt-on-accent)' : undefined }} />
             <span>
               {selectedVehicles.length < 2 ? 'Select 1 More' : `Launch Showdown (${selectedVehicles.length})`}
             </span>
