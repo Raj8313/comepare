@@ -8,45 +8,34 @@
   }
 
   body {
-    @apply antialiased transition-colors duration-200 selection:bg-indigo-500 selection:text-white;
+    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200 selection:bg-wa-green selection:text-neutral-900;
   }
 }
 
-/* Light / Dark Mode Scrollbar */
+/* Custom scrollbars matching the clean rounded aesthetic */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #0C1317;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #2A3942;
   border-radius: 9999px;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #3B4A54;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #F7F5EE;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #D1CCBD;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Modern subtle mesh background pattern */
-.bg-grid-pattern {
-  background-image: radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.dark .bg-grid-pattern {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: #B8B2A2;
 }
