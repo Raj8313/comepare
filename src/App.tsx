@@ -8,7 +8,7 @@ import { ComparisonDrawer } from './components/ComparisonDrawer';
 import { ComparisonModal } from './components/ComparisonModal';
 import { QuickViewModal } from './components/QuickViewModal';
 import { ThemeProvider } from './context/ThemeContext';
-import { Shield, Zap, Search, ArrowRight, Gauge, IndianRupee, Sparkles, Fuel, Disc } from 'lucide-react';
+import { Shield, Zap, Search, ArrowRight, Gauge, IndianRupee, Sparkles, Fuel, Disc, Bike } from 'lucide-react';
 
 const INITIAL_FILTERS: FilterState = {
   searchQuery: '',
@@ -233,13 +233,14 @@ const MainApp: React.FC = () => {
                     setActiveDuelPreset('nexon');
                     setFilters(prev => ({ ...prev, powertrain: 'all' }));
                   }}
-                  className={`px-3.5 py-2 rounded-lg transition ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'nexon'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  Nexon EV vs Petrol
+                  <Zap className="h-3.5 w-3.5 fill-current text-emerald-600 dark:text-emerald-400" />
+                  <span>Nexon EV vs Petrol</span>
                 </button>
                 <button
                   role="tab"
@@ -248,13 +249,14 @@ const MainApp: React.FC = () => {
                     setActiveDuelPreset('diesel');
                     setFilters(prev => ({ ...prev, powertrain: 'diesel' }));
                   }}
-                  className={`px-3.5 py-2 rounded-lg transition ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'diesel'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  XUV700 Diesel vs Creta
+                  <Disc className="h-3.5 w-3.5 text-slate-600 dark:text-slate-400" />
+                  <span>XUV700 vs Creta</span>
                 </button>
                 <button
                   role="tab"
@@ -263,13 +265,14 @@ const MainApp: React.FC = () => {
                     setActiveDuelPreset('twoWheeler');
                     setFilters(prev => ({ ...prev, powertrain: 'all' }));
                   }}
-                  className={`px-3.5 py-2 rounded-lg transition ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'twoWheeler'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  Ather 450X vs Hunter
+                  <Bike className="h-3.5 w-3.5" />
+                  <span>Ather vs Hunter</span>
                 </button>
               </div>
             </div>
@@ -278,7 +281,7 @@ const MainApp: React.FC = () => {
             <div className="py-6 grid grid-cols-1 md:grid-cols-11 gap-6 items-center">
               
               {/* Contender 1 */}
-              <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4">
+              <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors">
                 <img
                   src={duelContenders.v1.image}
                   alt={`${duelContenders.v1.brand} ${duelContenders.v1.name}`}
@@ -299,15 +302,19 @@ const MainApp: React.FC = () => {
               <div className="md:col-span-1 flex justify-center">
                 <div
                   aria-hidden="true"
-                  className="h-12 w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-sm text-neutral-900 dark:text-white shadow-sm transition-colors duration-300"
+                  className="h-12 w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-sm text-neutral-900 dark:text-white shadow-sm transition-all duration-300 relative"
                   style={{ borderColor: 'var(--pt-accent)' }}
                 >
-                  VS
+                  <span className="relative z-10">VS</span>
+                  <div
+                    className="absolute inset-0 rounded-full animate-ping opacity-20 pointer-events-none"
+                    style={{ backgroundColor: 'var(--pt-accent)' }}
+                  />
                 </div>
               </div>
 
               {/* Contender 2 */}
-              <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4">
+              <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4 hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors">
                 <img
                   src={duelContenders.v2.image}
                   alt={`${duelContenders.v2.brand} ${duelContenders.v2.name}`}
@@ -386,20 +393,38 @@ const MainApp: React.FC = () => {
 
             {/* Empty State */}
             {filteredVehicles.length === 0 ? (
-              <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-12 text-center space-y-4 shadow-sm">
+              <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-10 sm:p-14 text-center space-y-5 shadow-sm">
                 <Search className="h-10 w-10 text-neutral-400 dark:text-neutral-600 mx-auto" />
                 <h3 className="text-lg font-bold text-neutral-900 dark:text-white">No vehicles match these filters</h3>
                 <p className="text-sm text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto leading-relaxed">
                   Try widening your budget, lowering minimum ground clearance, or clearing search keywords.
                 </p>
-                <button
-                  onClick={() => setFilters(INITIAL_FILTERS)}
-                  aria-label="Reset all search filters"
-                  className="px-5 py-2.5 rounded-xl text-sm font-bold text-neutral-950 hover:opacity-90 transition"
-                  style={{ backgroundColor: 'var(--pt-accent)' }}
-                >
-                  Reset All Filters
-                </button>
+                <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+                  <button
+                    onClick={() => setFilters(INITIAL_FILTERS)}
+                    aria-label="Reset all search filters"
+                    className="px-5 py-2.5 rounded-xl text-sm font-bold text-neutral-950 hover:opacity-90 transition shadow-sm active:scale-95"
+                    style={{ backgroundColor: 'var(--pt-accent)' }}
+                  >
+                    Reset All Filters
+                  </button>
+                  {filters.powertrain !== 'all' && (
+                    <button
+                      onClick={() => setFilters(prev => ({ ...prev, powertrain: 'all' }))}
+                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                    >
+                      Clear Fuel Filter
+                    </button>
+                  )}
+                  {filters.searchQuery && (
+                    <button
+                      onClick={() => setFilters(prev => ({ ...prev, searchQuery: '' }))}
+                      className="px-4 py-2.5 rounded-xl text-sm font-semibold bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition"
+                    >
+                      Clear Search Query
+                    </button>
+                  )}
+                </div>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7">

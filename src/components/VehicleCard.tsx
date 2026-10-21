@@ -21,7 +21,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
   return (
     <div
-      className={`group relative bg-surface-light dark:bg-surface-dark border rounded-2xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-soft-lift dark:shadow-soft-lift-dark hover:-translate-y-1 hover:shadow-md ${
+      onClick={() => onQuickView(vehicle)}
+      className={`group relative bg-surface-light dark:bg-surface-dark border rounded-2xl overflow-hidden transition-all duration-300 flex flex-col justify-between shadow-soft-lift dark:shadow-soft-lift-dark hover:-translate-y-1 hover:shadow-xl cursor-pointer ${
         isSelected
           ? 'ring-2'
           : 'border-borderLine-light dark:border-borderLine-dark hover:border-neutral-400 dark:hover:border-neutral-500'
@@ -161,17 +162,22 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Action Link Footer */}
-        <div className="flex items-center justify-between pt-2 border-t border-borderLine-light/60 dark:border-borderLine-dark/60">
+        <div className="flex items-center justify-between pt-2.5 border-t border-borderLine-light/60 dark:border-borderLine-dark/60">
           <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
             {vehicle.variants.length} Trims available
           </span>
           <button
-            onClick={() => onQuickView(vehicle)}
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onQuickView(vehicle);
+            }}
             aria-label={`Inspect detailed specifications for ${vehicle.brand} ${vehicle.name}`}
-            className="text-sm font-bold transition hover:underline"
+            className="text-sm font-bold transition flex items-center gap-1 group-hover:gap-1.5 duration-200 focus:outline-none focus:underline rounded"
             style={{ color: 'var(--pt-accent-text)' }}
           >
-            Inspect Specs →
+            <span>Inspect Specs</span>
+            <span className="group-hover:translate-x-1 transition-transform duration-200" aria-hidden="true">→</span>
           </button>
         </div>
 
