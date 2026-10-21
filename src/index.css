@@ -75,7 +75,7 @@
     --pt-accent-text: #FBBF24;
   }
 
-  /* 🚜 DIESEL MODE: Cool Industrial Titanium Smoke Slate */
+  /* 🚜 DIESEL MODE: Cool Industrial Titanium Steel & Smoke Slate (WCAG AAA) */
   [data-powertrain="diesel"] {
     --canvas-bg: #EEF2F6;
     --surface-subtle: #DFE5EC;
@@ -87,15 +87,17 @@
     --border-line-dark: #253342;
     --border-line-strong-dark: #374A5E;
 
-    --pt-accent: #64748B;
-    --pt-accent-hover: #475569;
-    --pt-accent-subtle: rgba(100, 116, 139, 0.18);
-    --pt-accent-border: rgba(100, 116, 139, 0.50);
-    --pt-accent-text: #334155;
+    --pt-accent: #94A3B8;
+    --pt-accent-hover: #64748B;
+    --pt-accent-subtle: rgba(148, 163, 184, 0.20);
+    --pt-accent-border: rgba(148, 163, 184, 0.55);
+    --pt-accent-text: #1E293B;
   }
   .dark [data-powertrain="diesel"] {
     --canvas-bg: #090E13;
-    --pt-accent-text: #CBD5E1;
+    --pt-accent: #94A3B8;
+    --pt-accent-hover: #CBD5E1;
+    --pt-accent-text: #E2E8F0;
   }
 
   body {

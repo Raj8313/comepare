@@ -83,10 +83,10 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
               <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
-                {isEv ? <Zap className="h-3.5 w-3.5 fill-current text-emerald-800 dark:text-speed-green" /> : <Fuel className="h-3.5 w-3.5 text-amber-600" />}
+                {isEv ? <Zap className="h-3.5 w-3.5 fill-current text-emerald-800 dark:text-emerald-400" /> : <Fuel className="h-3.5 w-3.5 text-amber-600" />}
                 {isEv ? 'Real Range' : 'Real Mileage'}
               </span>
-              <span className="text-base font-bold font-mono text-emerald-800 dark:text-speed-green mt-1.5 block">
+              <span className="text-base font-bold font-mono text-emerald-800 dark:text-emerald-400 mt-1.5 block">
                 {vehicle.efficiency.realWorldEfficiency.split(' ')[0]} {isEv ? 'km' : 'km/l'}
               </span>
             </div>
@@ -114,7 +114,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
           {isEv && vehicle.efficiency.batteryKwh && (
             <div className="p-4 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-800 dark:text-speed-green">
+                <div className="p-2 rounded-xl bg-emerald-500/20 text-emerald-800 dark:text-emerald-400">
                   <BatteryCharging className="h-5 w-5" />
                 </div>
                 <div>
@@ -126,7 +126,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                   </span>
                 </div>
               </div>
-              <span className="text-sm font-mono font-bold text-emerald-800 dark:text-speed-green">
+              <span className="text-sm font-mono font-bold text-emerald-800 dark:text-emerald-400">
                 ₹{vehicle.efficiency.energyCostPerKmInr}/km running
               </span>
             </div>
@@ -161,7 +161,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="text-sm font-bold font-mono text-neutral-900 dark:text-speed-green">
+                    <span className="text-sm font-bold font-mono text-neutral-900 dark:text-emerald-400">
                       ₹{(variant.priceExShowroom / 100000).toFixed(2)} Lakh
                     </span>
                   </div>

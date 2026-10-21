@@ -18,7 +18,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
       <div className="flex items-center justify-between pb-5 border-b border-borderLine-light dark:border-borderLine-dark">
         <div>
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-speed-green/10 text-emerald-800 dark:text-speed-green border border-speed-green/20">
+            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border border-emerald-500/20">
               <Ruler className="h-4 w-4" />
             </div>
             <h3 className="text-lg font-extrabold text-neutral-900 dark:text-white">
@@ -30,7 +30,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
           </p>
         </div>
         <div className="flex items-center gap-2 text-sm font-semibold text-neutral-700 dark:text-neutral-300 bg-surface-subtle-light dark:bg-surface-subtle-dark px-3.5 py-2 rounded-xl border border-borderLine-light dark:border-borderLine-dark">
-          <Maximize2 className="h-4 w-4 text-speed-green" />
+          <Maximize2 className="h-4 w-4 text-emerald-700 dark:text-emerald-400" />
           <span>True Proportions</span>
         </div>
       </div>
@@ -56,7 +56,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
               <div key={v.id} className="space-y-2">
                 <div className="flex justify-between items-center text-sm">
                   <span className="font-bold text-neutral-800 dark:text-neutral-200">{v.name}</span>
-                  <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
+                  <span className="font-mono font-bold text-neutral-900 dark:text-emerald-400">
                     {v.dimensions.lengthMm.toLocaleString()} mm
                   </span>
                 </div>
@@ -89,7 +89,7 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
             <div key={v.id} className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border border-borderLine-light dark:border-borderLine-dark p-4 rounded-2xl text-center">
               <span className="text-sm text-neutral-700 dark:text-neutral-300 truncate block font-bold">{v.name}</span>
               <div className="my-2.5 py-2.5 border-y border-borderLine-light dark:border-borderLine-dark">
-                <span className="text-2xl font-black font-mono text-neutral-900 dark:text-speed-green block">
+                <span className="text-2xl font-black font-mono text-neutral-900 dark:text-emerald-400 block">
                   {v.dimensions.groundClearanceMm} mm
                 </span>
                 <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wider font-semibold">Ground Clearance</span>

@@ -18,7 +18,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-5 border-b border-borderLine-light dark:border-borderLine-dark">
         <div>
           <div className="flex items-center gap-2">
-            <div className="p-2 rounded-xl bg-speed-green/10 text-emerald-800 dark:text-speed-green border border-speed-green/20">
+            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-800 dark:text-emerald-400 border border-emerald-500/20">
               <IndianRupee className="h-4 w-4" />
             </div>
             <h3 className="text-lg font-extrabold text-neutral-900 dark:text-white">
@@ -34,7 +34,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
         <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark px-4 py-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark min-w-[220px]">
           <div className="flex justify-between text-sm mb-1.5">
             <label htmlFor="cost-monthly-km" className="text-neutral-700 dark:text-neutral-300 font-semibold">Monthly Driving:</label>
-            <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
+            <span className="font-mono font-bold text-neutral-900 dark:text-emerald-400">
               {monthlyKm.toLocaleString()} km
             </span>
           </div>
@@ -50,7 +50,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
             aria-valuenow={monthlyKm}
             aria-valuetext={`${monthlyKm.toLocaleString()} kilometers per month`}
             onChange={(e) => setMonthlyKm(Number(e.target.value))}
-            className="w-full accent-neutral-900 dark:accent-speed-green h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
+            className="w-full accent-neutral-900 dark:accent-emerald-400 h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
           />
         </div>
       </div>
@@ -69,14 +69,14 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
               key={v.id}
               className={`p-5 rounded-2xl border transition ${
                 isEv
-                  ? 'bg-speed-green/5 dark:bg-speed-green/10 border-speed-green/30'
+                  ? 'bg-emerald-500/5 dark:bg-emerald-500/10 border-emerald-500/30'
                   : 'bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border-borderLine-light dark:border-borderLine-dark'
               }`}
             >
               <div className="flex items-center justify-between mb-3">
                 <span className="text-sm font-bold text-neutral-900 dark:text-white truncate">{v.name}</span>
                 {isEv ? (
-                  <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-speed-green/20 text-emerald-800 dark:text-speed-green border border-speed-green/30">
+                  <span className="flex items-center gap-1.5 text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-800 dark:text-emerald-400 border border-emerald-500/30">
                     <Zap className="h-3 w-3 fill-current" /> ₹{costPerKm.toFixed(2)}/km
                   </span>
                 ) : (
@@ -91,7 +91,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
                 <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block font-semibold">
                   Estimated Monthly Fuel
                 </span>
-                <span className={`text-3xl font-extrabold font-mono tracking-tight ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
+                <span className={`text-3xl font-extrabold font-mono tracking-tight ${isEv ? 'text-emerald-800 dark:text-emerald-400' : 'text-neutral-900 dark:text-white'}`}>
                   ₹{monthlyExpense.toLocaleString()}
                 </span>
                 <span className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 block">
@@ -109,7 +109,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-neutral-600 dark:text-neutral-400 font-medium">5 Year Cumulative:</span>
-                  <span className={`font-mono font-bold ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
+                  <span className={`font-mono font-bold ${isEv ? 'text-emerald-800 dark:text-emerald-400' : 'text-neutral-900 dark:text-white'}`}>
                     ₹{fiveYearExpense.toLocaleString()}
                   </span>
                 </div>
@@ -121,8 +121,8 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
 
       {/* Difference Highlights if ICE vs EV */}
       {vehicles.some(v => v.powertrain === 'ev') && vehicles.some(v => v.powertrain !== 'ev') && (
-        <div className="p-5 rounded-2xl bg-speed-green/10 border border-speed-green/20 flex items-center gap-4">
-          <div className="p-2.5 rounded-xl bg-speed-green/20 text-speed-green shrink-0">
+        <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-4">
+          <div className="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 shrink-0">
             <TrendingDown className="h-5 w-5" />
           </div>
           <div>
@@ -131,7 +131,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
             </span>
             <p className="text-sm text-neutral-800 dark:text-neutral-200 mt-1 leading-relaxed">
               At {monthlyKm.toLocaleString()} km/month, switching from ICE to EV saves approximately{' '}
-              <strong className="font-mono font-bold text-emerald-800 dark:text-speed-green">
+              <strong className="font-mono font-bold text-emerald-800 dark:text-emerald-400">
                 ₹{Math.round(monthlyKm * (7.80 - 1.15) * 12).toLocaleString()} per year
               </strong>{' '}
               in direct fuel expenses alone.

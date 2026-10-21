@@ -376,7 +376,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                           return (
                             <div role="cell" key={v.id} className="px-6 py-3.5 flex items-center justify-between text-sm">
                               <span className="font-mono font-bold text-neutral-900 dark:text-white">
-                                {v.performance.powerBhp} <span className="text-xs font-semibold text-neutral-500 uppercase">bhp</span>
+                                {v.performance.powerBhp} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">bhp</span>
                               </span>
                               {isBest && (
                                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
@@ -400,7 +400,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                           return (
                             <div role="cell" key={v.id} className="px-6 py-3.5 flex items-center justify-between text-sm">
                               <span className="font-mono font-bold text-neutral-900 dark:text-white">
-                                {v.performance.torqueNm} <span className="text-xs font-semibold text-neutral-500 uppercase">Nm</span>
+                                {v.performance.torqueNm} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">Nm</span>
                               </span>
                               {isBest && (
                                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
@@ -482,7 +482,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                           return (
                             <div role="cell" key={v.id} className="px-6 py-3.5 flex items-center justify-between text-sm">
                               <span className="font-mono font-bold text-neutral-900 dark:text-white">
-                                {v.dimensions.groundClearanceMm} <span className="text-xs font-semibold text-neutral-500 uppercase">mm</span>
+                                {v.dimensions.groundClearanceMm} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">mm</span>
                               </span>
                               {isBest && (
                                 <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
@@ -553,7 +553,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 <span>{v.safety.ncapRatingStars}-Star ({v.safety.ncapAuthority})</span>
                               </>
                             ) : (
-                              <span className="text-neutral-500">Not Tested / 2W</span>
+                              <span className="text-neutral-600 dark:text-neutral-400">Not Tested / 2W</span>
                             )}
                           </div>
                         ))}
@@ -571,7 +571,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                             {v.safety.adasLevel && v.safety.adasLevel !== 'None' ? (
                               <span style={{ color: 'var(--pt-accent-text)' }}>{v.safety.adasLevel} Active Safety</span>
                             ) : (
-                              <span className="text-neutral-500">None</span>
+                              <span className="text-neutral-600 dark:text-neutral-400">None</span>
                             )}
                           </div>
                         ))}
@@ -635,7 +635,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 <Check className="h-4 w-4 stroke-[3]" /> Available
                               </span>
                             ) : (
-                              <span className="text-neutral-500">No</span>
+                              <span className="text-neutral-600 dark:text-neutral-400">No</span>
                             )}
                           </div>
                         ))}
@@ -655,7 +655,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 <Check className="h-4 w-4 stroke-[3]" /> Yes
                               </span>
                             ) : (
-                              <span className="text-neutral-500">No</span>
+                              <span className="text-neutral-600 dark:text-neutral-400">No</span>
                             )}
                           </div>
                         ))}

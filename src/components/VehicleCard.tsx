@@ -130,7 +130,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               <span>Power</span>
             </span>
             <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm">
-              {vehicle.performance.powerBhp} <span className="text-xs font-normal text-neutral-500">bhp</span>
+              {vehicle.performance.powerBhp} <span className="text-xs font-normal text-neutral-600 dark:text-neutral-400">bhp</span>
             </span>
           </div>
 
@@ -158,7 +158,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               <span>{isBike ? 'Seat Height' : 'Ground Clearance'}</span>
             </span>
             <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm">
-              {isBike ? vehicle.dimensions.seatHeightMm : vehicle.dimensions.groundClearanceMm} <span className="text-xs font-normal text-neutral-500">mm</span>
+              {isBike ? vehicle.dimensions.seatHeightMm : vehicle.dimensions.groundClearanceMm} <span className="text-xs font-normal text-neutral-600 dark:text-neutral-400">mm</span>
             </span>
           </div>
         </div>
