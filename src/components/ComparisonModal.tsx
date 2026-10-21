@@ -379,7 +379,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 {v.performance.powerBhp} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">bhp</span>
                               </span>
                               {isBest && (
-                                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                <span className="text-xs font-bold px-2 py-0.5 rounded-full border" style={{ backgroundColor: 'var(--pt-accent-subtle)', borderColor: 'var(--pt-accent-border)', color: 'var(--pt-accent-text)' }}>
                                   Highest
                                 </span>
                               )}
@@ -403,7 +403,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 {v.performance.torqueNm} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">Nm</span>
                               </span>
                               {isBest && (
-                                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                <span className="text-xs font-bold px-2 py-0.5 rounded-full border" style={{ backgroundColor: 'var(--pt-accent-subtle)', borderColor: 'var(--pt-accent-border)', color: 'var(--pt-accent-text)' }}>
                                   Highest
                                 </span>
                               )}
@@ -420,7 +420,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                           Battery Capacity
                         </div>
                         {vehicles.map(v => (
-                          <div role="cell" key={v.id} className="px-6 py-3.5 font-mono font-bold text-emerald-800 dark:text-emerald-300 text-sm">
+                          <div role="cell" key={v.id} className="px-6 py-3.5 font-mono font-bold text-sm" style={{ color: 'var(--pt-accent-text)' }}>
                             {v.efficiency.batteryKwh ? `${v.efficiency.batteryKwh} kWh (${v.efficiency.batteryChemistry || 'LFP'})` : '—'}
                           </div>
                         ))}
@@ -485,7 +485,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                                 {v.dimensions.groundClearanceMm} <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 uppercase">mm</span>
                               </span>
                               {isBest && (
-                                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                <span className="text-xs font-bold px-2 py-0.5 rounded-full border" style={{ backgroundColor: 'var(--pt-accent-subtle)', borderColor: 'var(--pt-accent-border)', color: 'var(--pt-accent-text)' }}>
                                   Best
                                 </span>
                               )}

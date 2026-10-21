@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filter, SlidersHorizontal, Zap, RotateCcw, Fuel, Disc, Star } from 'lucide-react';
+import { Filter, SlidersHorizontal, Zap, RotateCcw, Fuel, Disc, Star, Sparkles } from 'lucide-react';
 import { PowertrainType, VehicleCategory } from '../types/vehicle';
 
 export interface FilterState {
@@ -76,19 +76,24 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
               Fuel / Powertrain
             </span>
+            {filters.powertrain === 'all' && (
+              <span className="text-xs font-bold flex items-center gap-1" style={{ color: 'var(--pt-accent-text)' }}>
+                <Sparkles className="h-3.5 w-3.5" /> All Blue
+              </span>
+            )}
             {filters.powertrain === 'ev' && (
-              <span className="text-xs font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
+              <span className="text-xs font-bold flex items-center gap-1" style={{ color: 'var(--pt-accent-text)' }}>
                 <Zap className="h-3.5 w-3.5 fill-current" /> EV Green
               </span>
             )}
             {filters.powertrain === 'petrol' && (
-              <span className="text-xs font-bold text-amber-800 dark:text-amber-300 flex items-center gap-1">
+              <span className="text-xs font-bold flex items-center gap-1" style={{ color: 'var(--pt-accent-text)' }}>
                 <Fuel className="h-3.5 w-3.5" /> Petrol Yellow
               </span>
             )}
             {filters.powertrain === 'diesel' && (
-              <span className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
-                <Disc className="h-3.5 w-3.5" /> Diesel Smoke
+              <span className="text-xs font-bold flex items-center gap-1" style={{ color: 'var(--pt-accent-text)' }}>
+                <Disc className="h-3.5 w-3.5" /> Diesel Steel
               </span>
             )}
           </div>

@@ -3,30 +3,36 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  [data-powertrain="all"] {
     color-scheme: light dark;
 
-    /* Default (All / Hybrid) Theme */
-    --canvas-bg: #F5F4EE;
-    --surface-subtle: #ECEAE0;
-    --border-line: #DDD9CC;
-    --border-line-strong: #C4BFB0;
+    /* 🌐 ALL FUEL (DEFAULT) MODE: Dynamic Electric Blue (WCAG AAA) */
+    --canvas-bg: #F0F4F8;
+    --surface-subtle: #E2E8F0;
+    --border-line: #CBD5E1;
+    --border-line-strong: #94A3B8;
 
-    --surface-card-dark: #14181D;
-    --surface-subtle-dark: #1B2127;
-    --border-line-dark: #262E37;
-    --border-line-strong-dark: #37424F;
+    --surface-card-dark: #0F172A;
+    --surface-subtle-dark: #1E293B;
+    --border-line-dark: #334155;
+    --border-line-strong-dark: #475569;
 
-    --pt-accent: #10B981;
-    --pt-accent-hover: #059669;
-    --pt-accent-subtle: rgba(16, 185, 129, 0.12);
-    --pt-accent-border: rgba(16, 185, 129, 0.35);
-    --pt-accent-text: #065f46;
+    --pt-accent: #38BDF8;
+    --pt-accent-hover: #0284C7;
+    --pt-accent-subtle: rgba(56, 189, 248, 0.15);
+    --pt-accent-border: rgba(56, 189, 248, 0.45);
+    --pt-accent-text: #1E40AF;
   }
 
-  .dark {
-    --canvas-bg: #0C0F12;
-    --pt-accent-text: #34d399;
+  .dark,
+  .dark [data-powertrain="all"] {
+    --canvas-bg: #0A0F1D;
+    --pt-accent: #38BDF8;
+    --pt-accent-hover: #7DD3FC;
+    --pt-accent-subtle: rgba(56, 189, 248, 0.18);
+    --pt-accent-border: rgba(56, 189, 248, 0.50);
+    --pt-accent-text: #93C5FD;
   }
 
   /* ⚡ EV MODE: Fresh Mint / Sage Light Canvas & Deep Electric Obsidian */

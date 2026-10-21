@@ -50,7 +50,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             </span>
           )}
           {!isEv && isDiesel && (
-            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-slate-700 text-white border border-slate-600 rounded-lg shadow-sm">
+            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-[#94A3B8] text-neutral-950 rounded-lg shadow-sm">
               <Disc className="h-3.5 w-3.5" />
               <span>Diesel</span>
             </span>

@@ -62,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
                   {selectedPowertrain === 'ev' && <><Zap className="h-3 w-3 fill-current" /> EV Mode</>}
                   {selectedPowertrain === 'petrol' && <><Fuel className="h-3 w-3" /> Petrol Mode</>}
                   {selectedPowertrain === 'diesel' && <><Disc className="h-3 w-3" /> Diesel Mode</>}
-                  {selectedPowertrain === 'all' && <>All Fuel</>}
+                  {selectedPowertrain === 'all' && <><Sparkles className="h-3 w-3" /> All Fuel</>}
                 </span>
               </div>
               <p className="text-xs text-neutral-600 dark:text-neutral-400 font-medium hidden sm:block whitespace-nowrap mt-0.5">
@@ -152,13 +152,17 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => setSelectedPowertrain('all')}
               aria-pressed={selectedPowertrain === 'all'}
-              className={`px-2.5 py-1.5 rounded-lg transition-all ${
+              className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'all'
-                  ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold'
+                  ? 'shadow-sm font-black'
                   : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
+              style={{
+                backgroundColor: selectedPowertrain === 'all' ? 'var(--pt-accent)' : undefined,
+                color: selectedPowertrain === 'all' ? '#000000' : undefined,
+              }}
             >
-              All Fuel
+              <span>All Fuel</span>
             </button>
 
             <button
@@ -166,9 +170,13 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={selectedPowertrain === 'ev'}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'ev'
-                  ? 'bg-emerald-500 text-neutral-950 shadow-sm'
-                  : 'text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/10'
+                  ? 'shadow-sm font-black'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
+              style={{
+                backgroundColor: selectedPowertrain === 'ev' ? 'var(--pt-accent)' : undefined,
+                color: selectedPowertrain === 'ev' ? '#000000' : undefined,
+              }}
             >
               <Zap className="h-3 w-3 fill-current" />
               <span>EV</span>
@@ -179,9 +187,13 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={selectedPowertrain === 'petrol'}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'petrol'
-                  ? 'bg-amber-500 text-neutral-950 shadow-sm'
-                  : 'text-amber-800 dark:text-amber-300 hover:bg-amber-500/10'
+                  ? 'shadow-sm font-black'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
+              style={{
+                backgroundColor: selectedPowertrain === 'petrol' ? 'var(--pt-accent)' : undefined,
+                color: selectedPowertrain === 'petrol' ? '#000000' : undefined,
+              }}
             >
               <Fuel className="h-3 w-3" />
               <span>Petrol</span>
@@ -192,9 +204,13 @@ export const Header: React.FC<HeaderProps> = ({
               aria-pressed={selectedPowertrain === 'diesel'}
               className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'diesel'
-                  ? 'bg-slate-700 text-white shadow-sm'
-                  : 'text-slate-700 dark:text-slate-300 hover:bg-slate-500/10'
+                  ? 'shadow-sm font-black'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
+              style={{
+                backgroundColor: selectedPowertrain === 'diesel' ? 'var(--pt-accent)' : undefined,
+                color: selectedPowertrain === 'diesel' ? '#000000' : undefined,
+              }}
             >
               <Disc className="h-3 w-3" />
               <span>Diesel</span>

@@ -187,8 +187,8 @@ const MainApp: React.FC = () => {
               >
                 {filters.powertrain === 'ev' && <><Zap className="h-4 w-4 fill-current" /> Active Theme: Electric Green (EV Focus)</>}
                 {filters.powertrain === 'petrol' && <><Fuel className="h-4 w-4" /> Active Theme: Petrol Yellow (High-Octane Rev)</>}
-                {filters.powertrain === 'diesel' && <><Disc className="h-4 w-4" /> Active Theme: Diesel Smoke Slate (Heavy Torque)</>}
-                {filters.powertrain === 'all' && <><Sparkles className="h-4 w-4" /> Active Theme: All Powertrains Showdown</>}
+                {filters.powertrain === 'diesel' && <><Disc className="h-4 w-4" /> Active Theme: Diesel Titanium Steel (Heavy Torque)</>}
+                {filters.powertrain === 'all' && <><Sparkles className="h-4 w-4" /> Active Theme: Electric Blue (All Powertrains)</>}
               </div>
 
               <h1 id="hero-title" className="text-4xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.15]">
@@ -229,49 +229,40 @@ const MainApp: React.FC = () => {
                 <button
                   role="tab"
                   aria-selected={activeDuelPreset === 'nexon'}
-                  onClick={() => {
-                    setActiveDuelPreset('nexon');
-                    setFilters(prev => ({ ...prev, powertrain: 'all' }));
-                  }}
+                  onClick={() => setActiveDuelPreset('nexon')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'nexon'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  <Zap className="h-3.5 w-3.5 fill-current text-emerald-600 dark:text-emerald-400" />
+                  <Zap className="h-3.5 w-3.5 fill-current" style={{ color: activeDuelPreset === 'nexon' ? 'var(--pt-accent-text)' : undefined }} />
                   <span>Nexon EV vs Petrol</span>
                 </button>
                 <button
                   role="tab"
                   aria-selected={activeDuelPreset === 'diesel'}
-                  onClick={() => {
-                    setActiveDuelPreset('diesel');
-                    setFilters(prev => ({ ...prev, powertrain: 'diesel' }));
-                  }}
+                  onClick={() => setActiveDuelPreset('diesel')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'diesel'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  <Disc className="h-3.5 w-3.5 text-slate-600 dark:text-slate-400" />
+                  <Disc className="h-3.5 w-3.5" style={{ color: activeDuelPreset === 'diesel' ? 'var(--pt-accent-text)' : undefined }} />
                   <span>XUV700 vs Creta</span>
                 </button>
                 <button
                   role="tab"
                   aria-selected={activeDuelPreset === 'twoWheeler'}
-                  onClick={() => {
-                    setActiveDuelPreset('twoWheeler');
-                    setFilters(prev => ({ ...prev, powertrain: 'all' }));
-                  }}
+                  onClick={() => setActiveDuelPreset('twoWheeler')}
                   className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition ${
                     activeDuelPreset === 'twoWheeler'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
                       : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
-                  <Bike className="h-3.5 w-3.5" />
+                  <Bike className="h-3.5 w-3.5" style={{ color: activeDuelPreset === 'twoWheeler' ? 'var(--pt-accent-text)' : undefined }} />
                   <span>Ather vs Hunter</span>
                 </button>
               </div>
@@ -324,7 +315,7 @@ const MainApp: React.FC = () => {
                   <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">{duelContenders.v2.brand}</span>
                   <h3 className="text-lg font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v2.name}</h3>
                   <div className="flex items-center gap-2 pt-1 font-mono text-sm">
-                    <span className="font-bold text-amber-800 dark:text-amber-400">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
+                    <span className="font-bold text-neutral-900 dark:text-neutral-100">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
                     <span className="text-neutral-400">•</span>
                     <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{duelContenders.v2.performance.powerBhp} bhp</span>
                   </div>

@@ -83,10 +83,10 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-4 rounded-2xl border border-borderLine-light dark:border-borderLine-dark text-center">
               <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
-                {isEv ? <Zap className="h-3.5 w-3.5 fill-current text-emerald-800 dark:text-emerald-400" /> : <Fuel className="h-3.5 w-3.5 text-amber-600" />}
+                {isEv ? <Zap className="h-3.5 w-3.5 fill-current" style={{ color: 'var(--pt-accent-text)' }} /> : <Fuel className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent-text)' }} />}
                 {isEv ? 'Real Range' : 'Real Mileage'}
               </span>
-              <span className="text-base font-bold font-mono text-emerald-800 dark:text-emerald-400 mt-1.5 block">
+              <span className="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1.5 block">
                 {vehicle.efficiency.realWorldEfficiency.split(' ')[0]} {isEv ? 'km' : 'km/l'}
               </span>
             </div>
@@ -104,7 +104,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               <span className="text-xs text-neutral-600 dark:text-neutral-400 uppercase font-bold tracking-wider flex items-center justify-center gap-1.5">
                 <ShieldCheck className="h-3.5 w-3.5 text-amber-500" /> NCAP Crash
               </span>
-              <span className="text-base font-bold font-mono text-amber-800 dark:text-amber-400 mt-1.5 block">
+              <span className="text-base font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1.5 block">
                 {vehicle.safety.ncapRatingStars ? `${vehicle.safety.ncapRatingStars} Stars` : 'N/A'}
               </span>
             </div>
@@ -126,7 +126,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                   </span>
                 </div>
               </div>
-              <span className="text-sm font-mono font-bold text-emerald-800 dark:text-emerald-400">
+              <span className="text-sm font-mono font-bold" style={{ color: 'var(--pt-accent-text)' }}>
                 ₹{vehicle.efficiency.energyCostPerKmInr}/km running
               </span>
             </div>
@@ -161,7 +161,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                     </div>
                   </div>
                   <div className="text-right shrink-0">
-                    <span className="text-sm font-bold font-mono text-neutral-900 dark:text-emerald-400">
+                    <span className="text-sm font-bold font-mono text-neutral-900 dark:text-neutral-100">
                       ₹{(variant.priceExShowroom / 100000).toFixed(2)} Lakh
                     </span>
                   </div>
@@ -184,11 +184,14 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             }}
             aria-pressed={isSelected}
             aria-label={isSelected ? `Remove ${vehicle.name} from showdown` : `Add ${vehicle.name} to showdown`}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition active:scale-95 ${
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition active:scale-95 shadow-sm ${
               isSelected
                 ? 'bg-surface-light dark:bg-neutral-800 text-neutral-900 dark:text-white border border-borderLine-light dark:border-neutral-700'
-                : 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm'
+                : 'text-neutral-950 font-black hover:brightness-105'
             }`}
+            style={{
+              backgroundColor: isSelected ? undefined : 'var(--pt-accent)',
+            }}
           >
             {isSelected ? (
               <>
