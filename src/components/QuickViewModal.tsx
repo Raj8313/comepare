@@ -198,7 +198,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             ) : (
               <>
                 <Plus className="h-4 w-4" />
-                <span>+ Add to Showdown</span>
+                <span>Add to Showdown</span>
               </>
             )}
           </button>

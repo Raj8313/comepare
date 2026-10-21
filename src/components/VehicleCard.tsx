@@ -65,7 +65,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {vehicle.safety.ncapRatingStars && vehicle.safety.ncapRatingStars >= 4 && (
             <span className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold bg-white/95 dark:bg-neutral-900/90 text-amber-800 dark:text-amber-300 border border-neutral-300 dark:border-neutral-700 rounded-lg shadow-sm backdrop-blur-sm">
               <ShieldCheck className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
-              <span>{vehicle.safety.ncapRatingStars}★</span>
+              <span>{vehicle.safety.ncapRatingStars}-Star</span>
             </span>
           )}
         </div>
@@ -95,7 +95,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           ) : (
             <>
               <Plus className="h-3.5 w-3.5" />
-              <span>+ Pair</span>
+              <span>Pair</span>
             </>
           )}
         </button>

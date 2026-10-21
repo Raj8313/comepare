@@ -8,7 +8,7 @@ import { ComparisonDrawer } from './components/ComparisonDrawer';
 import { ComparisonModal } from './components/ComparisonModal';
 import { QuickViewModal } from './components/QuickViewModal';
 import { ThemeProvider } from './context/ThemeContext';
-import { Shield, Zap, Search, ArrowRight, Gauge, IndianRupee, Sparkles, Fuel, Disc, Bike } from 'lucide-react';
+import { Shield, Zap, Search, ArrowRight, Gauge, Sparkles, Fuel, Disc, Bike } from 'lucide-react';
 
 const INITIAL_FILTERS: FilterState = {
   searchQuery: '',
@@ -337,8 +337,7 @@ const MainApp: React.FC = () => {
             <div className="pt-4 border-t border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
               <div className="flex items-center gap-3 text-sm text-neutral-700 dark:text-neutral-300 font-medium">
-                <span className="flex items-center gap-1 font-bold" style={{ color: 'var(--pt-accent-text)' }}>
-                  <IndianRupee className="h-4 w-4" />
+                <span className="font-bold" style={{ color: 'var(--pt-accent-text)' }}>
                   Cost Difference: ₹{(Math.abs(duelContenders.v1.efficiency.energyCostPerKmInr - duelContenders.v2.efficiency.energyCostPerKmInr)).toFixed(2)}/km
                 </span>
                 <span>•</span>
