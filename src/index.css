@@ -6,7 +6,17 @@
   :root {
     color-scheme: light dark;
 
-    /* Default (All / Hybrid) Accent: Electric Emerald */
+    /* Default (All / Hybrid) Theme */
+    --canvas-bg: #F5F4EE;
+    --surface-subtle: #ECEAE0;
+    --border-line: #DDD9CC;
+    --border-line-strong: #C4BFB0;
+
+    --surface-card-dark: #14181D;
+    --surface-subtle-dark: #1B2127;
+    --border-line-dark: #262E37;
+    --border-line-strong-dark: #37424F;
+
     --pt-accent: #10B981;
     --pt-accent-hover: #059669;
     --pt-accent-subtle: rgba(16, 185, 129, 0.12);
@@ -15,48 +25,90 @@
   }
 
   .dark {
+    --canvas-bg: #0C0F12;
     --pt-accent-text: #34d399;
   }
 
-  /* EV Mode: Clean Electric Emerald Green */
+  /* ⚡ EV MODE: Noticeable Fresh Mint / Sage Light Canvas & Deep Electric Obsidian */
   [data-powertrain="ev"] {
+    --canvas-bg: #EDF8F2; /* Distinct, fresh mint background */
+    --surface-subtle: #DFEDE4;
+    --border-line: #BDE0CD;
+    --border-line-strong: #96CBAE;
+
+    --surface-card-dark: #0F1B16;
+    --surface-subtle-dark: #152720;
+    --border-line-dark: #1E3B30;
+    --border-line-strong-dark: #295042;
+
     --pt-accent: #10B981;
     --pt-accent-hover: #059669;
-    --pt-accent-subtle: rgba(16, 185, 129, 0.12);
-    --pt-accent-border: rgba(16, 185, 129, 0.4);
+    --pt-accent-subtle: rgba(16, 185, 129, 0.16);
+    --pt-accent-border: rgba(16, 185, 129, 0.45);
     --pt-accent-text: #065f46;
   }
   .dark [data-powertrain="ev"] {
+    --canvas-bg: #07130E; /* Deep electric green obsidian */
     --pt-accent-text: #34d399;
   }
 
-  /* Petrol Mode: High-Octane Warm Amber / Yellow */
+  /* ⛽ PETROL MODE: Noticeable Warm Sunflower Amber / Linen Canvas & Deep Amber Glow */
   [data-powertrain="petrol"] {
+    --canvas-bg: #FAF4E4; /* Distinct warm amber sunlight canvas */
+    --surface-subtle: #F3E8CE;
+    --border-line: #E8D4A8;
+    --border-line-strong: #D6BD85;
+
+    --surface-card-dark: #1C160B;
+    --surface-subtle-dark: #271E0E;
+    --border-line-dark: #3D2F15;
+    --border-line-strong-dark: #58431C;
+
     --pt-accent: #F59E0B;
     --pt-accent-hover: #D97706;
-    --pt-accent-subtle: rgba(245, 158, 11, 0.14);
-    --pt-accent-border: rgba(245, 158, 11, 0.45);
+    --pt-accent-subtle: rgba(245, 158, 11, 0.18);
+    --pt-accent-border: rgba(245, 158, 11, 0.50);
     --pt-accent-text: #92400e;
   }
   .dark [data-powertrain="petrol"] {
+    --canvas-bg: #130E05; /* Deep warm amber obsidian */
     --pt-accent-text: #FBBF24;
   }
 
-  /* Diesel Mode: Industrial Smoke / Titanium Slate Gray */
+  /* 🚜 DIESEL MODE: Noticeable Cool Industrial Titanium Smoke Slate */
   [data-powertrain="diesel"] {
+    --canvas-bg: #EEF2F6; /* Distinct titanium smoke slate background */
+    --surface-subtle: #DFE5EC;
+    --border-line: #C2CDD9;
+    --border-line-strong: #A3B3C3;
+
+    --surface-card-dark: #11171E;
+    --surface-subtle-dark: #18202A;
+    --border-line-dark: #253342;
+    --border-line-strong-dark: #374A5E;
+
     --pt-accent: #64748B;
     --pt-accent-hover: #475569;
-    --pt-accent-subtle: rgba(100, 116, 139, 0.15);
-    --pt-accent-border: rgba(100, 116, 139, 0.45);
+    --pt-accent-subtle: rgba(100, 116, 139, 0.18);
+    --pt-accent-border: rgba(100, 116, 139, 0.50);
     --pt-accent-text: #334155;
   }
   .dark [data-powertrain="diesel"] {
+    --canvas-bg: #090E13; /* Deep titanium steel obsidian */
     --pt-accent-text: #CBD5E1;
   }
 
   body {
-    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200;
+    @apply antialiased font-sans transition-all duration-300;
+    background-color: var(--canvas-bg);
   }
+}
+
+/* Smooth color morphing for backgrounds & cards */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
 }
 
 /* Subtle, refined scrollbars */
@@ -66,23 +118,17 @@
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0E1114;
+  background: var(--canvas-bg);
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #262D35;
+  background: var(--border-line-dark);
   border-radius: 9999px;
-}
-.dark ::-webkit-scrollbar-thumb:hover {
-  background: #3A444E;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8F7F3;
+  background: var(--canvas-bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: #D5D1C7;
+  background: var(--border-line);
   border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #B8B3A8;
 }

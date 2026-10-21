@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scale, Zap, Car, Bike, Sparkles, Sun, Moon, Fuel, Disc } from 'lucide-react';
+import { Gauge, Zap, Car, Bike, Sparkles, Sun, Moon, Fuel, Disc } from 'lucide-react';
 import { VehicleCategory, PowertrainType } from '../types/vehicle';
 import { useTheme } from '../context/ThemeContext';
 
@@ -23,31 +23,40 @@ export const Header: React.FC<HeaderProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 bg-canvas-light/85 dark:bg-canvas-dark/85 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 lg:px-8 py-3.5 transition-colors">
+    <header className="sticky top-0 z-30 bg-canvas-light/90 dark:bg-canvas-dark/90 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 lg:px-8 py-3.5 transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         
-        {/* Brand / Logo with Dynamic Color */}
+        {/* Brand / Logo with Automotive Gauge Icon */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
+            
+            {/* Automotive Speedometer / Telemetry Icon (Replaced Legal Scale) */}
             <div
-              className="h-10 w-10 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-strong-light dark:border-borderLine-strong-dark flex items-center justify-center shadow-sm transition-colors duration-300"
-              style={{ borderColor: 'var(--pt-accent-border)' }}
+              className="h-10 w-10 rounded-xl bg-surface-light dark:bg-surface-dark border flex items-center justify-center shadow-sm transition-all duration-300"
+              style={{
+                borderColor: 'var(--pt-accent-border)',
+                backgroundColor: 'var(--surface-subtle)',
+              }}
             >
-              <Scale className="h-5 w-5 transition-colors duration-300 stroke-[2]" style={{ color: 'var(--pt-accent)' }} />
+              <Gauge
+                className="h-5 w-5 transition-colors duration-300 stroke-[2.2]"
+                style={{ color: 'var(--pt-accent)' }}
+              />
             </div>
+
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
                   Come<span className="transition-colors duration-300" style={{ color: 'var(--pt-accent)' }}>Pare</span>
                 </span>
                 
-                {/* Dynamic Powertrain Indicator Pill */}
+                {/* Reactive Theme Pill Badge */}
                 <span
-                  className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-md border transition-all duration-300 flex items-center gap-1"
+                  className="px-2 py-0.5 text-[10px] font-black uppercase tracking-wider rounded-md border transition-all duration-300 flex items-center gap-1 shadow-sm"
                   style={{
                     backgroundColor: 'var(--pt-accent-subtle)',
                     borderColor: 'var(--pt-accent-border)',
-                    color: 'var(--pt-accent)',
+                    color: 'var(--pt-accent-text)',
                   }}
                 >
                   {selectedPowertrain === 'ev' && <><Zap className="h-2.5 w-2.5 fill-current" /> EV Mode</>}
@@ -81,7 +90,7 @@ export const Header: React.FC<HeaderProps> = ({
                 color: selectedCount > 0 ? '#000000' : undefined,
               }}
             >
-              <Scale className="h-3.5 w-3.5" />
+              <Gauge className="h-3.5 w-3.5" />
               <span>Pair ({selectedCount})</span>
             </button>
           </div>
@@ -126,7 +135,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Powertrain Quick Switcher (All / EV / Petrol / Diesel) */}
+          {/* Powertrain Dynamic Mode Switcher (All / EV / Petrol / Diesel) */}
           <div className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold">
             <button
               onClick={() => setSelectedPowertrain('all')}

@@ -9,29 +9,24 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#F8F7F3', // Warm chalk/ivory
-          dark: '#0E1114',  // Deep graphite obsidian
+          light: 'var(--canvas-bg)',
+          dark: 'var(--canvas-bg)',
         },
         surface: {
           light: '#FFFFFF',
-          dark: '#161A1F',
+          dark: 'var(--surface-card-dark)',
           subtle: {
-            light: '#F1EFEA',
-            dark: '#1D2329',
+            light: 'var(--surface-subtle)',
+            dark: 'var(--surface-subtle-dark)',
           }
         },
         borderLine: {
-          light: '#E2DFD7',
-          dark: '#262D35',
+          light: 'var(--border-line)',
+          dark: 'var(--border-line-dark)',
           strong: {
-            light: '#C9C4B7',
-            dark: '#3A444E',
+            light: 'var(--border-line-strong)',
+            dark: 'var(--border-line-strong-dark)',
           }
-        },
-        speed: {
-          green: 'var(--pt-accent)',
-          greenDark: 'var(--pt-accent-hover)',
-          amber: '#F59E0B',
         },
         pt: {
           accent: 'var(--pt-accent)',
