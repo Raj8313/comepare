@@ -1,5 +1,5 @@
 import React from 'react';
-import { Filter, SlidersHorizontal, ShieldCheck, Zap, RotateCcw, Fuel, Disc } from 'lucide-react';
+import { Filter, SlidersHorizontal, Zap, RotateCcw, Fuel, Disc, Star } from 'lucide-react';
 import { PowertrainType, VehicleCategory } from '../types/vehicle';
 
 export interface FilterState {
@@ -214,29 +214,37 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
           <label className="text-xs font-bold text-neutral-500 dark:text-neutral-400 block mb-2 uppercase tracking-wider">
             Safety Rating (NCAP)
           </label>
-          <div role="group" aria-label="Minimum NCAP safety rating" className="flex gap-2">
-            {[0, 3, 4, 5].map((stars) => (
-              <button
-                key={stars}
-                onClick={() => setFilters(prev => ({ ...prev, minNcapStars: stars }))}
-                aria-pressed={filters.minNcapStars === stars}
-                aria-label={stars === 0 ? 'All safety ratings' : `${stars} stars or higher`}
-                className={`flex-1 py-2 rounded-xl border text-xs font-bold flex items-center justify-center gap-1.5 transition ${
-                  filters.minNcapStars === stars
-                    ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-950 dark:border-white shadow-sm'
-                    : 'bg-surface-light dark:bg-surface-dark text-neutral-700 dark:text-neutral-400 border-borderLine-light dark:border-borderLine-dark hover:border-neutral-900'
-                }`}
-              >
-                {stars === 0 ? (
-                  'All'
-                ) : (
-                  <>
-                    <ShieldCheck className="h-3.5 w-3.5 text-amber-500" />
-                    <span>{stars}★+</span>
-                  </>
-                )}
-              </button>
-            ))}
+          <div role="group" aria-label="Minimum NCAP safety rating" className="grid grid-cols-4 gap-2 text-xs font-bold">
+            {[0, 3, 4, 5].map((stars) => {
+              const isSelected = filters.minNcapStars === stars;
+              return (
+                <button
+                  key={stars}
+                  onClick={() => setFilters(prev => ({ ...prev, minNcapStars: stars }))}
+                  aria-pressed={isSelected}
+                  aria-label={stars === 0 ? 'All safety ratings' : `${stars} stars or higher`}
+                  className={`py-2 rounded-xl border text-center transition flex items-center justify-center gap-1 ${
+                    isSelected
+                      ? 'shadow-sm font-black'
+                      : 'bg-surface-light dark:bg-surface-dark text-neutral-700 dark:text-neutral-400 border-borderLine-light dark:border-borderLine-dark hover:border-neutral-400'
+                  }`}
+                  style={{
+                    backgroundColor: isSelected ? 'var(--pt-accent)' : undefined,
+                    color: isSelected ? '#000000' : undefined,
+                    borderColor: isSelected ? 'var(--pt-accent)' : undefined,
+                  }}
+                >
+                  {stars > 0 && (
+                    <Star
+                      className={`h-3.5 w-3.5 shrink-0 ${
+                        isSelected ? 'fill-neutral-950 text-neutral-950' : 'fill-amber-400 text-amber-400'
+                      }`}
+                    />
+                  )}
+                  <span>{stars === 0 ? 'All' : stars === 5 ? '5' : `${stars}+`}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
