@@ -168,10 +168,10 @@ const MainApp: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-10">
+      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-12 sm:space-y-16">
         
         {/* Dynamic Mode Announcement Banner */}
-        <section aria-labelledby="hero-title" className="space-y-6">
+        <section aria-labelledby="hero-title" className="space-y-8">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="space-y-3 max-w-2xl">
@@ -358,7 +358,7 @@ const MainApp: React.FC = () => {
         </section>
 
         {/* 2-Column Responsive Layout: Filter Sidebar + Catalog Grid */}
-        <section id="catalog" aria-labelledby="catalog-heading" className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        <section id="catalog" aria-labelledby="catalog-heading" className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-10 items-start">
           <h2 id="catalog-heading" className="sr-only">Vehicle Catalog and Parametric Filters</h2>
           
           {/* Left Column: Filter Sidebar */}
@@ -372,10 +372,10 @@ const MainApp: React.FC = () => {
           </div>
 
           {/* Right Column: Vehicle Cards Grid */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-3 space-y-8">
             
             {/* Results Filter Bar */}
-            <div className="flex items-center justify-between pb-3.5 border-b border-borderLine-light dark:border-borderLine-dark">
+            <div className="flex items-center justify-between pb-4 border-b border-borderLine-light dark:border-borderLine-dark">
               <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
                 Showing {filteredVehicles.length} of {VEHICLES.length} Available Models
               </span>
@@ -402,7 +402,7 @@ const MainApp: React.FC = () => {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-7">
                 {filteredVehicles.map((vehicle) => (
                   <VehicleCard
                     key={vehicle.id}

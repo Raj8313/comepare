@@ -31,17 +31,17 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       }}
     >
       {/* Top Image Banner */}
-      <div className="relative h-44 w-full overflow-hidden bg-surface-subtle-light dark:bg-surface-subtle-dark border-b border-borderLine-light dark:border-borderLine-dark">
+      <div className="relative h-52 w-full overflow-hidden bg-surface-subtle-light dark:bg-surface-subtle-dark border-b border-borderLine-light dark:border-borderLine-dark">
         <img
           src={vehicle.image}
           alt={vehicle.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 
         {/* Powertrain / EV Badge */}
-        <div className="absolute top-3 left-3 flex flex-wrap gap-2 z-10">
+        <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 z-10">
           {isEv && (
             <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-emerald-500 text-neutral-950 rounded-lg shadow-sm">
               <Zap className="h-3.5 w-3.5 fill-neutral-950" />
@@ -77,7 +77,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           }}
           aria-pressed={isSelected}
           aria-label={isSelected ? `Remove ${vehicle.name} from comparison` : `Add ${vehicle.name} to showdown comparison`}
-          className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-sm active:scale-95 ${
+          className={`absolute top-3.5 right-3.5 z-10 flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm active:scale-95 ${
             isSelected
               ? 'text-neutral-950 font-black'
               : 'bg-white/95 dark:bg-neutral-900/90 text-neutral-900 dark:text-white border border-neutral-300 dark:border-neutral-700 hover:brightness-105'
@@ -100,68 +100,69 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </button>
 
         {/* Vehicle Brand & Name overlay */}
-        <div className="absolute bottom-3 left-3.5 right-3.5 z-10 text-white">
+        <div className="absolute bottom-3.5 left-4 right-4 z-10 text-white">
           <div className="flex items-center justify-between text-xs font-semibold text-neutral-300 mb-1">
             <span className="uppercase tracking-wider text-xs font-bold text-neutral-300">{vehicle.brand}</span>
-            <span className="font-mono font-bold text-xs text-white bg-black/60 px-2 py-0.5 rounded-md backdrop-blur-sm border border-white/15">
+            <span className="font-mono font-bold text-xs text-white bg-black/60 px-2.5 py-0.5 rounded-md backdrop-blur-sm border border-white/15">
               ₹{vehicle.priceRange.min}L – {vehicle.priceRange.max}L
             </span>
           </div>
-          <h3 className="text-base font-extrabold text-white leading-tight drop-shadow-sm truncate">
+          <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug drop-shadow-sm line-clamp-1">
             {vehicle.name}
           </h3>
         </div>
       </div>
 
       {/* Content Area */}
-      <div className="p-4 space-y-4 flex-1 flex flex-col justify-between">
+      <div className="p-5 sm:p-6 space-y-5 flex-1 flex flex-col justify-between">
         
-        <p className="text-sm text-neutral-700 dark:text-neutral-300 line-clamp-2 leading-relaxed">
+        <p className="text-sm text-neutral-600 dark:text-neutral-300 line-clamp-2 leading-relaxed min-h-[42px]">
           {vehicle.tagline}
         </p>
 
         {/* Mini Spec Telemetry Box */}
-        <div className="grid grid-cols-3 gap-1.5 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-2.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-          <div>
-            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
-              <Gauge className="h-3 w-3" /> Power
-            </span>
-            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block text-xs">
-              {vehicle.performance.powerBhp} bhp
-            </span>
-          </div>
+        <div className="bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 p-3.5 rounded-2xl border border-borderLine-light dark:border-borderLine-dark">
+          <div className="grid grid-cols-3 divide-x divide-borderLine-light dark:divide-borderLine-dark text-center">
+            <div className="px-1.5">
+              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+                <Gauge className="h-3 w-3" /> Power
+              </span>
+              <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm mt-1.5 block">
+                {vehicle.performance.powerBhp} <span className="text-xs font-normal text-neutral-500">bhp</span>
+              </span>
+            </div>
 
-          <div>
-            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
-              {isEv ? 'Real Range' : 'Mileage'}
-            </span>
-            <span
-              className="font-mono font-bold mt-0.5 block text-xs"
-              style={{
-                color: isEv ? 'var(--pt-accent-text)' : isDiesel ? '#334155' : '#92400e'
-              }}
-            >
-              {isEv
-                ? vehicle.efficiency.realWorldEfficiency.split(' ')[0] + ' km'
-                : vehicle.efficiency.realWorldEfficiency.split(' ')[0] + ' km/l'}
-            </span>
-          </div>
+            <div className="px-1.5">
+              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block">
+                {isEv ? 'Range' : 'Mileage'}
+              </span>
+              <span
+                className="font-mono font-bold text-sm mt-1.5 block"
+                style={{
+                  color: isEv ? 'var(--pt-accent-text)' : isDiesel ? '#334155' : '#92400e'
+                }}
+              >
+                {isEv
+                  ? vehicle.efficiency.realWorldEfficiency.split(' ')[0]
+                  : vehicle.efficiency.realWorldEfficiency.split(' ')[0]}
+                <span className="text-xs font-normal text-neutral-500"> {isEv ? 'km' : 'km/l'}</span>
+              </span>
+            </div>
 
-          <div>
-            <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
-              <Ruler className="h-3 w-3" /> {isBike ? 'Seat Ht' : 'Ground Clr'}
-            </span>
-            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block text-xs">
-              {isBike
-                ? `${vehicle.dimensions.seatHeightMm} mm`
-                : `${vehicle.dimensions.groundClearanceMm} mm`}
-            </span>
+            <div className="px-1.5">
+              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+                <Ruler className="h-3 w-3" /> {isBike ? 'Seat Ht' : 'Clearance'}
+              </span>
+              <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm mt-1.5 block">
+                {isBike ? vehicle.dimensions.seatHeightMm : vehicle.dimensions.groundClearanceMm} <span className="text-xs font-normal text-neutral-500">mm</span>
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Action Link Footer */}
-        <div className="flex items-center justify-between pt-1">
-          <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+        <div className="flex items-center justify-between pt-2 border-t border-borderLine-light/60 dark:border-borderLine-dark/60">
+          <span className="text-xs font-medium text-neutral-500 dark:text-neutral-400">
             {vehicle.variants.length} Trims available
           </span>
           <button

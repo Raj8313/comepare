@@ -23,12 +23,12 @@ export const Header: React.FC<HeaderProps> = ({
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="sticky top-0 z-30 bg-canvas-light/95 dark:bg-canvas-dark/95 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 lg:px-8 py-3 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+    <header className="sticky top-0 z-30 bg-canvas-light/95 dark:bg-canvas-dark/95 backdrop-blur-md border-b border-borderLine-light dark:border-borderLine-dark px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 transition-colors duration-300">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 sm:gap-6">
         
         {/* Brand / Logo with Automotive Gauge Icon */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-3">
             
             {/* Automotive Speedometer / Telemetry Icon */}
             <div
