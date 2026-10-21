@@ -29,19 +29,19 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
   totalMatches,
 }) => {
   return (
-    <aside className="bg-surface-light dark:bg-surface-dark border-2 border-outline-light dark:border-outline-dark rounded-3xl p-6 sticky top-20 shadow-sm transition-colors">
+    <aside className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-6 sticky top-20 shadow-soft-lift dark:shadow-soft-lift-dark transition-colors">
       
       {/* Header */}
-      <div className="flex items-center justify-between pb-4 border-b-2 border-outline-light dark:border-outline-dark">
+      <div className="flex items-center justify-between pb-4 border-b border-borderLine-light dark:border-borderLine-dark">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="h-4 w-4 text-neutral-900 dark:text-wa-green" />
-          <h2 className="text-xs font-black text-neutral-900 dark:text-white uppercase tracking-wider">
+          <SlidersHorizontal className="h-4 w-4 text-speed-green" />
+          <h2 className="text-xs font-bold text-neutral-900 dark:text-white uppercase tracking-wider">
             Parametric Finder
           </h2>
         </div>
         <button
           onClick={onReset}
-          className="flex items-center gap-1 text-[11px] font-black text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition"
+          className="flex items-center gap-1 text-[11px] font-semibold text-neutral-400 hover:text-neutral-900 dark:hover:text-white transition"
           title="Reset all filters"
         >
           <RotateCcw className="h-3 w-3" />
@@ -53,7 +53,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         
         {/* Search Input */}
         <div>
-          <label className="text-xs font-black text-neutral-800 dark:text-neutral-200 block mb-1.5 uppercase tracking-wider">
+          <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-1.5 uppercase tracking-wider">
             Search Make / Model
           </label>
           <input
@@ -61,16 +61,16 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             value={filters.searchQuery}
             onChange={(e) => setFilters(prev => ({ ...prev, searchQuery: e.target.value }))}
             placeholder="e.g. Nexon, Ather, Hunter, Creta..."
-            className="w-full bg-surface-subtle-light dark:bg-surface-subtle-dark border-2 border-outline-light dark:border-outline-dark rounded-xl px-3.5 py-2 text-xs font-semibold text-neutral-900 dark:text-white placeholder-neutral-500 focus:outline-none focus:border-wa-green transition"
+            className="w-full bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark rounded-xl px-3.5 py-2 text-xs font-semibold text-neutral-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:border-speed-green transition"
           />
         </div>
 
         {/* Powertrain Filter */}
         <div>
-          <label className="text-xs font-black text-neutral-800 dark:text-neutral-200 flex items-center justify-between mb-2 uppercase tracking-wider">
+          <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 flex items-center justify-between mb-2 uppercase tracking-wider">
             <span>Powertrain</span>
             {filters.powertrain === 'ev' && (
-              <span className="text-[10px] font-black text-[#15803d] dark:text-wa-green flex items-center gap-0.5">
+              <span className="text-[10px] font-bold text-speed-green flex items-center gap-0.5">
                 <Zap className="h-2.5 w-2.5 fill-current" /> Zero Emission
               </span>
             )}
@@ -80,10 +80,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <button
                 key={pt}
                 onClick={() => setFilters(prev => ({ ...prev, powertrain: pt }))}
-                className={`py-2 rounded-xl border-2 text-center font-black capitalize transition ${
+                className={`py-2 rounded-xl border text-center font-bold capitalize transition ${
                   filters.powertrain === pt
                     ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-950 dark:border-white shadow-sm'
-                    : 'bg-surface-light dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border-outline-light/40 dark:border-outline-dark hover:border-neutral-900'
+                    : 'bg-surface-light dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 border-borderLine-light dark:border-borderLine-dark hover:border-neutral-900 dark:hover:border-neutral-300'
                 }`}
               >
                 {pt === 'all' ? 'Any' : pt.toUpperCase()}
@@ -95,8 +95,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         {/* Max Price Slider */}
         <div>
           <div className="flex justify-between items-center text-xs mb-1.5">
-            <label className="font-black text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">Max Budget</label>
-            <span className="font-mono font-black text-neutral-900 dark:text-wa-green">
+            <label className="font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider">Max Budget</label>
+            <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
               {filters.maxPriceLakh >= 25 ? '₹25L+' : `₹${filters.maxPriceLakh} Lakh`}
             </span>
           </div>
@@ -107,9 +107,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             step="1"
             value={filters.maxPriceLakh}
             onChange={(e) => setFilters(prev => ({ ...prev, maxPriceLakh: Number(e.target.value) }))}
-            className="w-full accent-neutral-900 dark:accent-wa-green h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
+            className="w-full accent-neutral-900 dark:accent-speed-green h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-bold text-neutral-500 mt-1">
+          <div className="flex justify-between text-[10px] font-medium text-neutral-400 mt-1">
             <span>₹1L (Bikes)</span>
             <span>₹15L</span>
             <span>₹25L+</span>
@@ -119,8 +119,8 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         {/* Minimum Ground Clearance */}
         <div>
           <div className="flex justify-between items-center text-xs mb-1.5">
-            <label className="font-black text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">Min. Ground Clearance</label>
-            <span className="font-mono font-black text-neutral-900 dark:text-wa-green">
+            <label className="font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider">Min. Ground Clearance</label>
+            <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
               {filters.minGroundClearanceMm === 0 ? 'Any' : `≥ ${filters.minGroundClearanceMm} mm`}
             </span>
           </div>
@@ -131,9 +131,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             step="5"
             value={filters.minGroundClearanceMm}
             onChange={(e) => setFilters(prev => ({ ...prev, minGroundClearanceMm: Number(e.target.value) }))}
-            className="w-full accent-neutral-900 dark:accent-wa-green h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
+            className="w-full accent-neutral-900 dark:accent-speed-green h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-bold text-neutral-500 mt-1">
+          <div className="flex justify-between text-[10px] font-medium text-neutral-400 mt-1">
             <span>140 mm</span>
             <span>180 mm</span>
             <span>210+ mm (SUV)</span>
@@ -142,10 +142,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
         {/* Bike Seat Height */}
         {filters.category !== 'car' && (
-          <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark p-3.5 rounded-2xl border-2 border-outline-light dark:border-outline-dark">
+          <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3.5 rounded-2xl border border-borderLine-light dark:border-borderLine-dark">
             <div className="flex justify-between items-center text-xs mb-1.5">
-              <label className="font-black text-neutral-800 dark:text-neutral-200 uppercase tracking-wider">Max Seat Height (Bikes)</label>
-              <span className="font-mono font-black text-neutral-900 dark:text-wa-green">
+              <label className="font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider">Max Seat Height (Bikes)</label>
+              <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
                 {filters.maxSeatHeightMm >= 850 ? 'Any' : `≤ ${filters.maxSeatHeightMm} mm`}
               </span>
             </div>
@@ -156,9 +156,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               step="10"
               value={filters.maxSeatHeightMm}
               onChange={(e) => setFilters(prev => ({ ...prev, maxSeatHeightMm: Number(e.target.value) }))}
-              className="w-full accent-neutral-900 dark:accent-wa-green h-2 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
+              className="w-full accent-neutral-900 dark:accent-speed-green h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
             />
-            <p className="text-[10px] font-medium text-neutral-600 dark:text-neutral-400 mt-1">
+            <p className="text-[10px] text-neutral-500 mt-1 font-medium">
               Filter bikes for shorter rider comfort (&lt;790mm)
             </p>
           </div>
@@ -166,7 +166,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
         {/* Safety Star Rating */}
         <div>
-          <label className="text-xs font-black text-neutral-800 dark:text-neutral-200 block mb-2 uppercase tracking-wider">
+          <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block mb-2 uppercase tracking-wider">
             Safety Rating (NCAP)
           </label>
           <div className="flex gap-1.5">
@@ -174,10 +174,10 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <button
                 key={stars}
                 onClick={() => setFilters(prev => ({ ...prev, minNcapStars: stars }))}
-                className={`flex-1 py-1.5 rounded-xl border-2 text-xs font-black flex items-center justify-center gap-1 transition ${
+                className={`flex-1 py-1.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-1 transition ${
                   filters.minNcapStars === stars
                     ? 'bg-neutral-900 text-white border-neutral-900 dark:bg-white dark:text-neutral-950 dark:border-white shadow-sm'
-                    : 'bg-surface-light dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border-outline-light/40 dark:border-outline-dark hover:border-neutral-900'
+                    : 'bg-surface-light dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 border-borderLine-light dark:border-borderLine-dark hover:border-neutral-900'
                 }`}
               >
                 {stars === 0 ? (
@@ -194,37 +194,37 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         </div>
 
         {/* Feature Checkboxes */}
-        <div className="space-y-3 pt-3 border-t-2 border-outline-light dark:border-outline-dark">
-          <label className="text-xs font-black text-neutral-800 dark:text-neutral-200 block uppercase tracking-wider">
+        <div className="space-y-3 pt-3 border-t border-borderLine-light dark:border-borderLine-dark">
+          <label className="text-xs font-bold text-neutral-700 dark:text-neutral-300 block uppercase tracking-wider">
             Must-Have Features
           </label>
 
-          <label className="flex items-center gap-3 text-xs font-bold text-neutral-800 dark:text-neutral-200 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={filters.adasOnly}
               onChange={(e) => setFilters(prev => ({ ...prev, adasOnly: e.target.checked }))}
-              className="rounded-md border-2 border-outline-light dark:border-outline-dark text-wa-green focus:ring-0 h-4 w-4 cursor-pointer"
+              className="rounded border border-borderLine-strong-light dark:border-borderLine-strong-dark text-neutral-900 focus:ring-0 h-4 w-4 cursor-pointer"
             />
             <span>Level 2 ADAS Available</span>
           </label>
 
-          <label className="flex items-center gap-3 text-xs font-bold text-neutral-800 dark:text-neutral-200 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={filters.ventilatedSeatsOnly}
               onChange={(e) => setFilters(prev => ({ ...prev, ventilatedSeatsOnly: e.target.checked }))}
-              className="rounded-md border-2 border-outline-light dark:border-outline-dark text-wa-green focus:ring-0 h-4 w-4 cursor-pointer"
+              className="rounded border border-borderLine-strong-light dark:border-borderLine-strong-dark text-neutral-900 focus:ring-0 h-4 w-4 cursor-pointer"
             />
             <span>Ventilated Front Seats</span>
           </label>
 
-          <label className="flex items-center gap-3 text-xs font-bold text-neutral-800 dark:text-neutral-200 cursor-pointer select-none">
+          <label className="flex items-center gap-2.5 text-xs font-semibold text-neutral-700 dark:text-neutral-300 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={filters.sunroofOnly}
               onChange={(e) => setFilters(prev => ({ ...prev, sunroofOnly: e.target.checked }))}
-              className="rounded-md border-2 border-outline-light dark:border-outline-dark text-wa-green focus:ring-0 h-4 w-4 cursor-pointer"
+              className="rounded border border-borderLine-strong-light dark:border-borderLine-strong-dark text-neutral-900 focus:ring-0 h-4 w-4 cursor-pointer"
             />
             <span>Sunroof / Glass Roof</span>
           </label>
@@ -233,12 +233,12 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       </div>
 
       {/* Footer Match Counter */}
-      <div className="mt-6 pt-4 border-t-2 border-outline-light dark:border-outline-dark flex items-center justify-between text-xs text-neutral-600 dark:text-neutral-400">
-        <span className="flex items-center gap-1.5 font-bold">
-          <Filter className="h-3.5 w-3.5 text-neutral-900 dark:text-wa-green" />
+      <div className="mt-6 pt-4 border-t border-borderLine-light dark:border-borderLine-dark flex items-center justify-between text-xs text-neutral-500">
+        <span className="flex items-center gap-1.5 font-semibold">
+          <Filter className="h-3.5 w-3.5 text-neutral-900 dark:text-speed-green" />
           <span>Matches:</span>
         </span>
-        <span className="font-mono font-black text-neutral-950 dark:text-white bg-surface-subtle-light dark:bg-surface-subtle-dark border border-outline-light dark:border-outline-dark px-3 py-0.5 rounded-full">
+        <span className="font-mono font-bold text-neutral-900 dark:text-white bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark px-2.5 py-0.5 rounded-full">
           {totalMatches} vehicles
         </span>
       </div>

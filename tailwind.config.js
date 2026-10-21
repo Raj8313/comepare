@@ -9,35 +9,44 @@ export default {
     extend: {
       colors: {
         canvas: {
-          light: '#F7F5EE',
-          dark: '#0C1317',
+          light: '#F8F7F3', // Warm chalk/ivory
+          dark: '#0E1114',  // Deep graphite obsidian
         },
         surface: {
           light: '#FFFFFF',
-          dark: '#111B21',
+          dark: '#161A1F',
           subtle: {
-            light: '#F0ECE1',
-            dark: '#182229',
+            light: '#F1EFEA',
+            dark: '#1D2329',
           }
         },
-        outline: {
-          light: '#18181B', // Crisp black/dark-slate outline
-          dark: '#2A3942',
+        borderLine: {
+          light: '#E2DFD7', // Soft, natural, elegant border
+          dark: '#262D35',
+          strong: {
+            light: '#C9C4B7',
+            dark: '#3A444E',
+          }
         },
-        wa: {
-          green: '#25D366',
-          greenDark: '#00A884',
-          greenHover: '#1EBE5D',
+        speed: {
+          green: '#10B981', // Clean electric emerald
+          greenDark: '#059669',
+          amber: '#F59E0B',
         }
       },
       borderRadius: {
-        '3xl': '28px',
-        '2xl': '20px',
+        '3xl': '24px',
+        '2xl': '18px',
+        'xl': '14px',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
       },
+      boxShadow: {
+        'soft-lift': '0 4px 20px -2px rgba(24, 24, 27, 0.05)',
+        'soft-lift-dark': '0 4px 24px -2px rgba(0, 0, 0, 0.35)',
+      }
     },
   },
   plugins: [],

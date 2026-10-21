@@ -8,34 +8,34 @@
   }
 
   body {
-    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200 selection:bg-wa-green selection:text-neutral-900;
+    @apply bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 antialiased font-sans transition-colors duration-200 selection:bg-speed-green selection:text-neutral-950;
   }
 }
 
-/* Custom scrollbars matching the clean rounded aesthetic */
+/* Subtle, refined scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0C1317;
+  background: #0E1114;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #2A3942;
+  background: #262D35;
   border-radius: 9999px;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #3B4A54;
+  background: #3A444E;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F7F5EE;
+  background: #F8F7F3;
 }
 ::-webkit-scrollbar-thumb {
-  background: #D1CCBD;
+  background: #D5D1C7;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8B2A2;
+  background: #B8B3A8;
 }

@@ -52,26 +52,26 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
     <div className="fixed inset-0 z-50 overflow-y-auto bg-neutral-950/70 backdrop-blur-md flex flex-col justify-between">
       
       {/* Top Fixed Header */}
-      <div className="sticky top-0 z-40 bg-canvas-light/95 dark:bg-canvas-dark/95 border-b-2 border-outline-light dark:border-outline-dark px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4 backdrop-blur-lg shadow-sm transition-colors">
+      <div className="sticky top-0 z-40 bg-canvas-light/95 dark:bg-canvas-dark/95 border-b border-borderLine-light dark:border-borderLine-dark px-4 sm:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4 backdrop-blur-lg shadow-sm transition-colors">
         
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-lg font-black tracking-tight text-neutral-900 dark:text-white">
-              Come<span className="text-[#15803d] dark:text-wa-green">Pare</span> Showdown
+            <span className="text-lg font-extrabold tracking-tight text-neutral-900 dark:text-white">
+              Come<span className="text-speed-green">Pare</span> Showdown
             </span>
-            <span className="px-3 py-0.5 text-xs font-black bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white border-2 border-outline-light dark:border-outline-dark rounded-full">
+            <span className="px-2.5 py-0.5 text-xs font-bold bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-800 dark:text-neutral-200 border border-borderLine-light dark:border-borderLine-dark rounded-full">
               {vehicles.length} Vehicles
             </span>
           </div>
 
           {/* Sub Navigation Tabs */}
-          <div className="hidden sm:inline-flex p-1 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-outline-light dark:border-outline-dark text-xs font-bold">
+          <div className="hidden sm:inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold">
             <button
               onClick={() => setActiveTab('specs')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full transition ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition ${
                 activeTab === 'specs'
-                  ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm font-bold'
+                  : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <TableProperties className="h-3.5 w-3.5" />
@@ -79,10 +79,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('cost')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full transition ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition ${
                 activeTab === 'cost'
-                  ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm font-bold'
+                  : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <DollarSign className="h-3.5 w-3.5" />
@@ -90,10 +90,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             </button>
             <button
               onClick={() => setActiveTab('visual')}
-              className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full transition ${
+              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg transition ${
                 activeTab === 'visual'
-                  ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 shadow-sm'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm font-bold'
+                  : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <Maximize2 className="h-3.5 w-3.5" />
@@ -107,10 +107,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
           {activeTab === 'specs' && (
             <button
               onClick={() => setShowDiffsOnly(!showDiffsOnly)}
-              className={`flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black border-2 transition ${
+              className={`flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-bold border transition ${
                 showDiffsOnly
-                  ? 'bg-amber-400 text-neutral-950 border-neutral-900 shadow-sm'
-                  : 'bg-surface-light dark:bg-surface-dark text-neutral-800 dark:text-neutral-200 border-outline-light dark:border-outline-dark hover:border-neutral-900'
+                  ? 'bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/40 shadow-sm'
+                  : 'bg-surface-light dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border-borderLine-light dark:border-borderLine-dark hover:border-neutral-400'
               }`}
             >
               <Sliders className="h-3.5 w-3.5" />
@@ -120,10 +120,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-outline-light dark:border-outline-dark text-neutral-800 dark:text-neutral-200 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition active:scale-95"
+            className="p-2 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-600 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-800 transition active:scale-95"
             title="Close"
           >
-            <X className="h-4 w-4 stroke-[2.5]" />
+            <X className="h-4 w-4" />
           </button>
         </div>
 
@@ -137,15 +137,15 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
         {activeTab === 'visual' && <VisualDimensionOverlay vehicles={vehicles} />}
 
         {activeTab === 'specs' && (
-          <div className="bg-surface-light dark:bg-surface-dark border-2 border-outline-light dark:border-outline-dark rounded-3xl overflow-hidden shadow-xl transition-colors">
+          <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl overflow-hidden shadow-soft-lift dark:shadow-soft-lift-dark transition-colors">
             
             {/* Sticky Vehicle Header Row */}
-            <div className="grid grid-cols-1 md:grid-cols-4 border-b-2 border-outline-light dark:border-outline-dark bg-surface-subtle-light dark:bg-surface-subtle-dark divide-y md:divide-y-0 md:divide-x-2 divide-outline-light dark:divide-outline-dark">
+            <div className="grid grid-cols-1 md:grid-cols-4 border-b border-borderLine-light dark:border-borderLine-dark bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 divide-y md:divide-y-0 md:divide-x divide-borderLine-light dark:divide-borderLine-dark">
               <div className="p-5 flex flex-col justify-center">
-                <span className="text-xs font-black text-neutral-900 dark:text-white uppercase tracking-wider block">
+                <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block">
                   Head-to-Head
                 </span>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1 font-medium">
+                <p className="text-xs text-neutral-500 mt-1">
                   Switch variants to view live prices and package upgrades.
                 </p>
               </div>
@@ -159,30 +159,30 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                   <div key={v.id} className="p-5 space-y-3 relative">
                     <button
                       onClick={() => onRemoveVehicle(v.id)}
-                      className="absolute top-3 right-3 p-1 text-neutral-400 hover:text-rose-600 transition"
+                      className="absolute top-3 right-3 p-1 text-neutral-400 hover:text-rose-500 transition"
                       title="Remove"
                     >
                       <X className="h-4 w-4" />
                     </button>
 
                     <div className="flex items-center gap-3">
-                      <img src={v.image} alt={v.name} className="h-12 w-16 object-cover rounded-xl border border-outline-light dark:border-outline-dark shrink-0" />
+                      <img src={v.image} alt={v.name} className="h-12 w-16 object-cover rounded-xl border border-borderLine-light dark:border-borderLine-dark shrink-0" />
                       <div>
-                        <span className="text-[10px] text-neutral-500 uppercase font-black block">{v.brand}</span>
-                        <h4 className="text-sm font-black text-neutral-900 dark:text-white leading-tight">{v.name}</h4>
+                        <span className="text-[10px] text-neutral-400 uppercase font-bold block">{v.brand}</span>
+                        <h4 className="text-sm font-extrabold text-neutral-900 dark:text-white leading-tight">{v.name}</h4>
                       </div>
                     </div>
 
                     {/* Variant Selector Dropdown */}
                     {v.variants.length > 0 && (
                       <div>
-                        <label className="text-[10px] font-black text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block mb-1">
+                        <label className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block mb-1">
                           Trim / Variant:
                         </label>
                         <select
                           value={selectedVariantIds[v.id]}
                           onChange={(e) => handleVariantChange(v.id, e.target.value)}
-                          className="w-full bg-surface-light dark:bg-surface-dark border-2 border-outline-light dark:border-outline-dark rounded-xl px-2.5 py-1.5 text-xs text-neutral-900 dark:text-wa-green font-black focus:outline-none focus:border-wa-green"
+                          className="w-full bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-xl px-2.5 py-1.5 text-xs text-neutral-900 dark:text-speed-green font-bold focus:outline-none focus:border-speed-green"
                         >
                           {v.variants.map((variant) => (
                             <option key={variant.id} value={variant.id}>
@@ -194,9 +194,9 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                     )}
 
                     {/* Pricing Display */}
-                    <div className="bg-surface-light dark:bg-surface-dark p-2.5 rounded-xl border border-outline-light dark:border-outline-dark flex items-center justify-between text-xs">
-                      <span className="text-neutral-500 font-bold">Trim Price:</span>
-                      <span className="font-mono font-black text-neutral-900 dark:text-wa-green text-sm">
+                    <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark p-2 rounded-xl border border-borderLine-light dark:border-borderLine-dark flex items-center justify-between text-xs">
+                      <span className="text-neutral-500">Trim Price:</span>
+                      <span className="font-mono font-bold text-neutral-900 dark:text-speed-green text-sm">
                         {currentVariant
                           ? `₹${(currentVariant.priceExShowroom / 100000).toFixed(2)} Lakh`
                           : `₹${v.priceRange.min}L`}
@@ -209,22 +209,22 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             </div>
 
             {/* Spec Sections */}
-            <div className="divide-y-2 divide-outline-light/30 dark:divide-outline-dark text-xs font-semibold">
+            <div className="divide-y divide-borderLine-light/60 dark:divide-borderLine-dark/60 text-xs">
               
               {/* Category 1: Powertrain & Energy */}
               <div>
-                <div className="px-5 py-2.5 font-black text-[11px] uppercase tracking-wider text-neutral-900 dark:text-wa-green bg-surface-subtle-light dark:bg-surface-subtle-dark border-b-2 border-outline-light dark:border-outline-dark">
+                <div className="px-5 py-2.5 font-bold text-[11px] uppercase tracking-wider text-speed-green bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40 border-b border-borderLine-light dark:border-borderLine-dark">
                   Powertrain, Battery & Efficiency
                 </div>
 
                 {/* Powertrain Type */}
                 {(!showDiffsOnly || !isIdentical(v => v.powertrain)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Fuel / Powertrain</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Fuel / Powertrain</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-black capitalize flex items-center gap-1.5">
+                      <div key={v.id} className="p-1 font-bold capitalize flex items-center gap-1.5">
                         {v.powertrain === 'ev' ? (
-                          <span className="text-[#15803d] dark:text-wa-green flex items-center gap-1">
+                          <span className="text-speed-green flex items-center gap-1">
                             <Zap className="h-3 w-3 fill-current" /> Pure Electric (EV)
                           </span>
                         ) : (
@@ -239,10 +239,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Max Power */}
                 {(!showDiffsOnly || !isIdentical(v => v.performance.powerBhp)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Peak Power</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Peak Power</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.performance.powerBhp} bhp
                       </div>
                     ))}
@@ -251,10 +251,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Torque */}
                 {(!showDiffsOnly || !isIdentical(v => v.performance.torqueNm)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Max Torque</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Max Torque</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.performance.torqueNm} Nm
                       </div>
                     ))}
@@ -263,10 +263,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Battery Size (if EV) */}
                 {vehicles.some(v => v.efficiency.batteryKwh) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Battery Capacity (kWh)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Battery Capacity (kWh)</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-[#15803d] dark:text-wa-green">
+                      <div key={v.id} className="p-1 font-mono font-bold text-speed-green">
                         {v.efficiency.batteryKwh ? `${v.efficiency.batteryKwh} kWh (${v.efficiency.batteryChemistry || 'LFP'})` : '—'}
                       </div>
                     ))}
@@ -275,10 +275,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Real-World Mileage / Range */}
                 {(!showDiffsOnly || !isIdentical(v => v.efficiency.realWorldEfficiency)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Tested Real-World Range/Mileage</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Tested Real-World Range/Mileage</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-[#15803d] dark:text-wa-green">
+                      <div key={v.id} className="p-1 font-mono font-bold text-speed-green">
                         {v.efficiency.realWorldEfficiency}
                       </div>
                     ))}
@@ -287,10 +287,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Running Cost Per Km */}
                 {(!showDiffsOnly || !isIdentical(v => v.efficiency.energyCostPerKmInr)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Direct Fuel Cost / Km</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Direct Fuel Cost / Km</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-900 dark:text-white">
                         ₹{v.efficiency.energyCostPerKmInr.toFixed(2)} / km
                       </div>
                     ))}
@@ -301,16 +301,16 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
               {/* Category 2: Dimensions & Ergonomics */}
               <div>
-                <div className="px-5 py-2.5 font-black text-[11px] uppercase tracking-wider text-neutral-900 dark:text-wa-green bg-surface-subtle-light dark:bg-surface-subtle-dark border-b-2 border-outline-light dark:border-outline-dark">
+                <div className="px-5 py-2.5 font-bold text-[11px] uppercase tracking-wider text-speed-green bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40 border-b border-borderLine-light dark:border-borderLine-dark">
                   Dimensions, Weight & Clearance
                 </div>
 
                 {/* Ground Clearance */}
                 {(!showDiffsOnly || !isIdentical(v => v.dimensions.groundClearanceMm)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Ground Clearance</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Ground Clearance</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.dimensions.groundClearanceMm} mm
                       </div>
                     ))}
@@ -319,10 +319,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Bike Seat Height */}
                 {vehicles.some(v => v.dimensions.seatHeightMm) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Rider Seat Height (Bikes)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Rider Seat Height (Bikes)</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.dimensions.seatHeightMm ? `${v.dimensions.seatHeightMm} mm` : '—'}
                       </div>
                     ))}
@@ -331,10 +331,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Kerb Weight */}
                 {(!showDiffsOnly || !isIdentical(v => v.dimensions.kerbWeightKg)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Kerb Weight</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Kerb Weight</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.dimensions.kerbWeightKg} kg
                       </div>
                     ))}
@@ -345,16 +345,16 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
               {/* Category 3: Safety & Crash Test */}
               <div>
-                <div className="px-5 py-2.5 font-black text-[11px] uppercase tracking-wider text-neutral-900 dark:text-wa-green bg-surface-subtle-light dark:bg-surface-subtle-dark border-b-2 border-outline-light dark:border-outline-dark">
+                <div className="px-5 py-2.5 font-bold text-[11px] uppercase tracking-wider text-speed-green bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40 border-b border-borderLine-light dark:border-borderLine-dark">
                   Safety, Crash Rating & Brakes
                 </div>
 
                 {/* NCAP Stars */}
                 {(!showDiffsOnly || !isIdentical(v => v.safety.ncapRatingStars)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Crash Test Rating</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Crash Test Rating</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-black text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                      <div key={v.id} className="p-1 font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1">
                         {v.safety.ncapRatingStars ? (
                           <>
                             <ShieldCheck className="h-4 w-4" />
@@ -370,12 +370,12 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* ADAS Level */}
                 {(!showDiffsOnly || !isIdentical(v => v.safety.adasLevel)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Autonomous Safety (ADAS)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Autonomous Safety (ADAS)</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-black">
+                      <div key={v.id} className="p-1 font-bold">
                         {v.safety.adasLevel && v.safety.adasLevel !== 'None' ? (
-                          <span className="text-[#15803d] dark:text-wa-green">{v.safety.adasLevel} Active Safety</span>
+                          <span className="text-speed-green">{v.safety.adasLevel} Active Safety</span>
                         ) : (
                           <span className="text-neutral-400">None</span>
                         )}
@@ -386,10 +386,10 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Standard Airbags */}
                 {(!showDiffsOnly || !isIdentical(v => v.safety.airbagsStandard)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Airbags (Standard)</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Airbags (Standard)</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.safety.airbagsStandard > 0 ? `${v.safety.airbagsStandard} Airbags` : 'N/A (2-Wheeler)'}
                       </div>
                     ))}
@@ -400,16 +400,16 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
               {/* Category 4: Comfort & Tech */}
               <div>
-                <div className="px-5 py-2.5 font-black text-[11px] uppercase tracking-wider text-neutral-900 dark:text-wa-green bg-surface-subtle-light dark:bg-surface-subtle-dark border-b-2 border-outline-light dark:border-outline-dark">
+                <div className="px-5 py-2.5 font-bold text-[11px] uppercase tracking-wider text-speed-green bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40 border-b border-borderLine-light dark:border-borderLine-dark">
                   Infotainment & Cabin Tech
                 </div>
 
                 {/* Screen */}
                 {(!showDiffsOnly || !isIdentical(v => v.features.screenSizeInches)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Display Size</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Display Size</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-mono font-black text-neutral-900 dark:text-white">
+                      <div key={v.id} className="p-1 font-mono font-bold text-neutral-800 dark:text-white">
                         {v.features.screenSizeInches ? `${v.features.screenSizeInches}-inch` : '—'}
                       </div>
                     ))}
@@ -418,12 +418,12 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Ventilated Seats */}
                 {(!showDiffsOnly || !isIdentical(v => v.features.hasVentilatedSeats)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center bg-surface-subtle-light/40 dark:bg-surface-subtle-dark/40">
-                    <span className="text-neutral-500">Ventilated Seats</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center bg-surface-subtle-light/20 dark:bg-surface-subtle-dark/20">
+                    <span className="text-neutral-500 font-medium">Ventilated Seats</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-black">
+                      <div key={v.id} className="p-1 font-bold">
                         {v.features.hasVentilatedSeats ? (
-                          <span className="text-[#15803d] dark:text-wa-green flex items-center gap-1">
+                          <span className="text-speed-green flex items-center gap-1">
                             <Check className="h-4 w-4 stroke-[3]" /> Available
                           </span>
                         ) : (
@@ -436,12 +436,12 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
 
                 {/* Sunroof */}
                 {(!showDiffsOnly || !isIdentical(v => v.features.hasSunroof)) && (
-                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x-2 divide-outline-light/30 dark:divide-outline-dark items-center">
-                    <span className="text-neutral-500">Sunroof</span>
+                  <div className="grid grid-cols-1 md:grid-cols-4 p-3.5 md:divide-x divide-borderLine-light/60 dark:divide-borderLine-dark/60 items-center">
+                    <span className="text-neutral-500 font-medium">Sunroof</span>
                     {vehicles.map(v => (
-                      <div key={v.id} className="p-1 font-black">
+                      <div key={v.id} className="p-1 font-bold">
                         {v.features.hasSunroof ? (
-                          <span className="text-[#15803d] dark:text-wa-green flex items-center gap-1">
+                          <span className="text-speed-green flex items-center gap-1">
                             <Check className="h-4 w-4 stroke-[3]" /> Yes
                           </span>
                         ) : (
