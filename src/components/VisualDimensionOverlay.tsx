@@ -45,10 +45,10 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
           {vehicles.map((v, index) => {
             const lengthPercentage = (v.dimensions.lengthMm / maxLength) * 100;
             const barStyles = [
-              'bg-emerald-500 text-[#071E15] font-black',
-              'bg-sky-500 text-[#0A192F] font-black',
-              'bg-amber-500 text-[#1C1205] font-black',
-              'bg-slate-400 text-[#0F172A] font-black',
+              'bg-emerald-500 text-emerald-950 font-black',
+              'bg-sky-400 text-sky-950 font-black',
+              'bg-amber-500 text-amber-950 font-black',
+              'bg-slate-300 text-slate-900 font-black',
             ];
             const barStyle = barStyles[index % barStyles.length];
 

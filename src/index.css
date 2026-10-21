@@ -22,13 +22,13 @@
     --pt-accent-hover: #0284C7;
     --pt-accent-subtle: rgba(56, 189, 248, 0.15);
     --pt-accent-border: rgba(56, 189, 248, 0.45);
-    --pt-accent-text: #1E40AF;
-    --pt-on-accent: #0A192F;
+    --pt-accent-text: #17427D;
+    --pt-on-accent: #071E3D;
 
-    /* Chromatic Theme Tonal Text (No pure blacks/grays) */
-    --text-primary: #0A192F;
-    --text-secondary: #1E3A5F;
-    --text-tertiary: #3B597B;
+    /* Chromatic Theme Tonal Text (Zero Black: Rich Cobalt & Sapphire Hues) */
+    --text-primary: #17427D;
+    --text-secondary: #1A4D8E;
+    --text-tertiary: #2465B4;
   }
 
   .dark,
@@ -39,11 +39,11 @@
     --pt-accent-subtle: rgba(56, 189, 248, 0.18);
     --pt-accent-border: rgba(56, 189, 248, 0.50);
     --pt-accent-text: #93C5FD;
-    --pt-on-accent: #0A192F;
+    --pt-on-accent: #071E3D;
 
-    --text-primary: #F0F6FC;
-    --text-secondary: #A5C4E8;
-    --text-tertiary: #6E88A6;
+    --text-primary: #D0E4FF;
+    --text-secondary: #93C5FD;
+    --text-tertiary: #60A5FA;
   }
 
   /* ⚡ EV MODE: Fresh Mint / Sage Light Canvas & Deep Electric Obsidian */
@@ -62,21 +62,22 @@
     --pt-accent-hover: #059669;
     --pt-accent-subtle: rgba(16, 185, 129, 0.16);
     --pt-accent-border: rgba(16, 185, 129, 0.45);
-    --pt-accent-text: #065f46;
-    --pt-on-accent: #04140E;
+    --pt-accent-text: #0B4D30;
+    --pt-on-accent: #03170E;
 
-    --text-primary: #071E15;
-    --text-secondary: #124332;
-    --text-tertiary: #2D5E4C;
+    /* Chromatic Theme Tonal Text (Zero Black: Rich Forest Pine & Jade Hues) */
+    --text-primary: #0B4D30;
+    --text-secondary: #0E5B3A;
+    --text-tertiary: #16774D;
   }
   .dark [data-powertrain="ev"] {
     --canvas-bg: #07130E;
     --pt-accent-text: #34d399;
-    --pt-on-accent: #04140E;
+    --pt-on-accent: #03170E;
 
-    --text-primary: #F0FDF4;
+    --text-primary: #D1FAE5;
     --text-secondary: #86EFAC;
-    --text-tertiary: #629E80;
+    --text-tertiary: #4ADE80;
   }
 
   /* ⛽ PETROL MODE: Warm Sunflower Amber / Linen Canvas & Deep Amber Glow */
@@ -95,21 +96,22 @@
     --pt-accent-hover: #D97706;
     --pt-accent-subtle: rgba(245, 158, 11, 0.18);
     --pt-accent-border: rgba(245, 158, 11, 0.50);
-    --pt-accent-text: #92400e;
-    --pt-on-accent: #1C1205;
+    --pt-accent-text: #6B350C;
+    --pt-on-accent: #3B1A04;
 
-    --text-primary: #1C1205;
-    --text-secondary: #4A2E08;
-    --text-tertiary: #6E4E20;
+    /* Chromatic Theme Tonal Text (Zero Black: Warm Auburn, Amber & Ochre Hues) */
+    --text-primary: #6B350C;
+    --text-secondary: #7D3D0F;
+    --text-tertiary: #9E541B;
   }
   .dark [data-powertrain="petrol"] {
     --canvas-bg: #130E05;
     --pt-accent-text: #FBBF24;
-    --pt-on-accent: #1C1205;
+    --pt-on-accent: #3B1A04;
 
-    --text-primary: #FFFBEB;
+    --text-primary: #FEF3C7;
     --text-secondary: #FDE68A;
-    --text-tertiary: #9A7B48;
+    --text-tertiary: #FBBF24;
   }
 
   /* 🚜 DIESEL MODE: Cool Industrial Titanium Steel & Smoke Slate (WCAG AAA) */
@@ -128,23 +130,24 @@
     --pt-accent-hover: #64748B;
     --pt-accent-subtle: rgba(148, 163, 184, 0.20);
     --pt-accent-border: rgba(148, 163, 184, 0.55);
-    --pt-accent-text: #1E293B;
-    --pt-on-accent: #080E1C;
+    --pt-accent-text: #233A57;
+    --pt-on-accent: #08101C;
 
-    --text-primary: #0F172A;
-    --text-secondary: #27374D;
-    --text-tertiary: #475569;
+    /* Chromatic Theme Tonal Text (Zero Black: Deep Industrial Titanium & Slate Hues) */
+    --text-primary: #233A57;
+    --text-secondary: #324C6F;
+    --text-tertiary: #4A6588;
   }
   .dark [data-powertrain="diesel"] {
     --canvas-bg: #090E13;
     --pt-accent: #94A3B8;
     --pt-accent-hover: #CBD5E1;
     --pt-accent-text: #E2E8F0;
-    --pt-on-accent: #080E1C;
+    --pt-on-accent: #08101C;
 
-    --text-primary: #F8FAFC;
+    --text-primary: #E2E8F0;
     --text-secondary: #CBD5E1;
-    --text-tertiary: #7E94AC;
+    --text-tertiary: #94A3B8;
   }
 
   body {

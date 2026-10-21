@@ -44,19 +44,19 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         {/* Powertrain / EV Badge */}
         <div className="absolute top-3.5 left-3.5 flex flex-wrap gap-2 z-10">
           {isEv && (
-            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-emerald-500 text-[#071E15] rounded-lg shadow-sm">
-              <Zap className="h-3.5 w-3.5 fill-[#071E15]" />
+            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-emerald-500 text-emerald-950 rounded-lg shadow-sm">
+              <Zap className="h-3.5 w-3.5 fill-emerald-950" />
               <span>EV</span>
             </span>
           )}
           {!isEv && isDiesel && (
-            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-[#94A3B8] text-[#0F172A] rounded-lg shadow-sm">
+            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-slate-300 text-slate-900 rounded-lg shadow-sm">
               <Disc className="h-3.5 w-3.5" />
               <span>Diesel</span>
             </span>
           )}
           {!isEv && !isDiesel && (
-            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-amber-500 text-[#1C1205] rounded-lg shadow-sm">
+            <span className="flex items-center gap-1.5 px-3 py-1 text-xs font-bold bg-amber-500 text-amber-950 rounded-lg shadow-sm">
               <Fuel className="h-3.5 w-3.5" />
               <span className="capitalize">{vehicle.powertrain}</span>
             </span>
