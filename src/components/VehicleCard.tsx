@@ -121,43 +121,45 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {vehicle.tagline}
         </p>
 
-        {/* Mini Spec Telemetry Box */}
-        <div className="bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 p-3.5 rounded-2xl border border-borderLine-light dark:border-borderLine-dark">
-          <div className="grid grid-cols-3 divide-x divide-borderLine-light dark:divide-borderLine-dark text-center">
-            <div className="px-1.5">
-              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
-                <Gauge className="h-3 w-3" /> Power
-              </span>
-              <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm mt-1.5 block">
-                {vehicle.performance.powerBhp} <span className="text-xs font-normal text-neutral-500">bhp</span>
-              </span>
-            </div>
+        {/* Spec Telemetry List View */}
+        <div className="bg-surface-subtle-light/50 dark:bg-surface-subtle-dark/50 rounded-xl border border-borderLine-light dark:border-borderLine-dark divide-y divide-borderLine-light/60 dark:divide-borderLine-dark/60 text-sm overflow-hidden">
+          {/* Power */}
+          <div className="flex items-center justify-between px-3.5 py-2.5">
+            <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 flex items-center gap-1.5">
+              <Gauge className="h-3.5 w-3.5 text-neutral-500 shrink-0" />
+              <span>Power</span>
+            </span>
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm">
+              {vehicle.performance.powerBhp} <span className="text-xs font-normal text-neutral-500">bhp</span>
+            </span>
+          </div>
 
-            <div className="px-1.5">
-              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider block">
-                {isEv ? 'Range' : 'Mileage'}
-              </span>
-              <span
-                className="font-mono font-bold text-sm mt-1.5 block"
-                style={{
-                  color: isEv ? 'var(--pt-accent-text)' : isDiesel ? '#334155' : '#92400e'
-                }}
-              >
-                {isEv
-                  ? vehicle.efficiency.realWorldEfficiency.split(' ')[0]
-                  : vehicle.efficiency.realWorldEfficiency.split(' ')[0]}
-                <span className="text-xs font-normal text-neutral-500"> {isEv ? 'km' : 'km/l'}</span>
-              </span>
-            </div>
+          {/* Efficiency / Range */}
+          <div className="flex items-center justify-between px-3.5 py-2.5">
+            <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 flex items-center gap-1.5">
+              {isEv ? (
+                <Zap className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              ) : isDiesel ? (
+                <Disc className="h-3.5 w-3.5 text-slate-600 dark:text-slate-400 shrink-0" />
+              ) : (
+                <Fuel className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
+              )}
+              <span>{isEv ? 'Real Range' : 'Tested Mileage'}</span>
+            </span>
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm">
+              {vehicle.efficiency.realWorldEfficiency}
+            </span>
+          </div>
 
-            <div className="px-1.5">
-              <span className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
-                <Ruler className="h-3 w-3" /> {isBike ? 'Seat Ht' : 'Clearance'}
-              </span>
-              <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm mt-1.5 block">
-                {isBike ? vehicle.dimensions.seatHeightMm : vehicle.dimensions.groundClearanceMm} <span className="text-xs font-normal text-neutral-500">mm</span>
-              </span>
-            </div>
+          {/* Ground Clearance / Seat Height */}
+          <div className="flex items-center justify-between px-3.5 py-2.5">
+            <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400 flex items-center gap-1.5">
+              <Ruler className="h-3.5 w-3.5 text-neutral-500 shrink-0" />
+              <span>{isBike ? 'Seat Height' : 'Ground Clearance'}</span>
+            </span>
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 text-sm">
+              {isBike ? vehicle.dimensions.seatHeightMm : vehicle.dimensions.groundClearanceMm} <span className="text-xs font-normal text-neutral-500">mm</span>
+            </span>
           </div>
         </div>
 
