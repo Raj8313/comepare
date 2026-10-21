@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Vehicle } from '../types/vehicle';
 import { X, Zap, Fuel, ShieldCheck, Check, Plus, Ruler, Gauge, BatteryCharging } from 'lucide-react';
 
@@ -15,22 +15,38 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
   isSelected,
   onToggleSelect,
 }) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   if (!vehicle) return null;
 
   const isEv = vehicle.powertrain === 'ev';
   const isBike = vehicle.category === 'bike';
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-neutral-950/70 backdrop-blur-md flex items-center justify-center p-4">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="quickview-title"
+      className="fixed inset-0 z-50 overflow-y-auto bg-neutral-950/70 backdrop-blur-md flex items-center justify-center p-4"
+    >
       <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200 transition-colors">
         
         {/* Banner with Image */}
         <div className="relative h-56 w-full bg-surface-subtle-light dark:bg-surface-subtle-dark border-b border-borderLine-light dark:border-borderLine-dark">
-          <img src={vehicle.image} alt={vehicle.name} className="w-full h-full object-cover" />
+          <img src={vehicle.image} alt={`${vehicle.brand} ${vehicle.name}`} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
           
           <button
             onClick={onClose}
+            aria-label="Close vehicle details dialog"
             className="absolute top-3.5 right-3.5 p-2 rounded-full bg-black/60 text-white hover:bg-black transition active:scale-95"
           >
             <X className="h-5 w-5" />
@@ -39,7 +55,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
           <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between text-white">
             <div>
               <span className="text-xs font-bold text-neutral-300 uppercase tracking-wider">{vehicle.brand}</span>
-              <h2 className="text-2xl font-extrabold text-white">{vehicle.name}</h2>
+              <h2 id="quickview-title" className="text-2xl font-extrabold text-white">{vehicle.name}</h2>
               <p className="text-xs text-neutral-200 mt-0.5">{vehicle.tagline}</p>
             </div>
             <div className="text-right">
@@ -57,7 +73,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
           {/* Key Metrics Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
+              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
                 <Gauge className="h-3 w-3" /> Power
               </span>
               <span className="text-sm font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1 block">
@@ -66,17 +82,17 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             </div>
 
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
-                {isEv ? <Zap className="h-3 w-3 fill-current text-speed-green" /> : <Fuel className="h-3 w-3 text-amber-500" />}
+              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
+                {isEv ? <Zap className="h-3 w-3 fill-current text-emerald-800 dark:text-speed-green" /> : <Fuel className="h-3 w-3 text-amber-600" />}
                 {isEv ? 'Real Range' : 'Real Mileage'}
               </span>
-              <span className="text-sm font-bold font-mono text-speed-green mt-1 block">
+              <span className="text-sm font-bold font-mono text-emerald-800 dark:text-speed-green mt-1 block">
                 {vehicle.efficiency.realWorldEfficiency.split(' ')[0]} {isEv ? 'km' : 'km/l'}
               </span>
             </div>
 
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
+              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
                 <Ruler className="h-3 w-3" /> {isBike ? 'Seat Height' : 'Ground Clr'}
               </span>
               <span className="text-sm font-bold font-mono text-neutral-900 dark:text-neutral-100 mt-1 block">
@@ -85,10 +101,10 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
             </div>
 
             <div className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-3 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center">
-              <span className="text-[10px] text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
+              <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase font-bold flex items-center justify-center gap-1">
                 <ShieldCheck className="h-3 w-3 text-amber-500" /> NCAP Crash
               </span>
-              <span className="text-sm font-bold font-mono text-amber-600 dark:text-amber-400 mt-1 block">
+              <span className="text-sm font-bold font-mono text-amber-800 dark:text-amber-400 mt-1 block">
                 {vehicle.safety.ncapRatingStars ? `${vehicle.safety.ncapRatingStars} Stars` : 'N/A'}
               </span>
             </div>
@@ -96,21 +112,21 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
           {/* EV Specific Battery Info */}
           {isEv && vehicle.efficiency.batteryKwh && (
-            <div className="p-4 rounded-xl bg-speed-green/10 border border-speed-green/20 flex items-center justify-between">
+            <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-speed-green/20 text-speed-green">
+                <div className="p-2 rounded-lg bg-emerald-500/20 text-emerald-800 dark:text-speed-green">
                   <BatteryCharging className="h-5 w-5" />
                 </div>
                 <div>
                   <span className="text-xs font-bold text-neutral-900 dark:text-white block">
                     {vehicle.efficiency.batteryKwh} kWh {vehicle.efficiency.batteryChemistry} Battery
                   </span>
-                  <span className="text-[11px] text-neutral-500">
+                  <span className="text-[11px] text-neutral-600 dark:text-neutral-400">
                     DC Fast Charge 10-80% in {vehicle.efficiency.dcChargingTime10To80Min} mins ({vehicle.efficiency.dcFastChargingKw} kW)
                   </span>
                 </div>
               </div>
-              <span className="text-xs font-mono font-bold text-speed-green">
+              <span className="text-xs font-mono font-bold text-emerald-800 dark:text-speed-green">
                 ₹{vehicle.efficiency.energyCostPerKmInr}/km running
               </span>
             </div>
@@ -118,9 +134,9 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
           {/* Trims & Variants Breakdown */}
           <div>
-            <h4 className="text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider mb-2">
+            <h3 className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider mb-2">
               Available Trims & What They Add
-            </h4>
+            </h3>
             <div className="space-y-2">
               {vehicle.variants.map((variant) => (
                 <div
@@ -131,14 +147,14 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-neutral-900 dark:text-white">{variant.name}</span>
                       {variant.transmission && (
-                        <span className="text-[10px] px-2 py-0.5 rounded-md bg-surface-light dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-borderLine-light dark:border-neutral-700 font-semibold">
+                        <span className="text-[10px] px-2 py-0.5 rounded-md bg-surface-light dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-borderLine-light dark:border-neutral-700 font-semibold">
                           {variant.transmission}
                         </span>
                       )}
                     </div>
                     <div className="flex flex-wrap gap-1.5 mt-1.5">
                       {variant.keyDifferentiators.map((diff, i) => (
-                        <span key={i} className="text-[10px] text-neutral-800 dark:text-speed-green bg-surface-light dark:bg-surface-dark px-2 py-0.5 rounded-md border border-borderLine-light dark:border-borderLine-dark font-medium">
+                        <span key={i} className="text-[10px] text-neutral-800 dark:text-neutral-200 bg-surface-light dark:bg-surface-dark px-2 py-0.5 rounded-md border border-borderLine-light dark:border-borderLine-dark font-medium">
                           + {diff}
                         </span>
                       ))}
@@ -158,7 +174,7 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
 
         {/* Footer */}
         <div className="p-4 bg-surface-subtle-light dark:bg-surface-subtle-dark border-t border-borderLine-light dark:border-borderLine-dark flex items-center justify-between">
-          <span className="text-xs text-neutral-500">
+          <span className="text-xs text-neutral-600 dark:text-neutral-400">
             Zero-Spam Promise: No phone number required to view specs.
           </span>
           <button
@@ -166,6 +182,8 @@ export const QuickViewModal: React.FC<QuickViewModalProps> = ({
               onToggleSelect(vehicle);
               onClose();
             }}
+            aria-pressed={isSelected}
+            aria-label={isSelected ? `Remove ${vehicle.name} from showdown` : `Add ${vehicle.name} to showdown`}
             className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold transition active:scale-95 ${
               isSelected
                 ? 'bg-surface-light dark:bg-neutral-800 text-neutral-900 dark:text-white border border-borderLine-light dark:border-neutral-700'

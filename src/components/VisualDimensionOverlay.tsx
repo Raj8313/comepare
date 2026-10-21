@@ -45,10 +45,10 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
           {vehicles.map((v, index) => {
             const lengthPercentage = (v.dimensions.lengthMm / maxLength) * 100;
             const barStyles = [
-              'bg-speed-green text-neutral-950 font-bold',
-              'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-bold',
-              'bg-amber-500 text-neutral-950 font-bold',
-              'bg-indigo-600 text-white font-bold',
+              'bg-emerald-500 text-neutral-950 font-black',
+              'bg-neutral-900 text-white dark:bg-white dark:text-neutral-950 font-black',
+              'bg-amber-500 text-neutral-950 font-black',
+              'bg-indigo-700 text-white font-black',
             ];
             const barStyle = barStyles[index % barStyles.length];
 
@@ -80,21 +80,21 @@ export const VisualDimensionOverlay: React.FC<VisualDimensionOverlayProps> = ({ 
 
       {/* Ground Clearance & Stance Comparison */}
       <div>
-        <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider block mb-3">
+        <span className="text-xs font-bold text-neutral-800 dark:text-neutral-200 uppercase tracking-wider block mb-3">
           Road Stance & Ground Clearance
         </span>
         
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {vehicles.map((v) => (
             <div key={v.id} className="bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 border border-borderLine-light dark:border-borderLine-dark p-4 rounded-2xl text-center">
-              <span className="text-xs text-neutral-500 truncate block font-semibold">{v.name}</span>
+              <span className="text-xs text-neutral-700 dark:text-neutral-300 truncate block font-semibold">{v.name}</span>
               <div className="my-2 py-2 border-y border-borderLine-light dark:border-borderLine-dark">
                 <span className="text-2xl font-black font-mono text-neutral-900 dark:text-speed-green block">
                   {v.dimensions.groundClearanceMm} mm
                 </span>
-                <span className="text-[10px] text-neutral-400 uppercase tracking-wider">Ground Clearance</span>
+                <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider font-semibold">Ground Clearance</span>
               </div>
-              <span className="text-xs text-neutral-500 font-mono">
+              <span className="text-xs text-neutral-600 dark:text-neutral-400 font-mono">
                 Wheelbase: {v.dimensions.wheelbaseMm} mm
               </span>
             </div>

@@ -149,6 +149,13 @@ const MainApp: React.FC = () => {
       data-powertrain={filters.powertrain}
       className="min-h-screen bg-canvas-light dark:bg-canvas-dark text-neutral-900 dark:text-neutral-100 flex flex-col justify-between transition-colors duration-300"
     >
+      {/* Skip to Main Content Link for Keyboard & Screen Reader Users (WCAG 2.4.1) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-neutral-900 focus:text-white dark:focus:bg-white dark:focus:text-neutral-950 focus:rounded-xl focus:shadow-xl focus:font-bold focus:text-xs focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 dark:focus:ring-white"
+      >
+        Skip to main content
+      </a>
       
       {/* Top Navigation */}
       <Header
@@ -161,10 +168,10 @@ const MainApp: React.FC = () => {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-10">
+      <main id="main-content" className="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-8 space-y-10">
         
         {/* Dynamic Mode Announcement Banner */}
-        <section className="space-y-6">
+        <section aria-labelledby="hero-title" className="space-y-6">
           
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-2 max-w-2xl">
@@ -175,7 +182,7 @@ const MainApp: React.FC = () => {
                 style={{
                   backgroundColor: 'var(--pt-accent-subtle)',
                   borderColor: 'var(--pt-accent-border)',
-                  color: 'var(--pt-accent)',
+                  color: 'var(--pt-accent-text)',
                 }}
               >
                 {filters.powertrain === 'ev' && <><Zap className="h-3.5 w-3.5 fill-current" /> Active Theme: Electric Green (EV Focus)</>}
@@ -184,20 +191,20 @@ const MainApp: React.FC = () => {
                 {filters.powertrain === 'all' && <><Sparkles className="h-3.5 w-3.5" /> Active Theme: All Powertrains Showdown</>}
               </div>
 
-              <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.12]">
+              <h1 id="hero-title" className="text-3xl sm:text-5xl font-extrabold tracking-tight text-neutral-900 dark:text-white leading-[1.12]">
                 Compare on pure engineering, <br className="hidden sm:inline" />
-                <span className="text-neutral-500 dark:text-neutral-400 font-semibold">not dealership marketing.</span>
+                <span className="text-neutral-600 dark:text-neutral-400 font-semibold">not dealership marketing.</span>
               </h1>
             </div>
 
             {/* Micro Value Proposition Bar */}
-            <div className="flex items-center gap-4 text-xs font-semibold text-neutral-500 dark:text-neutral-400 shrink-0 pb-1">
+            <div className="flex items-center gap-4 text-xs font-semibold text-neutral-600 dark:text-neutral-400 shrink-0 pb-1">
               <span className="flex items-center gap-1.5">
-                <Shield className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent)' }} /> 100% Privacy
+                <Shield className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent-text)' }} /> 100% Privacy
               </span>
               <span>•</span>
               <span className="flex items-center gap-1.5">
-                <Zap className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent)' }} /> Real Tested Range
+                <Zap className="h-3.5 w-3.5" style={{ color: 'var(--pt-accent-text)' }} /> Real Tested Range
               </span>
               <span>•</span>
               <span>1-Click Trim Diffs</span>
@@ -213,13 +220,15 @@ const MainApp: React.FC = () => {
             {/* Arena Header: Presets Switcher */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-borderLine-light dark:border-borderLine-dark">
               <div>
-                <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider block">Featured Head-to-Head</span>
-                <h3 className="text-base font-extrabold text-neutral-900 dark:text-white">{duelContenders.title}</h3>
+                <span className="text-xs font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block">Featured Head-to-Head</span>
+                <h2 className="text-base font-extrabold text-neutral-900 dark:text-white">{duelContenders.title}</h2>
               </div>
 
               {/* Preset Selector Tabs */}
-              <div className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-bold">
+              <div role="tablist" aria-label="Featured showdown presets" className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-bold">
                 <button
+                  role="tab"
+                  aria-selected={activeDuelPreset === 'nexon'}
                   onClick={() => {
                     setActiveDuelPreset('nexon');
                     setFilters(prev => ({ ...prev, powertrain: 'all' }));
@@ -227,12 +236,14 @@ const MainApp: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg transition ${
                     activeDuelPreset === 'nexon'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   Nexon EV vs Petrol
                 </button>
                 <button
+                  role="tab"
+                  aria-selected={activeDuelPreset === 'diesel'}
                   onClick={() => {
                     setActiveDuelPreset('diesel');
                     setFilters(prev => ({ ...prev, powertrain: 'diesel' }));
@@ -240,12 +251,14 @@ const MainApp: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg transition ${
                     activeDuelPreset === 'diesel'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   XUV700 Diesel vs Creta
                 </button>
                 <button
+                  role="tab"
+                  aria-selected={activeDuelPreset === 'twoWheeler'}
                   onClick={() => {
                     setActiveDuelPreset('twoWheeler');
                     setFilters(prev => ({ ...prev, powertrain: 'all' }));
@@ -253,7 +266,7 @@ const MainApp: React.FC = () => {
                   className={`px-3 py-1.5 rounded-lg transition ${
                     activeDuelPreset === 'twoWheeler'
                       ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white shadow-sm'
-                      : 'text-neutral-500 hover:text-neutral-900 dark:hover:text-white'
+                      : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
                   }`}
                 >
                   Ather 450X vs Hunter
@@ -268,16 +281,16 @@ const MainApp: React.FC = () => {
               <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4">
                 <img
                   src={duelContenders.v1.image}
-                  alt={duelContenders.v1.name}
+                  alt={`${duelContenders.v1.brand} ${duelContenders.v1.name}`}
                   className="h-20 w-28 sm:h-24 sm:w-36 object-cover rounded-xl border border-borderLine-light dark:border-borderLine-dark shrink-0"
                 />
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">{duelContenders.v1.brand}</span>
-                  <h4 className="text-base font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v1.name}</h4>
+                  <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">{duelContenders.v1.brand}</span>
+                  <h3 className="text-base font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v1.name}</h3>
                   <div className="flex items-center gap-2 pt-1 font-mono text-xs">
-                    <span className="font-bold" style={{ color: 'var(--pt-accent)' }}>₹{duelContenders.v1.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
+                    <span className="font-bold" style={{ color: 'var(--pt-accent-text)' }}>₹{duelContenders.v1.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
                     <span className="text-neutral-400">•</span>
-                    <span className="text-neutral-600 dark:text-neutral-300 font-semibold">{duelContenders.v1.performance.powerBhp} bhp</span>
+                    <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{duelContenders.v1.performance.powerBhp} bhp</span>
                   </div>
                 </div>
               </div>
@@ -285,6 +298,7 @@ const MainApp: React.FC = () => {
               {/* Central VS Ring with Dynamic Ring Accent */}
               <div className="md:col-span-1 flex justify-center">
                 <div
+                  aria-hidden="true"
                   className="h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-surface-light dark:bg-surface-dark border-2 flex items-center justify-center font-black text-xs sm:text-sm text-neutral-900 dark:text-white shadow-sm transition-colors duration-300"
                   style={{ borderColor: 'var(--pt-accent)' }}
                 >
@@ -296,16 +310,16 @@ const MainApp: React.FC = () => {
               <div className="md:col-span-5 bg-surface-subtle-light/60 dark:bg-surface-subtle-dark/60 border border-borderLine-light dark:border-borderLine-dark rounded-2xl p-4 sm:p-5 flex items-center gap-4">
                 <img
                   src={duelContenders.v2.image}
-                  alt={duelContenders.v2.name}
+                  alt={`${duelContenders.v2.brand} ${duelContenders.v2.name}`}
                   className="h-20 w-28 sm:h-24 sm:w-36 object-cover rounded-xl border border-borderLine-light dark:border-borderLine-dark shrink-0"
                 />
                 <div className="space-y-1">
-                  <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">{duelContenders.v2.brand}</span>
-                  <h4 className="text-base font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v2.name}</h4>
+                  <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">{duelContenders.v2.brand}</span>
+                  <h3 className="text-base font-extrabold text-neutral-900 dark:text-white leading-tight">{duelContenders.v2.name}</h3>
                   <div className="flex items-center gap-2 pt-1 font-mono text-xs">
-                    <span className="font-bold text-amber-600 dark:text-amber-400">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
+                    <span className="font-bold text-amber-800 dark:text-amber-400">₹{duelContenders.v2.efficiency.energyCostPerKmInr.toFixed(2)}/km</span>
                     <span className="text-neutral-400">•</span>
-                    <span className="text-neutral-600 dark:text-neutral-300 font-semibold">{duelContenders.v2.performance.powerBhp} bhp</span>
+                    <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{duelContenders.v2.performance.powerBhp} bhp</span>
                   </div>
                 </div>
               </div>
@@ -315,20 +329,21 @@ const MainApp: React.FC = () => {
             {/* Arena Footer: Direct Launch Button & Key Telemetry Delta */}
             <div className="pt-4 border-t border-borderLine-light dark:border-borderLine-dark flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               
-              <div className="flex items-center gap-3 text-xs text-neutral-600 dark:text-neutral-300 font-medium">
-                <span className="flex items-center gap-1 font-bold" style={{ color: 'var(--pt-accent)' }}>
+              <div className="flex items-center gap-3 text-xs text-neutral-700 dark:text-neutral-300 font-medium">
+                <span className="flex items-center gap-1 font-bold" style={{ color: 'var(--pt-accent-text)' }}>
                   <IndianRupee className="h-3.5 w-3.5" />
                   Cost Difference: ₹{(Math.abs(duelContenders.v1.efficiency.energyCostPerKmInr - duelContenders.v2.efficiency.energyCostPerKmInr)).toFixed(2)}/km
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
-                  <Gauge className="h-3.5 w-3.5 text-neutral-400" />
+                  <Gauge className="h-3.5 w-3.5 text-neutral-500" />
                   Power Delta: {Math.abs(duelContenders.v1.performance.powerBhp - duelContenders.v2.performance.powerBhp)} bhp
                 </span>
               </div>
 
               <button
                 onClick={() => loadPresetPair(duelContenders.v1.id, duelContenders.v2.id)}
+                aria-label={`Launch showdown comparison between ${duelContenders.v1.name} and ${duelContenders.v2.name}`}
                 className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-extrabold text-xs text-neutral-950 transition shadow-sm active:scale-95 hover:brightness-105"
                 style={{ backgroundColor: 'var(--pt-accent)' }}
               >
@@ -343,7 +358,8 @@ const MainApp: React.FC = () => {
         </section>
 
         {/* 2-Column Responsive Layout: Filter Sidebar + Catalog Grid */}
-        <section id="catalog" className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        <section id="catalog" aria-labelledby="catalog-heading" className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+          <h2 id="catalog-heading" className="sr-only">Vehicle Catalog and Parametric Filters</h2>
           
           {/* Left Column: Filter Sidebar */}
           <div className="lg:col-span-1">
@@ -360,10 +376,10 @@ const MainApp: React.FC = () => {
             
             {/* Results Filter Bar */}
             <div className="flex items-center justify-between pb-3 border-b border-borderLine-light dark:border-borderLine-dark">
-              <span className="text-xs font-bold text-neutral-500 dark:text-neutral-400 uppercase tracking-wider">
+              <span className="text-xs font-bold text-neutral-700 dark:text-neutral-300 uppercase tracking-wider">
                 Showing {filteredVehicles.length} of {VEHICLES.length} Available Models
               </span>
-              <div className="flex items-center gap-2 text-xs text-neutral-500 font-semibold">
+              <div className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 font-semibold">
                 <span>Select 2 to 4 to compare</span>
               </div>
             </div>
@@ -373,11 +389,12 @@ const MainApp: React.FC = () => {
               <div className="bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark rounded-3xl p-12 text-center space-y-4 shadow-sm">
                 <Search className="h-10 w-10 text-neutral-400 dark:text-neutral-600 mx-auto" />
                 <h3 className="text-base font-bold text-neutral-900 dark:text-white">No vehicles match these filters</h3>
-                <p className="text-xs text-neutral-500 max-w-sm mx-auto">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 max-w-sm mx-auto">
                   Try widening your budget, lowering minimum ground clearance, or clearing search keywords.
                 </p>
                 <button
                   onClick={() => setFilters(INITIAL_FILTERS)}
+                  aria-label="Reset all search filters"
                   className="px-4 py-2 rounded-xl text-xs font-bold text-neutral-950 hover:opacity-90 transition"
                   style={{ backgroundColor: 'var(--pt-accent)' }}
                 >

@@ -29,9 +29,9 @@
     --pt-accent-text: #34d399;
   }
 
-  /* ⚡ EV MODE: Noticeable Fresh Mint / Sage Light Canvas & Deep Electric Obsidian */
+  /* ⚡ EV MODE: Fresh Mint / Sage Light Canvas & Deep Electric Obsidian */
   [data-powertrain="ev"] {
-    --canvas-bg: #EDF8F2; /* Distinct, fresh mint background */
+    --canvas-bg: #EDF8F2;
     --surface-subtle: #DFEDE4;
     --border-line: #BDE0CD;
     --border-line-strong: #96CBAE;
@@ -48,13 +48,13 @@
     --pt-accent-text: #065f46;
   }
   .dark [data-powertrain="ev"] {
-    --canvas-bg: #07130E; /* Deep electric green obsidian */
+    --canvas-bg: #07130E;
     --pt-accent-text: #34d399;
   }
 
-  /* ⛽ PETROL MODE: Noticeable Warm Sunflower Amber / Linen Canvas & Deep Amber Glow */
+  /* ⛽ PETROL MODE: Warm Sunflower Amber / Linen Canvas & Deep Amber Glow */
   [data-powertrain="petrol"] {
-    --canvas-bg: #FAF4E4; /* Distinct warm amber sunlight canvas */
+    --canvas-bg: #FAF4E4;
     --surface-subtle: #F3E8CE;
     --border-line: #E8D4A8;
     --border-line-strong: #D6BD85;
@@ -71,13 +71,13 @@
     --pt-accent-text: #92400e;
   }
   .dark [data-powertrain="petrol"] {
-    --canvas-bg: #130E05; /* Deep warm amber obsidian */
+    --canvas-bg: #130E05;
     --pt-accent-text: #FBBF24;
   }
 
-  /* 🚜 DIESEL MODE: Noticeable Cool Industrial Titanium Smoke Slate */
+  /* 🚜 DIESEL MODE: Cool Industrial Titanium Smoke Slate */
   [data-powertrain="diesel"] {
-    --canvas-bg: #EEF2F6; /* Distinct titanium smoke slate background */
+    --canvas-bg: #EEF2F6;
     --surface-subtle: #DFE5EC;
     --border-line: #C2CDD9;
     --border-line-strong: #A3B3C3;
@@ -94,13 +94,29 @@
     --pt-accent-text: #334155;
   }
   .dark [data-powertrain="diesel"] {
-    --canvas-bg: #090E13; /* Deep titanium steel obsidian */
+    --canvas-bg: #090E13;
     --pt-accent-text: #CBD5E1;
   }
 
   body {
     @apply antialiased font-sans transition-all duration-300;
     background-color: var(--canvas-bg);
+  }
+
+  /* Global Keyboard Accessibility Focus Ring (WCAG 2.4.7 Focus Visible) */
+  :focus-visible {
+    outline: 2px solid var(--pt-accent, #10B981) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Reduced Motion Support (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

@@ -25,7 +25,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
               Running Cost & Fuel Showdown
             </h3>
           </div>
-          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-1">
             Real running cost calculated per kilometer based on real-world test telemetry
           </p>
         </div>
@@ -33,17 +33,22 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
         {/* Monthly Km Slider Control */}
         <div className="bg-surface-subtle-light dark:bg-surface-subtle-dark px-4 py-2.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark min-w-[220px]">
           <div className="flex justify-between text-xs mb-1">
-            <span className="text-neutral-500 font-medium">Monthly Driving:</span>
+            <label htmlFor="cost-monthly-km" className="text-neutral-700 dark:text-neutral-300 font-semibold">Monthly Driving:</label>
             <span className="font-mono font-bold text-neutral-900 dark:text-speed-green">
               {monthlyKm.toLocaleString()} km
             </span>
           </div>
           <input
+            id="cost-monthly-km"
             type="range"
             min="300"
             max="3000"
             step="100"
             value={monthlyKm}
+            aria-valuemin={300}
+            aria-valuemax={3000}
+            aria-valuenow={monthlyKm}
+            aria-valuetext={`${monthlyKm.toLocaleString()} kilometers per month`}
             onChange={(e) => setMonthlyKm(Number(e.target.value))}
             className="w-full accent-neutral-900 dark:accent-speed-green h-1.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg cursor-pointer"
           />
@@ -75,7 +80,7 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
                     <Zap className="h-2.5 w-2.5 fill-current" /> ₹{costPerKm.toFixed(2)}/km
                   </span>
                 ) : (
-                  <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-700">
+                  <span className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-white dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border border-neutral-300 dark:border-neutral-700">
                     <Fuel className="h-2.5 w-2.5" /> ₹{costPerKm.toFixed(2)}/km
                   </span>
                 )}
@@ -83,13 +88,13 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
 
               {/* Monthly Cost Big Callout */}
               <div className="mb-4">
-                <span className="text-[10px] text-neutral-400 uppercase tracking-wider block font-semibold">
+                <span className="text-[10px] text-neutral-600 dark:text-neutral-400 uppercase tracking-wider block font-semibold">
                   Estimated Monthly Fuel
                 </span>
-                <span className={`text-2xl sm:text-3xl font-extrabold font-mono ${isEv ? 'text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
+                <span className={`text-2xl sm:text-3xl font-extrabold font-mono ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
                   ₹{monthlyExpense.toLocaleString()}
                 </span>
-                <span className="text-[11px] text-neutral-500 mt-0.5 block">
+                <span className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-0.5 block">
                   Based on {v.efficiency.realWorldEfficiency}
                 </span>
               </div>
@@ -97,14 +102,14 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
               {/* Long term timeline */}
               <div className="pt-3 border-t border-borderLine-light dark:border-borderLine-dark space-y-1.5 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-neutral-500">1 Year Fuel:</span>
-                  <span className="font-mono font-bold text-neutral-800 dark:text-neutral-200">
+                  <span className="text-neutral-600 dark:text-neutral-400 font-medium">1 Year Fuel:</span>
+                  <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100">
                     ₹{annualExpense.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-neutral-500">5 Year Cumulative:</span>
-                  <span className={`font-mono font-bold ${isEv ? 'text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
+                  <span className="text-neutral-600 dark:text-neutral-400 font-medium">5 Year Cumulative:</span>
+                  <span className={`font-mono font-bold ${isEv ? 'text-emerald-800 dark:text-speed-green' : 'text-neutral-900 dark:text-white'}`}>
                     ₹{fiveYearExpense.toLocaleString()}
                   </span>
                 </div>
@@ -124,9 +129,9 @@ export const CostCalculator: React.FC<CostCalculatorProps> = ({ vehicles }) => {
             <span className="text-xs font-bold text-neutral-900 dark:text-white block uppercase tracking-wider">
               Electric Fuel Savings Notice
             </span>
-            <p className="text-xs text-neutral-700 dark:text-neutral-300 mt-0.5 leading-relaxed">
+            <p className="text-xs text-neutral-800 dark:text-neutral-200 mt-0.5 leading-relaxed">
               At {monthlyKm.toLocaleString()} km/month, switching from ICE to EV saves approximately{' '}
-              <strong className="font-mono font-bold text-speed-green">
+              <strong className="font-mono font-bold text-emerald-800 dark:text-speed-green">
                 ₹{Math.round(monthlyKm * (7.80 - 1.15) * 12).toLocaleString()} per year
               </strong>{' '}
               in direct fuel expenses alone.

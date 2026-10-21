@@ -75,6 +75,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             e.stopPropagation();
             onToggleSelect(vehicle);
           }}
+          aria-pressed={isSelected}
+          aria-label={isSelected ? `Remove ${vehicle.name} from comparison` : `Add ${vehicle.name} to showdown comparison`}
           className={`absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition shadow-sm active:scale-95 ${
             isSelected
               ? 'text-neutral-950 font-black'
@@ -100,11 +102,11 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         {/* Vehicle Brand & Name overlay */}
         <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-baseline justify-between z-10 text-white">
           <div>
-            <span className="text-[10px] font-bold text-neutral-300 block uppercase tracking-wider">{vehicle.brand}</span>
+            <span className="text-[10px] font-bold text-neutral-200 block uppercase tracking-wider">{vehicle.brand}</span>
             <h3 className="text-base font-extrabold text-white leading-tight drop-shadow-md">{vehicle.name}</h3>
           </div>
           <div className="text-right">
-            <span className="text-[10px] text-neutral-300 uppercase tracking-wider block font-medium">Ex-Showroom</span>
+            <span className="text-[10px] text-neutral-200 uppercase tracking-wider block font-medium">Ex-Showroom</span>
             <span className="text-sm font-black text-white font-mono drop-shadow-md">
               ₹{vehicle.priceRange.min}L - {vehicle.priceRange.max}L
             </span>
@@ -115,29 +117,29 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       {/* Content Area */}
       <div className="p-4 space-y-3.5 flex-1 flex flex-col justify-between">
         
-        <p className="text-xs text-neutral-600 dark:text-neutral-400 line-clamp-2 leading-relaxed">
+        <p className="text-xs text-neutral-700 dark:text-neutral-300 line-clamp-2 leading-relaxed">
           {vehicle.tagline}
         </p>
 
         {/* Mini Spec Telemetry Box */}
         <div className="grid grid-cols-3 gap-2 bg-surface-subtle-light/70 dark:bg-surface-subtle-dark/70 p-2.5 rounded-xl border border-borderLine-light dark:border-borderLine-dark text-center text-xs">
           <div>
-            <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
               <Gauge className="h-2.5 w-2.5" /> Power
             </span>
-            <span className="font-mono font-bold text-neutral-800 dark:text-neutral-200 mt-0.5 block">
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block">
               {vehicle.performance.powerBhp} bhp
             </span>
           </div>
 
           <div>
-            <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">
+            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
               {isEv ? 'Real Range' : 'Real Mileage'}
             </span>
             <span
-              className="font-mono font-bold mt-0.5 block truncate"
+              className="font-mono font-bold mt-0.5 block truncate text-xs"
               style={{
-                color: isEv ? '#10B981' : isDiesel ? '#64748B' : '#F59E0B'
+                color: isEv ? 'var(--pt-accent-text)' : isDiesel ? '#334155' : '#92400e'
               }}
             >
               {isEv
@@ -147,10 +149,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </div>
 
           <div>
-            <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
+            <span className="text-[10px] font-bold text-neutral-600 dark:text-neutral-400 uppercase tracking-wider flex items-center justify-center gap-1">
               <Ruler className="h-2.5 w-2.5" /> {isBike ? 'Seat Ht' : 'Ground Clr'}
             </span>
-            <span className="font-mono font-bold text-neutral-800 dark:text-neutral-200 mt-0.5 block">
+            <span className="font-mono font-bold text-neutral-900 dark:text-neutral-100 mt-0.5 block">
               {isBike
                 ? `${vehicle.dimensions.seatHeightMm} mm`
                 : `${vehicle.dimensions.groundClearanceMm} mm`}
@@ -160,13 +162,14 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
         {/* Action Link Footer */}
         <div className="flex items-center justify-between pt-1 text-xs">
-          <span className="text-[11px] font-medium text-neutral-400">
+          <span className="text-[11px] font-semibold text-neutral-600 dark:text-neutral-400">
             {vehicle.variants.length} Trims available
           </span>
           <button
             onClick={() => onQuickView(vehicle)}
+            aria-label={`Inspect detailed specifications for ${vehicle.brand} ${vehicle.name}`}
             className="text-xs font-bold transition hover:underline"
-            style={{ color: 'var(--pt-accent)' }}
+            style={{ color: 'var(--pt-accent-text)' }}
           >
             Inspect Specs →
           </button>

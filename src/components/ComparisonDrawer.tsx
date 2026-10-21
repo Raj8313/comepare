@@ -18,7 +18,12 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
   if (selectedVehicles.length === 0) return null;
 
   return (
-    <div className="fixed bottom-5 left-4 right-4 z-40 max-w-4xl mx-auto animate-in slide-in-from-bottom duration-300">
+    <div
+      role="region"
+      aria-label="Vehicle comparison dock"
+      aria-live="polite"
+      className="fixed bottom-5 left-4 right-4 z-40 max-w-4xl mx-auto animate-in slide-in-from-bottom duration-300"
+    >
       <div
         className="bg-surface-light/95 dark:bg-surface-dark/95 border rounded-2xl p-3 sm:p-4 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-3 backdrop-blur-xl transition-all duration-300"
         style={{ borderColor: 'var(--pt-accent-border)' }}
@@ -26,7 +31,7 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
         
         {/* Left Side: Selected Items */}
         <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto py-1">
-          <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-2" style={{ color: 'var(--pt-accent)' }}>
+          <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-2" style={{ color: 'var(--pt-accent-text)' }}>
             <Gauge className="h-4 w-4" />
             <span>Showdown ({selectedVehicles.length}/4):</span>
           </div>
@@ -37,12 +42,13 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
                 key={v.id}
                 className="flex items-center gap-2 bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark rounded-xl px-2.5 py-1.5 text-xs text-neutral-800 dark:text-neutral-200 shrink-0 shadow-sm"
               >
-                <img src={v.image} alt={v.name} className="h-5 w-7 object-cover rounded-md" />
+                <img src={v.image} alt="" className="h-5 w-7 object-cover rounded-md" aria-hidden="true" />
                 <span className="font-semibold text-xs truncate max-w-[120px]">{v.name}</span>
                 <button
                   onClick={() => onRemoveVehicle(v.id)}
-                  className="text-neutral-400 hover:text-rose-500 transition"
-                  title="Remove"
+                  aria-label={`Remove ${v.name} from comparison`}
+                  className="text-neutral-500 hover:text-rose-500 transition p-0.5 rounded-md focus:outline-none"
+                  title={`Remove ${v.name}`}
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
@@ -55,7 +61,8 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
           <button
             onClick={onClearAll}
-            className="flex items-center gap-1 px-3 py-2 text-xs font-semibold text-neutral-500 hover:text-neutral-900 dark:hover:text-white transition"
+            aria-label="Clear all vehicles from showdown comparison"
+            className="flex items-center gap-1 px-3 py-2 text-xs font-semibold text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white transition"
           >
             <Trash2 className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Clear</span>
@@ -64,10 +71,15 @@ export const ComparisonDrawer: React.FC<ComparisonDrawerProps> = ({
           <button
             onClick={onOpenComparison}
             disabled={selectedVehicles.length < 2}
+            aria-label={
+              selectedVehicles.length < 2
+                ? 'Select at least 2 vehicles to launch showdown comparison'
+                : `Launch showdown comparison with ${selectedVehicles.length} vehicles`
+            }
             className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition shadow-sm active:scale-95 ${
               selectedVehicles.length >= 2
                 ? 'text-neutral-950 font-black hover:brightness-105'
-                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-400 cursor-not-allowed border border-borderLine-light dark:border-borderLine-dark'
+                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-500 dark:text-neutral-500 cursor-not-allowed border border-borderLine-light dark:border-borderLine-dark'
             }`}
             style={{
               backgroundColor: selectedVehicles.length >= 2 ? 'var(--pt-accent)' : undefined,

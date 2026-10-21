@@ -47,7 +47,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xl font-extrabold tracking-tight text-neutral-900 dark:text-white">
-                  Come<span className="transition-colors duration-300" style={{ color: 'var(--pt-accent)' }}>Pare</span>
+                  Come<span className="transition-colors duration-300" style={{ color: 'var(--pt-accent-text)' }}>Pare</span>
                 </span>
                 
                 {/* Reactive Theme Pill Badge */}
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
                   {selectedPowertrain === 'all' && <>All Powertrains</>}
                 </span>
               </div>
-              <p className="text-[11px] text-neutral-500 dark:text-neutral-400 font-medium hidden sm:block">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 font-medium hidden sm:block">
                 The automobile spec showdown • Zero dealer calls
               </p>
             </div>
@@ -76,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={toggleTheme}
               className="p-2 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 transition active:scale-95"
-              aria-label="Toggle theme"
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {theme === 'dark' ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-neutral-800" />}
             </button>
@@ -84,6 +84,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={onOpenComparison}
               disabled={selectedCount === 0}
+              aria-label={selectedCount === 0 ? 'No vehicles paired for showdown' : `View showdown comparison for ${selectedCount} vehicles`}
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm"
               style={{
                 backgroundColor: selectedCount > 0 ? 'var(--pt-accent)' : undefined,
@@ -100,23 +101,29 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex flex-wrap items-center gap-2.5">
           
           {/* Category Segmented Control */}
-          <div className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold">
+          <div
+            role="group"
+            aria-label="Filter vehicle category"
+            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold"
+          >
             <button
               onClick={() => setActiveCategory('all')}
+              aria-pressed={activeCategory === 'all'}
               className={`px-3 py-1.5 rounded-lg transition-all ${
                 activeCategory === 'all'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               All Wheels
             </button>
             <button
               onClick={() => setActiveCategory('car')}
+              aria-pressed={activeCategory === 'car'}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 activeCategory === 'car'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <Car className="h-3.5 w-3.5" />
@@ -124,10 +131,11 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
             <button
               onClick={() => setActiveCategory('bike')}
+              aria-pressed={activeCategory === 'bike'}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all ${
                 activeCategory === 'bike'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold border border-borderLine-strong-light/50 dark:border-borderLine-strong-dark/50'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <Bike className="h-3.5 w-3.5" />
@@ -136,13 +144,18 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Powertrain Dynamic Mode Switcher (All / EV / Petrol / Diesel) */}
-          <div className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold">
+          <div
+            role="group"
+            aria-label="Filter powertrain driving mode"
+            className="inline-flex p-1 rounded-xl bg-surface-subtle-light dark:bg-surface-subtle-dark border border-borderLine-light dark:border-borderLine-dark text-xs font-semibold"
+          >
             <button
               onClick={() => setSelectedPowertrain('all')}
+              aria-pressed={selectedPowertrain === 'all'}
               className={`px-2.5 py-1.5 rounded-lg transition-all ${
                 selectedPowertrain === 'all'
                   ? 'bg-surface-light dark:bg-surface-dark text-neutral-950 dark:text-white shadow-sm font-bold'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
+                  : 'text-neutral-700 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               All Fuel
@@ -150,10 +163,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setSelectedPowertrain('ev')}
+              aria-pressed={selectedPowertrain === 'ev'}
               className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'ev'
                   ? 'bg-emerald-500 text-neutral-950 shadow-sm'
-                  : 'text-emerald-700 dark:text-emerald-400 hover:bg-emerald-500/10'
+                  : 'text-emerald-800 dark:text-emerald-300 hover:bg-emerald-500/10'
               }`}
             >
               <Zap className="h-3 w-3 fill-current" />
@@ -162,10 +176,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setSelectedPowertrain('petrol')}
+              aria-pressed={selectedPowertrain === 'petrol'}
               className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'petrol'
                   ? 'bg-amber-500 text-neutral-950 shadow-sm'
-                  : 'text-amber-700 dark:text-amber-400 hover:bg-amber-500/10'
+                  : 'text-amber-800 dark:text-amber-300 hover:bg-amber-500/10'
               }`}
             >
               <Fuel className="h-3 w-3" />
@@ -174,10 +189,11 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setSelectedPowertrain('diesel')}
+              aria-pressed={selectedPowertrain === 'diesel'}
               className={`flex items-center gap-1 px-2.5 py-1.5 rounded-lg transition-all font-bold ${
                 selectedPowertrain === 'diesel'
-                  ? 'bg-slate-600 text-white shadow-sm'
-                  : 'text-slate-600 dark:text-slate-300 hover:bg-slate-500/10'
+                  ? 'bg-slate-700 text-white shadow-sm'
+                  : 'text-slate-700 dark:text-slate-300 hover:bg-slate-500/10'
               }`}
             >
               <Disc className="h-3 w-3" />
@@ -189,8 +205,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={toggleTheme}
             className="hidden md:flex items-center justify-center h-9 w-9 rounded-xl bg-surface-light dark:bg-surface-dark border border-borderLine-light dark:border-borderLine-dark text-neutral-700 dark:text-neutral-300 hover:bg-surface-subtle-light dark:hover:bg-surface-subtle-dark transition active:scale-95 shadow-sm"
-            title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
-            aria-label="Toggle theme"
+            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
           >
             {theme === 'dark' ? (
               <Sun className="h-4 w-4 text-amber-400" />
@@ -203,12 +218,19 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             onClick={onOpenComparison}
             disabled={selectedCount < 2}
+            aria-label={
+              selectedCount === 0
+                ? 'Select 2 vehicles to compare in showdown'
+                : selectedCount === 1
+                ? 'Select 1 more vehicle to pair for showdown'
+                : `Launch showdown comparison for ${selectedCount} vehicles`
+            }
             className={`hidden md:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 ${
               selectedCount >= 2
                 ? 'shadow-md font-extrabold text-neutral-950 hover:brightness-105'
                 : selectedCount === 1
                 ? 'bg-surface-light dark:bg-surface-dark text-neutral-900 dark:text-white border border-dashed animate-pulse'
-                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-400 dark:text-neutral-600 border border-borderLine-light dark:border-borderLine-dark cursor-not-allowed'
+                : 'bg-surface-subtle-light dark:bg-surface-subtle-dark text-neutral-500 dark:text-neutral-500 border border-borderLine-light dark:border-borderLine-dark cursor-not-allowed'
             }`}
             style={{
               backgroundColor: selectedCount >= 2 ? 'var(--pt-accent)' : undefined,
